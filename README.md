@@ -16,28 +16,6 @@
    4. Order Items
       1. [Store](Payloads/OrderItem/STORE.md)
 
-## Installation
-
-```
-composer require aerocommerce/api
-```
-
-This module requires the `api_tokens` & `api_usage_logs` tables, which can be created by migrating:
-
-```
-php artisan migrate --force
-```
-
-To ensure the API token generation is secure please define the secret used to create them in your auth config file, e.g.:
-
-```php
-{
-    //...
-
-    "jwt_secret" => "secret here"
-}
-```
-
 ## Usage
 
 ### Creating a token
