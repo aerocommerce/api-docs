@@ -8,14 +8,14 @@
 5. [Endpoints](ENDPOINTS.md)
 4. [Responses](RESPONSES.md)
 6. Payloads
-   1. [Order](Payloads/Order)
+   1. Order
       1. [Store](Payloads/Order/STORE.md)
-   2. [Shipping Address]()
-      1. [Store]()
-   3. [Billing Address]()
-       1. [Store]()
-   4. [Order Items]()
-      1. [Store]()
+   2. Shipping Address
+      1. [Store](Payloads/ShippingAddress/STORE.md)
+   3. Billing Address
+       1. [Store](Payloads/BillingAddress/STORE.md)
+   4. Order Items
+      1. [Store](Payloads/OrderItem/STORE.md)
 
 ## Installation
 
