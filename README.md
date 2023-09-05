@@ -2,12 +2,11 @@
 
 ## Table of contents
 
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [API Conventions](CONVENTIONS.md)
-5. [Endpoints](ENDPOINTS.md)
+1. [Usage](#usage)
+2. [API Conventions](CONVENTIONS.md)
+3. [Endpoints](ENDPOINTS.md)
 4. [Responses](RESPONSES.md)
-6. Payloads
+5. Payloads
    1. Order
       1. [Store](Payloads/Order/STORE.md)
    2. Shipping Address
