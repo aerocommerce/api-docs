@@ -18,4 +18,4 @@
 | `reference`   | string  | The **unique** reference for the shipping address | No        |
 | `eori_number` | string  | The EORI number for the shipping address          | No        |
 
-[Back to contents](README.md#table-of-contents)
+[Back to contents](../../README.md#table-of-contents)

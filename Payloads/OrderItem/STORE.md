@@ -49,4 +49,4 @@ The item's buyable is resolved using the following priority:
 
 If `full_price` is not specified then `price` will be used for its value
 
-[Back to contents](README.md#table-of-contents)
+[Back to contents](../../README.md#table-of-contents)
