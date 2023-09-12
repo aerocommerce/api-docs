@@ -30,6 +30,7 @@
 | `ordered_at`         | date      | When the order was ordered                                                                  | No                          |
 | `deliver_on`         | date      | When the order should be delivered                                                          | No                          |
 | `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                  | Yes                         |
+| `payments`           | array     | The payments for the order, see [Payment](#payment)                                         | No                          |
 
 If no `currency` is passed for the order it is resolved from the store default
 
@@ -115,6 +116,33 @@ The buyable is used to initially populate the attributes of the order item and t
 
 If no `full_price` is passed for the order item it is set to its `price`
 
+### Payments
+
+You can optionally provide payments for the order using these attributes
+
+| Name                   | Type   | Description                                                                 | Required? |
+|------------------------|--------|-----------------------------------------------------------------------------|-----------|
+| `payments.*.method_id` | int    | The payment method id of the payment, not required if `driver` is passed    | Yes (?)   |
+| `payments.*.reference` | string | The reference for the payment, if not specified a uuid will be generated    | No        |
+| `payments.*.state`     | string | The state for the payment, if not specified the captured state will be used | No        |
+| `payments.*.amount`    | float  | The amount for the payment                                                  | Yes       |
+
+If `driver` is passed in the payload then `method_id` will be resolved to be the first payment method with that driver
+
+These are the valid values for `state`:
+
+- failed
+- pending
+- authorized
+- partially captured
+- captured
+- partially refunded
+- refunded
+- canceled
+- errored
+
+The currency is resolved from the order's currency
+
 ## Example Request
 
 ```http request
@@ -186,6 +214,12 @@ POST /api/orders
                 "amount": 8416.67,
                 "tax": 1683.33
             },
+        }
+    ],
+    "payments": [
+        {
+            "driver": "cash",
+            "amount": 101100
         }
     ]
 }
