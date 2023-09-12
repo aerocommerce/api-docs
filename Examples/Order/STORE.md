@@ -30,7 +30,7 @@
 | `ordered_at`         | date      | When the order was ordered                                                                  | No                          |
 | `deliver_on`         | date      | When the order should be delivered                                                          | No                          |
 | `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                  | Yes                         |
-| `payments`           | array     | The payments for the order, see [Payment](#payment)                                         | No                          |
+| `payments`           | array     | The payments for the order, see [Payments](#payments)                                       | No                          |
 
 If no `currency` is passed for the order it is resolved from the store default
 
