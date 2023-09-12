@@ -31,6 +31,8 @@
 | `deliver_on`         | date      | When the order should be delivered                                                          | No                          |
 | `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                  | Yes                         |
 
+If no `currency` is passed for the order it is resolved from the store default
+
 ### Shipping Address
 
 You can optionally provide a shipping address for the order using these attributes
@@ -109,13 +111,9 @@ You must provide an array of items for the order using these attributes
 | `items.*.subscription_plan_id` | int     | The subscription plan id for the order item                                                                  | No        |
 | `items.*.goods_description`    | string  | The goods description for the order item                                                                     | No        |
 
-## Remarks
+The buyable is used to initially populate the attributes of the order item and then any attributes passed are applied
 
-If no `"currency"` is passed for the order it is resolved from the store default
-
-If no `"full_price"` is passed for the order item it is set to its `"price"`
-
-If no `"key"`/`"name"`/`"url"`/`"sku"`/`"image"` is passed for the order item they are resolved from its buyable
+If no `full_price` is passed for the order item it is set to its `price`
 
 ## Example Request
 

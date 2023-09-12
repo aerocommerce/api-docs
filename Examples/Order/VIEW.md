@@ -31,11 +31,11 @@
 
 An order can have a status, if it doesn't then `status` will be `null`, see attributes below:
 
-| Name               | Type   | Description                   |
-|--------------------|--------|-------------------------------|
-| `id`               | int    | The id of the order status    |
-| `name`             | string | The name of the order status  |
-| `state`            | string | The state of the order status |
+| Name           | Type   | Description                   |
+|----------------|--------|-------------------------------|
+| `status.id`    | int    | The id of the order status    |
+| `status.name`  | string | The name of the order status  |
+| `status.state` | string | The state of the order status |
 
 The `state` is restricted to one of the following values:
 - cancelled
@@ -53,20 +53,20 @@ The `state` is restricted to one of the following values:
 
 An order can have a customer, if it doesn't then `customer` will be `null`, see attributes below:
 
-| Name    | Type   | Description               |
-|---------|--------|---------------------------|
-| `id`    | int    | The id of the customer    |
-| `name`  | string | The name of the customer  |
-| `email` | string | The email of the customer |
+| Name             | Type   | Description               |
+|------------------|--------|---------------------------|
+| `customer.id`    | int    | The id of the customer    |
+| `customer.name`  | string | The name of the customer  |
+| `customer.email` | string | The email of the customer |
 
 ### Shipping Method
 
 An order can have a shipping method, if it doesn't then `shipping_method` will be `null`, see attributes below:
 
-| Name   | Type   | Description                     |
-|--------|--------|---------------------------------|
-| `id`   | int    | The id of the shipping method   |
-| `name` | string | The name of the shipping method |
+| Name                   | Type   | Description                     |
+|------------------------|--------|---------------------------------|
+| `shipping_method.id`   | int    | The id of the shipping method   |
+| `shipping_method.name` | string | The name of the shipping method |
 
 ### Shipping Address
 

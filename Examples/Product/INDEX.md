@@ -15,7 +15,7 @@ In addition to the standard parameters accepted for a paginated route, this rout
 | `min_updated_at` | The min updated at for a product   | ?min_updated_at=2023-08-30%2010:35:05   |
 | `max_updated_at` | The max updated at for a product   | ?max_updated_at=2023-08-30%2010:35:05   |
 
-see ([Date Conventions](../../CONVENTIONS.md#date-conventions))
+see [Date Conventions](../../CONVENTIONS.md#date-conventions) for more info on acceptable values for these parameters
 
 ## Example Response
 
