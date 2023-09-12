@@ -8,7 +8,7 @@
 4. [Responses](RESPONSES.md)
 5. Examples
    1. Attribute
-      2. [View](Examples/Attribute/VIEW.md)
+      1. [View](Examples/Attribute/VIEW.md)
    2. Attribute Group
       1. [View](Examples/AttributeGroup/VIEW.md)
    3. Billing Address
