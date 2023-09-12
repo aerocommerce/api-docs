@@ -14,6 +14,8 @@ When passing nested (related) data to the API the key should be a snake case rep
 
 ### Price Conventions
 
+All requests expect amounts to be provided in the currency's smallest unit. For example, to charge 10 GBP, provide an amount value of 1000 (that is, 1000 pence).
+
 When passing a price it should be formatted as a nested json object with `amount` & `tax` keys where the `amount` is the price **excluding tax**, e.g.:
 
 ```json lines
