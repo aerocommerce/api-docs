@@ -7,43 +7,12 @@
 3. [Endpoints](ENDPOINTS.md)
 4. [Responses](RESPONSES.md)
 5. Examples
-   1. Attribute
-      1. [View](Examples/Attribute/VIEW.md)
-   2. Attribute Group
-      1. [View](Examples/AttributeGroup/VIEW.md)
-   3. Billing Address
-       1. [Store](Examples/BillingAddress/STORE.md)
-       2. [View](Examples/BillingAddress/VIEW.md)
-   4. Category
-      1. [View](Examples/Category/VIEW.md)
-   5. Image
-      1. [View](Examples/Image/VIEW.md)
-   6. Manufacturer
-      1. [View](Examples/Manufacturer/VIEW.md)
-   7. Order
+   1. Order
       1. [Store](Examples/Order/STORE.md)
       2. [View](Examples/Order/VIEW.md)
-   8. Order Item
-      1. [Store](Examples/OrderItem/STORE.md)
-      2. [View](Examples/OrderItem/VIEW.md)
-   9. Order Status
-      1. [View](Examples/OrderStatus/VIEW.md)
-   10. Price
-       1. [View](Examples/Price/VIEW.md)
-   11. Product
-       1. [Index](Examples/Product/INDEX.md)
-       2. [View](Examples/Product/VIEW.md)
-   12. Shipping Address
-       1. [Store](Examples/ShippingAddress/STORE.md)
-       2. [View](Examples/ShippingAddress/VIEW.md)
-   13. Shipping Method
-       1. [View](Examples/ShippingMethod/VIEW.md)
-   14. Tag
-       1. [View](Examples/Tag/VIEW.md)
-   15. Tag Group
-       1. [View](Examples/TagGroup/VIEW.md)
-   16. Variant
-       1. [View](Examples/Variant/VIEW.md)
+   2. Product
+      1. [Index](Examples/Product/INDEX.md)
+      2. [View](Examples/Product/VIEW.md)
 
 ## Usage
 

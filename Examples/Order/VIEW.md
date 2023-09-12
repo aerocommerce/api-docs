@@ -1,29 +1,156 @@
 # View Order
 
-## Attributes
+## Attributes:
 
-| Name                | Type   | Description                                                                                    |
-|---------------------|--------|------------------------------------------------------------------------------------------------|
-| `reference`         | string | The **unique** reference for the order                                                         |
-| `status`            | object | The status of the order, see [View Order Status](../OrderStatus/VIEW.md)                       |
-| `state`             | string | Alternative to passing `status_id`, resolves <br/>the first status with the specified state    |
-| `customer`          | object | The customer of the order, see [View Customer](../OrderItem/VIEW.md)                           |
-| `email`             | string | The email of the customer that placed the order                                                |
-| `subtotal.amount`   | float  | The subtotal of the order **excluding tax**                                                    |
-| `subtotal.tax`      | float  | The subtotal tax for the order                                                                 |
-| `shipping.amount`   | float  | The shipping of the order **excluding tax**                                                    |
-| `shipping.tax`      | float  | The shipping tax for the order                                                                 |
-| `discount.amount`   | float  | The discount of the order **excluding tax**                                                    |
-| `discount.tax`      | float  | The discount tax for the order                                                                 |
-| `surcharge.amount`  | float  | The surcharge of the order **excluding tax**                                                   |
-| `surcharge.tax`     | float  | The surcharge tax for the order                                                                |
-| `currency`          | string | The currency code of the order                                                                 |
-| `shipping_method`   | object | The shipping method of the order, see <br/>[View Shipping Method](../OrderItem/VIEW.md)        |
-| `shipping_address`  | object | The shipping address of the order,<br/>see [View Shipping Address](../ShippingAddress/VIEW.md) |
-| `billing_address `  | object | The billing address of the order,<br/>see [View Billing Address](../BillingAddress/VIEW.md)    |
-| `ordered_at`        | date   | When the order was ordered                                                                     |
-| `deliver_on`        | date   | When the order should be delivered                                                             |
-| `items`             | array  | The items of the order,<br/>see [View Order Item](../OrderItem/VIEW.md)                        |
+### Order
+
+| Name                | Type   | Description                                                                                 |
+|---------------------|--------|---------------------------------------------------------------------------------------------|
+| `reference`         | string | The **unique** reference for the order                                                      |
+| `status`            | object | The status of the order, see [Order Status](#order-status)                                  |
+| `state`             | string | Alternative to passing `status_id`, resolves <br/>the first status with the specified state |
+| `customer`          | object | The customer of the order, see [Customer](#customer)                                        |
+| `email`             | string | The email of the customer that placed the order                                             |
+| `subtotal.amount`   | float  | The subtotal of the order **excluding tax**                                                 |
+| `subtotal.tax`      | float  | The subtotal tax for the order                                                              |
+| `shipping.amount`   | float  | The shipping of the order **excluding tax**                                                 |
+| `shipping.tax`      | float  | The shipping tax for the order                                                              |
+| `discount.amount`   | float  | The discount of the order **excluding tax**                                                 |
+| `discount.tax`      | float  | The discount tax for the order                                                              |
+| `surcharge.amount`  | float  | The surcharge of the order **excluding tax**                                                |
+| `surcharge.tax`     | float  | The surcharge tax for the order                                                             |
+| `currency`          | string | The currency code of the order                                                              |
+| `shipping_method`   | object | The shipping method of the order, see <br/>[Shipping Method](#shipping-method)              |
+| `shipping_address`  | object | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)            |
+| `billing_address `  | object | The billing address of the order,<br/>see [Billing Address](#billing-address)               |
+| `ordered_at`        | date   | When the order was ordered                                                                  |
+| `deliver_on`        | date   | When the order should be delivered                                                          |
+| `items`             | array  | The items of the order,<br/>see [Order Items](#order-items)                                 |
+
+### Order Status
+
+An order can have a status, if it doesn't then `status` will be `null`, see attributes below:
+
+| Name               | Type   | Description                   |
+|--------------------|--------|-------------------------------|
+| `id`               | int    | The id of the order status    |
+| `name`             | string | The name of the order status  |
+| `state`            | string | The state of the order status |
+
+The `state` is restricted to one of the following values:
+- cancelled
+- on_hold
+- successful
+- complete
+- processing
+- closed
+- partially_dispatched
+- dispatched
+- partially_returned
+- returned
+
+### Customer
+
+An order can have a customer, if it doesn't then `customer` will be `null`, see attributes below:
+
+| Name    | Type   | Description               |
+|---------|--------|---------------------------|
+| `id`    | int    | The id of the customer    |
+| `name`  | string | The name of the customer  |
+| `email` | string | The email of the customer |
+
+### Shipping Method
+
+An order can have a shipping method, if it doesn't then `shipping_method` will be `null`, see attributes below:
+
+| Name   | Type   | Description                     |
+|--------|--------|---------------------------------|
+| `id`   | int    | The id of the shipping method   |
+| `name` | string | The name of the shipping method |
+
+### Shipping Address
+
+An order can have a shipping address, if it doesn't then `shipping_address` will be `null`, see attributes below:
+
+| Name                               | Type    | Description                                       |
+|------------------------------------|---------|---------------------------------------------------|
+| `shipping_address.first_name`      | string  | The first name for the shipping address           |
+| `shipping_address.last_name`       | string  | The last name for the shipping address            |
+| `shipping_address.company`         | string  | The company for the shipping address              |
+| `shipping_address.mobile`          | string  | The mobile number for the shipping address        |
+| `shipping_address.phone`           | string  | The phone number for the shipping address         |
+| `shipping_address.line_1`          | string  | The first line for the shipping address           |
+| `shipping_address.line_2`          | string  | The second line for the shipping address          |
+| `shipping_address.city`            | string  | The city for the shipping address                 |
+| `shipping_address.zone`            | string  | The zone code for the shipping address            |
+| `shipping_address.postcode`        | string  | The postcode for the shipping address             |
+| `shipping_address.country`         | string  | The country code for the shipping address         |
+| `shipping_address.reference`       | string  | The **unique** reference for the shipping address |
+| `shipping_address.eori_number`     | string  | The EORI number for the shipping address          |
+
+### Billing Address
+
+An order can have a billing address, if it doesn't then `billing_address` will be `null`, see attributes below:
+
+| Name                            | Type    | Description                                      |
+|---------------------------------|---------|--------------------------------------------------|
+| `billing_address.first_name`    | string  | The first name for the billing address           |
+| `billing_address.last_name`     | string  | The last name for the billing address            |
+| `billing_address.company`       | string  | The company for the billing address              |
+| `billing_address.mobile`        | string  | The mobile number for the billing address        |
+| `billing_address.phone`         | string  | The phone number for the billing address         |
+| `billing_address.line_1`        | string  | The first line for the billing address           |
+| `billing_address.line_2`        | string  | The second line for the billing address          |
+| `billing_address.city`          | string  | The city for the billing address                 |
+| `billing_address.zone`          | string  | The zone code for the billing address            |
+| `billing_address.postcode`      | string  | The postcode for the billing address             |
+| `billing_address.country`       | string  | The country code for the billing address         |
+| `billing_address.reference`     | string  | The **unique** reference for the billing address |
+| `billing_address.eori_number`   | string  | The EORI number for the billing address          |
+
+### Order Items
+
+An order has items, see attributes below:
+
+| Name                          | Type    | Description                                                                                       |
+|-------------------------------|---------|---------------------------------------------------------------------------------------------------|
+| `items.*.id`                  | int     | The id of the order item                                                                          |
+| `items.*.variant_id`          | int     | The variant id of the buyable (not set if the buyable is not a variant)                           |
+| `items.*.product_id`          | int     | The product id of the buyable                                                                     |
+| `items.*.buyable_type`        | string  | The buyable type of the order item                                                                |
+| `items.*.buyable_id`          | int     | The buyable id of the order item                                                                  |
+| `items.*.name`                | string  | The name for the order item                                                                       |
+| `items.*.url`                 | string  | The url for the order item                                                                        |
+| `items.*.sku`                 | string  | The sku for the order item                                                                        |
+| `items.*.reference`           | string  | The **unique** reference for the order item                                                       |
+| `items.*.manufacturer`        | object  | The manufacturer for the order item, see [Manufacturer](#manufacturer)                            |
+| `items.*.image.url`           | string  | The image url for the order item                                                                  |
+| `items.*.shippable`           | boolean | Whether the order item is shippable                                                               |
+| `items.*.quantity`            | int     | The quantity for the order item                                                                   |
+| `items.*.price.amount`        | float   | The **unit** price of the order item **excluding tax**                                            |
+| `items.*.price.tax`           | float   | The **unit** tax for the order item                                                               |
+| `items.*.discount.amount`     | float   | The **total** discount of the order item **excluding tax**                                        |
+| `items.*.discount.tax`        | float   | The **total** discount tax for the order item                                                     |
+| `items.*.full_price.amount`   | float   | The **unit** full price (including extras) of the order item **excluding tax**                    |
+| `items.*.full_price.tax`      | float   | The **unit** full tax (including extras) for the order item                                       |
+| `items.*.cost_price.amount`   | float   | The **unit** cost price of the order item **excluding tax**                                       |
+| `items.*.cost_price.currency` | string  | The currency code for the cost price                                                              |
+| `items.*.weight`              | float   | The weight for the order item                                                                     |
+| `items.*.weight_unit`         | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit if not passed |
+| `items.*.volume`              | float   | The volume for the order item                                                                     |
+| `items.*.volume_unit`         | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit if not passed  |
+| `items.*.hs`                  | string  | The HS code for the order item                                                                    |
+| `items.*.origin_country`      | string  | The origin country code for the order item                                                        |
+| `items.*.goods_description`   | string  | The goods description for the order item                                                          |
+
+### Manufacturer
+
+An order item can have a manufacturer, if it doesn't then `manufacturer` will be `null`, see attributes below:
+
+| Name                | Type   | Description                  |
+|---------------------|--------|------------------------------|
+| `manufacturer.id`   | string | The id of the manufacturer   |
+| `manufacturer.name` | string | The name of the manufacturer |
 
 ## Example Response
 
