@@ -4,28 +4,29 @@
 
 ### Order
 
-| Name                | Type   | Description                                                                                 |
-|---------------------|--------|---------------------------------------------------------------------------------------------|
-| `reference`         | string | The **unique** reference for the order                                                      |
-| `status`            | object | The status of the order, see [Order Status](#order-status)                                  |
-| `state`             | string | Alternative to passing `status_id`, resolves <br/>the first status with the specified state |
-| `customer`          | object | The customer of the order, see [Customer](#customer)                                        |
-| `email`             | string | The email of the customer that placed the order                                             |
-| `subtotal.amount`   | float  | The subtotal of the order **excluding tax**                                                 |
-| `subtotal.tax`      | float  | The subtotal tax for the order                                                              |
-| `shipping.amount`   | float  | The shipping of the order **excluding tax**                                                 |
-| `shipping.tax`      | float  | The shipping tax for the order                                                              |
-| `discount.amount`   | float  | The discount of the order **excluding tax**                                                 |
-| `discount.tax`      | float  | The discount tax for the order                                                              |
-| `surcharge.amount`  | float  | The surcharge of the order **excluding tax**                                                |
-| `surcharge.tax`     | float  | The surcharge tax for the order                                                             |
-| `currency`          | string | The currency code of the order                                                              |
-| `shipping_method`   | object | The shipping method of the order, see <br/>[Shipping Method](#shipping-method)              |
-| `shipping_address`  | object | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)            |
-| `billing_address `  | object | The billing address of the order,<br/>see [Billing Address](#billing-address)               |
-| `ordered_at`        | date   | When the order was ordered                                                                  |
-| `deliver_on`        | date   | When the order should be delivered                                                          |
-| `items`             | array  | The items of the order,<br/>see [Order Items](#order-items)                                 |
+| Name               | Type   | Description                                                                                 |
+|--------------------|--------|---------------------------------------------------------------------------------------------|
+| `reference`        | string | The **unique** reference for the order                                                      |
+| `status`           | object | The status of the order, see [Order Status](#order-status)                                  |
+| `state`            | string | Alternative to passing `status_id`, resolves <br/>the first status with the specified state |
+| `customer`         | object | The customer of the order, see [Customer](#customer)                                        |
+| `email`            | string | The email of the customer that placed the order                                             |
+| `subtotal.amount`  | float  | The subtotal of the order **excluding tax**                                                 |
+| `subtotal.tax`     | float  | The subtotal tax for the order                                                              |
+| `shipping.amount`  | float  | The shipping of the order **excluding tax**                                                 |
+| `shipping.tax`     | float  | The shipping tax for the order                                                              |
+| `discount.amount`  | float  | The discount of the order **excluding tax**                                                 |
+| `discount.tax`     | float  | The discount tax for the order                                                              |
+| `surcharge.amount` | float  | The surcharge of the order **excluding tax**                                                |
+| `surcharge.tax`    | float  | The surcharge tax for the order                                                             |
+| `currency`         | string | The currency code of the order                                                              |
+| `shipping_method`  | object | The shipping method of the order, see <br/>[Shipping Method](#shipping-method)              |
+| `shipping_address` | object | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)            |
+| `billing_address ` | object | The billing address of the order,<br/>see [Billing Address](#billing-address)               |
+| `ordered_at`       | date   | When the order was ordered                                                                  |
+| `deliver_on`       | date   | When the order should be delivered                                                          |
+| `items`            | array  | The items of the order,<br/>see [Order Items](#order-items)                                 |
+| `payments`         | array  | The payments for the order,<br/>see [Payments](#payments)                                   |
 
 ### Order Status
 
@@ -152,6 +153,25 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 | `manufacturer.id`   | string | The id of the manufacturer   |
 | `manufacturer.name` | string | The name of the manufacturer |
 
+### Payments
+
+| Name                     | Type   | Description                                                                 |
+|--------------------------|--------|-----------------------------------------------------------------------------|
+| `payments.*.id`          | int    | The id of the payment                                                       |
+| `payments.*.method`      | object | The method for the payment, see [Payment Method](#payment-method)           |
+| `payments.*.reference`   | string | The state for the payment, if not specified the captured state will be used |
+| `payments.*.amount`      | float  | The total amount for the payment                                            |
+| `payments.*.currency`    | string | The currency code for the payment                                           |
+| `payments.*.captured_at` | date   | The date the payment was captured                                           |
+
+### Payment Method
+
+| Name            | Type   | Description                      |
+|-----------------|--------|----------------------------------|
+| `method.id`     | int    | The id of the payment method     |
+| `method.name`   | string | The name of the payment method   |
+| `method.driver` | string | The driver of the payment method |
+
 ## Example Response
 
 ```http request
@@ -253,6 +273,20 @@ GET /api/orders/{id}
             },
             "weight": 0,
             "volume": 0
+        }
+    ],
+    "payments": [
+        {
+            "id": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "method": {
+                "id": 1,
+                "name": "Cash",
+                "driver": "cash"
+            },
+            "reference": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "amount": 101100,
+            "currency": "GBP",
+            "captured_at": "2023-09-12T10:17:03.000000Z"
         }
     ]
 }
