@@ -2,7 +2,7 @@
 
 ## Payload Conventions
 
-Here are the main conventions & exceptions to those conventions that our payloads abide by, any more specific exceptions will be addressed in the relevant section in `Payloads`
+Here are the main conventions & exceptions to those conventions that our payloads abide by, any more specific exceptions will be addressed in the relevant section in `Examples`
 
 ### Attribute Conventions
 
@@ -27,6 +27,37 @@ When passing a price it should be formatted as a nested json object with `amount
 
 ### Date Conventions
 
-When passing a date it must be Carbon parseable, e.g.: `"2023-09-01T09:29:41.000000Z"` or `"2023-09-01 09:29:41"` or `"2023-09-01"`, if no time is provided midnight will be used as the date's time
+When passing a date it must be Carbon parseable date, e.g.: `"2023-09-01T09:29:41.000000Z"` or `"2023-09-01 09:29:41"` or `"2023-09-01"`, if no time is provided midnight will be used as the date's time
+
+### Pagination Conventions
+
+Any paginated endpoint accepts the following parameters
+
+| Parameter   | Description                                                    | Example      |
+|-------------|----------------------------------------------------------------|--------------|
+| `page`      | The page number, defaults to 1                                 | ?page=2      |
+| `per_page`  | The number of results per page, defaults to 24, max allowed 96 | ?per_page=48 |
+| `ids`       | The ids (comma seperated) of models to be fetched              | ?ids=1,2,5   |
+
+Any paginated endpoint will return a response inline with the Laravel pagination system, e.g.:
+
+```json lines
+{
+    "current_page": 1,
+    "data": [
+        //...
+    ],
+    "first_page_url": "http://l9.test/api/products?page=1",
+    "from": 1,
+    "last_page": 2,
+    "last_page_url": "http://l9.test/api/products?page=2",
+    "next_page_url": "http://l9.test/api/products?page=2",
+    "path": "http://l9.test/api/products",
+    "per_page": 24,
+    "prev_page_url": null,
+    "to": 24,
+    "total": 29
+}
+```
 
 [Back to contents](README.md#table-of-contents)
