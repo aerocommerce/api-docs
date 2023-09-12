@@ -157,7 +157,7 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 
 | Name                     | Type   | Description                                                                 |
 |--------------------------|--------|-----------------------------------------------------------------------------|
-| `payments.*.id`          | int    | The id of the payment                                                       |
+| `payments.*.id`          | string | The id of the payment                                                       |
 | `payments.*.method`      | object | The method for the payment, see [Payment Method](#payment-method)           |
 | `payments.*.reference`   | string | The state for the payment, if not specified the captured state will be used |
 | `payments.*.amount`      | float  | The total amount for the payment                                            |
