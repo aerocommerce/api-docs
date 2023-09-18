@@ -26,7 +26,7 @@
 | `ip`                 | string    | The ip of the order                                                                         | No                          |
 | `channel`            | string    | The channel of the order                                                                    | No                          |
 | `subscription_id`    | int       | The subscription id of the order                                                            | No                          |
-| `notify`             | boolean   | Whether the order notifications are muted                                                   | No                          |
+| `notify`             | boolean   | Whether the order notifications are activated                                               | No                          |
 | `ordered_at`         | date      | When the order was ordered                                                                  | No                          |
 | `deliver_on`         | date      | When the order should be delivered                                                          | No                          |
 | `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                  | Yes                         |
