@@ -4,32 +4,33 @@
 
 ### Order
 
-| Name                 | Type      | Description                                                                                 | Required?                   |
-|----------------------|-----------|---------------------------------------------------------------------------------------------|-----------------------------|
-| `reference`          | string    | The **unique** reference for the order                                                      | No                          |
-| `status_id`          | int       | The status id of the order,  can be resolved from <br/>`state` (see below)                  | If `ordered_at` is not null |
-| `state`              | string    | Alternative to passing `status_id`, resolves <br/>the first status with the specified state | No                          |
-| `customer_id`        | int       | The id of the customer that placed the order                                                | No                          |
-| `email`              | string    | The email of the customer that placed the order                                             | No                          |
-| `subtotal.amount`    | float     | The subtotal of the order **excluding tax**                                                 | Yes                         |
-| `subtotal.tax`       | float     | The subtotal tax for the order                                                              | Yes                         |
-| `shipping.amount`    | float     | The shipping of the order **excluding tax**                                                 | No                          |
-| `shipping.tax`       | float     | The shipping tax for the order                                                              | No                          |
-| `discount.amount`    | float     | The discount of the order **excluding tax**                                                 | No                          |
-| `discount.tax`       | float     | The discount tax for the order                                                              | No                          |
-| `surcharge.amount`   | float     | The surcharge of the order **excluding tax**                                                | No                          |
-| `surcharge.tax`      | float     | The surcharge tax for the order                                                             | No                          |
-| `shipping_method_id` | int       | The shipping method id of the order                                                         | No                          |
-| `currency`           | string    | The currency of the order, set to store currency<br/>if not supplied                        | No                          |
-| `shipping_address`   | object    | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)            | No                          |
-| `billing_address `   | object    | The billing address of the order,<br/>see [Billing Address](#billing-address)               | No                          |
-| `ip`                 | string    | The ip of the order                                                                         | No                          |
-| `channel`            | string    | The channel of the order                                                                    | No                          |
-| `subscription_id`    | int       | The subscription id of the order                                                            | No                          |
-| `notify`             | boolean   | Whether the order notifications are activated                                               | No                          |
-| `ordered_at`         | date      | When the order was ordered                                                                  | No                          |
-| `deliver_on`         | date      | When the order should be delivered                                                          | No                          |
-| `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                  | Yes                         |
+| Name                 | Type      | Description                                                                                             | Required?                   |
+|----------------------|-----------|---------------------------------------------------------------------------------------------------------|-----------------------------|
+| `reference`          | string    | The **unique** reference for the order                                                                  | No                          |
+| `status_id`          | int       | The status id of the order,  can be resolved from <br/>`state` (see below)                              | If `ordered_at` is not null |
+| `state`              | string    | Alternative to passing `status_id`, resolves <br/>the first status with the specified state             | No                          |
+| `customer_id`        | int       | The id of the customer that placed the order                                                            | No                          |
+| `email`              | string    | The email of the customer that placed the order                                                         | No                          |
+| `subtotal.amount`    | float     | The subtotal of the order **excluding tax**                                                             | Yes                         |
+| `subtotal.tax`       | float     | The subtotal tax for the order                                                                          | Yes                         |
+| `shipping.amount`    | float     | The shipping of the order **excluding tax**                                                             | No                          |
+| `shipping.tax`       | float     | The shipping tax for the order                                                                          | No                          |
+| `discount.amount`    | float     | The discount of the order **excluding tax**                                                             | No                          |
+| `discount.tax`       | float     | The discount tax for the order                                                                          | No                          |
+| `surcharge.amount`   | float     | The surcharge of the order **excluding tax**                                                            | No                          |
+| `surcharge.tax`      | float     | The surcharge tax for the order                                                                         | No                          |
+| `shipping_method_id` | int       | The shipping method id of the order                                                                     | No                          |
+| `currency`           | string    | The currency of the order, set to store currency<br/>if not supplied                                    | No                          |
+| `shipping_address`   | object    | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)                        | No                          |
+| `billing_address `   | object    | The billing address of the order,<br/>see [Billing Address](#billing-address)                           | No                          |
+| `ip`                 | string    | The ip of the order                                                                                     | No                          |
+| `channel`            | string    | The channel of the order                                                                                | No                          |
+| `subscription_id`    | int       | The subscription id of the order                                                                        | No                          |
+| `notify`             | boolean   | Whether the order notifications are activated                                                           | No                          |
+| `buy_items`          | boolean   | Whether the order items stock should be mutated. If false then `OrderItemBought` event will not be emit | No, defaults to `true`      |
+| `ordered_at`         | date      | When the order was ordered                                                                              | No                          |
+| `deliver_on`         | date      | When the order should be delivered                                                                      | No                          |
+| `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                              | Yes                         |
 
 If no `currency` is passed for the order it is resolved from the store default
 
