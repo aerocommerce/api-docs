@@ -16,4 +16,14 @@
 
 `/api/products` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
 
+The following query parameters can be passed in order to use Image Factory for generating the product's images urls
+
+| Parameter               | Description             | Example                               |
+|-------------------------|-------------------------|---------------------------------------|
+| `image_factory_width`   | The width               | ?image_factory_width=200              |
+| `image_factory_height`  | The height              | ?image_factory_height=200             |
+| `image_factory_options` | Comma seperated options | ?image_factory_options=flip,greyscale |
+
+If any of these query parameters are present in the GET requests then the Image Factory will be used
+
 [Back to contents](README.md#table-of-contents)
