@@ -27,6 +27,7 @@
 | `deliver_on`       | date   | When the order should be delivered                                                          |
 | `items`            | array  | The items of the order,<br/>see [Order Items](#order-items)                                 |
 | `payments`         | array  | The payments for the order,<br/>see [Payments](#payments)                                   |
+| `returns`          | array  | The returns for the order,<br/>see [Returns](#returns)                                      |
 
 ### Order Status
 
@@ -128,6 +129,7 @@ An order has items, see attributes below:
 | `items.*.image.url`           | string  | The image url for the order item                                                                  |
 | `items.*.shippable`           | boolean | Whether the order item is shippable                                                               |
 | `items.*.quantity`            | int     | The quantity for the order item                                                                   |
+| `items.*.returned_quantity`   | int     | The quantity returned for the order item                                                          |
 | `items.*.price.amount`        | float   | The **unit** price of the order item **excluding tax**                                            |
 | `items.*.price.tax`           | float   | The **unit** tax for the order item                                                               |
 | `items.*.discount.amount`     | float   | The **total** discount of the order item **excluding tax**                                        |
@@ -155,14 +157,15 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 
 ### Payments
 
-| Name                     | Type   | Description                                                                 |
-|--------------------------|--------|-----------------------------------------------------------------------------|
-| `payments.*.id`          | string | The id of the payment                                                       |
-| `payments.*.method`      | object | The method for the payment, see [Payment Method](#payment-method)           |
-| `payments.*.reference`   | string | The state for the payment, if not specified the captured state will be used |
-| `payments.*.amount`      | float  | The total amount for the payment                                            |
-| `payments.*.currency`    | string | The currency code for the payment                                           |
-| `payments.*.captured_at` | date   | The date the payment was captured                                           |
+| Name                     | Type   | Description                                                       |
+|--------------------------|--------|-------------------------------------------------------------------|
+| `payments.*.id`          | string | The id of the payment                                             |
+| `payments.*.method`      | object | The method for the payment, see [Payment Method](#payment-method) |
+| `payments.*.reference`   | string | The reference for the payment                                     |
+| `payments.*.state`       | string | The state of the payment                                          |
+| `payments.*.amount`      | float  | The total amount for the payment                                  |
+| `payments.*.currency`    | string | The currency code for the payment                                 |
+| `payments.*.captured_at` | date   | The date the payment was captured                                 |
 
 ### Payment Method
 
@@ -171,6 +174,22 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 | `method.id`     | int    | The id of the payment method     |
 | `method.name`   | string | The name of the payment method   |
 | `method.driver` | string | The driver of the payment method |
+
+### Returns
+
+| Name                   | Type  | Description                                                |
+|------------------------|-------|------------------------------------------------------------|
+| `returns.*.id`         | int   | The id of the order return                                 |
+| `returns.*.created_at` | date  | The date the return was made                               |
+| `returns.*.items`      | array | The items of the return, see [Return Items](#return-items) |
+
+### Return Items
+
+| Name                       | Type | Description                                                                                    |
+|----------------------------|------|------------------------------------------------------------------------------------------------|
+| `items.*.id`               | int  | The id of the order item that was returned                                                     |
+| `items.*.quantity`         | int  | The quantity of the order item that was returned                                               |
+| `items.*.exchanged_for_id` | int  | The id of the order item that the item was returned for (`null` if the item was not exchanged) |
 
 ## Example Response
 

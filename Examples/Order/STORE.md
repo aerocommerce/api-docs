@@ -222,13 +222,13 @@ POST /api/orders
             "discount": {
                 "amount": 8416.67,
                 "tax": 1683.33
-            },
+            }
         }
     ],
     "payments": [
         {
             "driver": "cash",
-            "amount": 101100
+            "amount": 91000
         }
     ]
 }
