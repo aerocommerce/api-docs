@@ -7,8 +7,8 @@
 | Name                 | Type      | Description                                                                                             | Required?                   |
 |----------------------|-----------|---------------------------------------------------------------------------------------------------------|-----------------------------|
 | `reference`          | string    | The **unique** reference for the order                                                                  | No                          |
-| `status_id`          | int       | The status id of the order,  can be resolved from <br/>`state` (see below)                              | If `ordered_at` is not null |
-| `state`              | string    | Alternative to passing `status_id`, resolves <br/>the first status with the specified state             | No                          |
+| `status_id`          | int       | The status id of the order,  can be resolved from `state` (see below)                                   | If `ordered_at` is not null |
+| `state`              | string    | Alternative to passing `status_id`, resolves the first status with the specified state                  | No                          |
 | `customer_id`        | int       | The id of the customer that placed the order                                                            | No                          |
 | `email`              | string    | The email of the customer that placed the order                                                         | No                          |
 | `subtotal.amount`    | float     | The subtotal of the order **excluding tax**                                                             | No                          |
@@ -20,9 +20,9 @@
 | `surcharge.amount`   | float     | The surcharge of the order **excluding tax**                                                            | No                          |
 | `surcharge.tax`      | float     | The surcharge tax for the order                                                                         | No                          |
 | `shipping_method_id` | int       | The shipping method id of the order                                                                     | No                          |
-| `currency`           | string    | The currency of the order, set to store currency<br/>if not supplied                                    | No                          |
-| `shipping_address`   | object    | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)                        | No                          |
-| `billing_address `   | object    | The billing address of the order,<br/>see [Billing Address](#billing-address)                           | No                          |
+| `currency`           | string    | The currency of the order, set to store currency if not supplied                                        | No                          |
+| `shipping_address`   | object    | The shipping address of the order, see [Shipping Address](#shipping-address)                            | No                          |
+| `billing_address `   | object    | The billing address of the order, see [Billing Address](#billing-address)                               | No                          |
 | `ip`                 | string    | The ip of the order                                                                                     | No                          |
 | `channel`            | string    | The channel of the order                                                                                | No                          |
 | `subscription_id`    | int       | The subscription id of the order                                                                        | No                          |
@@ -30,7 +30,8 @@
 | `buy_items`          | boolean   | Whether the order items stock should be mutated. If false then `OrderItemBought` event will not be emit | No, defaults to `true`      |
 | `ordered_at`         | date      | When the order was ordered                                                                              | No                          |
 | `deliver_on`         | date      | When the order should be delivered                                                                      | No                          |
-| `items`              | array     | The items of the order,<br/>see [Order Item](#order-items)                                              | Yes                         |
+| `items`              | array     | The items of the order, see [Order Item](#order-items)                                                  | Yes                         |
+| `payments`           | array     | The payments for the order, see [Payments](#payments)                                                   | No                          |
 
 If no `subtotal.amount` or `subtotal.tax` is passed their values will be set to the sum of the items `price.amount` * `quantity` & `price.tax` * `quantity` respectively
 
@@ -124,6 +125,33 @@ In the event an unnested price including tax is passed the ex and vat will be ca
 
 If no `full_price` is passed for the order item it is set to its `price`
 
+### Payments
+
+You can optionally provide payments for the order using these attributes
+
+| Name                   | Type   | Description                                                                 | Required?                                            |
+|------------------------|--------|-----------------------------------------------------------------------------|------------------------------------------------------|
+| `payments.*.method_id` | int    | The payment method id of the payment                                        | Not required if `driver` is passed (see below table) |
+| `payments.*.reference` | string | The reference for the payment, if not specified a uuid will be generated    | No                                                   |
+| `payments.*.state`     | string | The state for the payment, if not specified the captured state will be used | No                                                   |
+| `payments.*.amount`    | float  | The total amount for the payment                                            | Yes                                                  |
+
+If `driver` is passed in the payload then `method_id` will be resolved to be the first payment method with that driver (see [Example Request](#example-request))
+
+These are the valid values for `state`:
+
+- failed
+- pending
+- authorized
+- partially captured
+- captured
+- partially refunded
+- refunded
+- canceled
+- errored
+
+The currency is resolved from the order's currency
+
 ## Example Request
 
 ```http request
@@ -195,6 +223,12 @@ POST /api/orders
                 "amount": 8416.67,
                 "tax": 1683.33
             },
+        }
+    ],
+    "payments": [
+        {
+            "driver": "cash",
+            "amount": 101100
         }
     ]
 }
