@@ -90,12 +90,12 @@ A product has variant(s), see attributes below:
 | `variants.*.hs`                | string  | The hs code for the variant                                  |
 | `variants.*.origin_country`    | string  | The origin country code for the variant                      |
 | `variants.*.goods_description` | string  | The goods description for the variant                        |
-| `variants.*.cost.amount`       | float   | The cost price of the variant (excluding tax)                |
+| `variants.*.cost.amount`       | float   | The cost price of the variant **excluding tax**              |
 | `variants.*.cost.currency`     | string  | The currency for the cost price                              |
-| `variants.*.price.amount`      | float   | The current price of the variant (excluding tax)             |
+| `variants.*.price.amount`      | float   | The current price of the variant **excluding tax**           |
 | `variants.*.price.tax`         | float   | The tax of the current price                                 |
 | `variants.*.price.currency`    | string  | The currency of the current price                            |
-| `variants.*.retail.amount`     | float   | The RRP for the variant (excluding tax)                      |
+| `variants.*.retail.amount`     | float   | The RRP for the variant **excluding tax**                    |
 | `variants.*.retail.tax`        | float   | The tax of the RRP                                           |
 | `variants.*.retail.currency`   | string  | The currency of the RRP                                      |
 | `variants.*.prices`            | array   | The prices of the variant, see [Price](#price)               |
@@ -112,9 +112,12 @@ A variant has price(s), see attributes below:
 | `prices.*.id`                  | int    | The id of the price                                        |
 | `prices.*.currency`            | string | The currency code for the price                            |
 | `prices.*.quantity`            | int    | The quantity required for the price to be detected/applied |
-| `prices.*.value.amount`        | float  | The normal price (excluding tax)                           |
-| `prices.*.sale_value.amount`   | float  | The sale price (excluding tax)                             |
-| `prices.*.retail_value.amount` | float  | The retail price (excluding tax)                           |
+| `prices.*.value.amount`        | float  | The normal price **excluding tax**                         |
+| `prices.*.value.tax`           | float  | The tax for the normal price                               |
+| `prices.*.sale_value.amount`   | float  | The sale price **excluding tax**                           |
+| `prices.*.sale_value.tax`      | float  | The tax for the sale price                                 |
+| `prices.*.retail_value.amount` | float  | The retail price **excluding tax**                         |
+| `prices.*.retail_value.tax`    | float  | The tax for the retail price                               |
 | `prices.*.start_at`            | date   | The start date for when the price is active                |
 | `prices.*.end_at`              | date   | The end date for when the price is active                  |
 | `prices.*.reference`           | string | The reference for the price                                |
