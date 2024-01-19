@@ -27,6 +27,14 @@ When passing a price it should be formatted as a nested json object with `amount
 }
 ```
 
+**Some** prices (will be mentioned in the relevant examples section) support passing an unnested value which includes tax, e.g.:
+
+```json lines
+{
+    "price": 48000 // Including tax
+}
+```
+
 ### Date Conventions
 
 When passing a date it must be Carbon parseable date, e.g.: `"2023-09-01T09:29:41.000000Z"` or `"2023-09-01 09:29:41"` or `"2023-09-01"`, if no time is provided midnight will be used as the date's time
