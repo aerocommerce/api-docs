@@ -4,12 +4,12 @@
 
 ### Order Status
 
-| Name    | Type   | Description                                   |
-|---------|--------|-----------------------------------------------|
-| `id`    | int    | The id of the order status                    |
-| `name`  | string | The name of the order status                  |
-| `state` | string | The state of the order status                 |
-| `group` | object | The group of the order status [Group](#group) |
+| Name    | Type   | Description                                        |
+|---------|--------|----------------------------------------------------|
+| `id`    | int    | The id of the order status                         |
+| `name`  | string | The name of the order status                       |
+| `state` | string | The state of the order status                      |
+| `group` | object | The group of the order status, see [Group](#group) |
 
 ### Group
 

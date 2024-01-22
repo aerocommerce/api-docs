@@ -219,10 +219,7 @@ GET /api/orders/{id}
     },
     "ordered_at": "2023-09-01T09:29:41.000000Z",
     "deliver_on": null,
-    "currency": {
-        "code": "GBP",
-        "symbol": "£"
-    },
+    "currency": "GBP",
     "status": {
         "id": 3,
         "name": "Successful",
