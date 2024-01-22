@@ -7,6 +7,15 @@
 | /api/orders/{id}  | orders.view  | GET    | [View Order](Examples/Order/VIEW.md)   | Get an order by id             |
 | /api/orders       | orders.store | POST   | [Store Order](Examples/Order/STORE.md) | Create an order from json data |
 
+### Order Statuses
+
+| URL                      | Permission            | Action | Examples                                             | Purpose                |
+|--------------------------|-----------------------|--------|------------------------------------------------------|------------------------|
+| /api/order-statuses      | order-statuses.index  | GET    | [Order Status Index](Examples/OrderStatus/INDEX.md)  | Get all order statuses |
+| /api/order-statuses/{id} | order-statuses.view   | GET    | [View Order Status](Examples/OrderStatus/VIEW.md)    | Get order status by id | 
+
+`/api/order-statuses` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
 ### Products
 
 | URL                | Permission     | Action | Examples                                   | Purpose           |
