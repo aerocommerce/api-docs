@@ -1,4 +1,4 @@
-# Payment Method Index
+# Shipping Method Index
 
 ## Attributes:
 
