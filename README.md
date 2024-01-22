@@ -10,9 +10,18 @@
    1. Order
       1. [Store](Examples/Order/STORE.md)
       2. [View](Examples/Order/VIEW.md)
-   2. Product
+   2. Order Status
+      1. [Index](Examples/OrderStatus/INDEX.md)
+      2. [View](Examples/OrderStatus/VIEW.md)
+   3. Payment Method
+      1. [Index](Examples/PaymentMethod/INDEX.md)
+      2. [View](Examples/PaymentMethod/VIEW.md)
+   4. Product
       1. [Index](Examples/Product/INDEX.md)
       2. [View](Examples/Product/VIEW.md)
+   5. Shipping Method
+      1. [Index](Examples/ShippingMethod/INDEX.md)
+      2. [View](Examples/ShippingMethod/VIEW.md)
 
 ## Usage
 
