@@ -13,18 +13,17 @@
 
 ### Rates
 
-| Name         | Type   | Description                                                                         |
-|--------------|--------|-------------------------------------------------------------------------------------|
-| `id`         | int    | The id of the shipping rate                                                         |
-| `currency`   | string | The currency code of the shipping rate                                              |
-| `min_price`  | int    | The minimum total price of the cart items for this shipping method to be applicable |
-| `max_price`  | int    | The maximum total price of the cart items for this shipping method to be applicable |
-| `min_weight` | int    | The minimum weight of the cart items for this shipping method to be applicable      |
-| `max_weight` | int    | The maximum weight of the cart items for this shipping method to be applicable      |
-| `min_volume` | int    | The minimum volume of the cart items for this shipping method to be applicable      |
-| `max_volume` | int    | The maximum volume of the cart items for this shipping method to be applicable      |
-| `rates`      | array  | The rates for the shipping method                                                   |
-
+| Name         | Type    | Description                                                                         |
+|--------------|---------|-------------------------------------------------------------------------------------|
+| `id`         | int     | The id of the shipping rate                                                         |
+| `currency`   | string  | The currency code of the shipping rate                                              |
+| `min_price`  | float   | The minimum total price of the cart items for this shipping method to be applicable |
+| `max_price`  | float   | The maximum total price of the cart items for this shipping method to be applicable |
+| `min_weight` | float   | The minimum weight of the cart items for this shipping method to be applicable      |
+| `max_weight` | float   | The maximum weight of the cart items for this shipping method to be applicable      |
+| `min_volume` | float   | The minimum volume of the cart items for this shipping method to be applicable      |
+| `max_volume` | float   | The maximum volume of the cart items for this shipping method to be applicable      |
+| `price`      | float   | The total price of the shipping rate                                                |
 
 ## Example Response
 
