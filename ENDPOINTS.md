@@ -35,4 +35,13 @@ The following query parameters can be passed in order to use Image Factory for g
 
 If any of these query parameters are present in the GET requests then the Image Factory will be used
 
+### Payment Methods
+
+| URL                        | Permission              | Action  | Examples                                                   | Purpose                    |
+|----------------------------|-------------------------|---------|------------------------------------------------------------|----------------------------|
+| /api/payment-methods       | payment-methods.index   | GET     | [Payment Method Index](Examples/PaymentMethod/INDEX.md)    | Get all payment methods    |
+| /api/payment-methods/{id}  | payment-methods.view    | GET     | [View Payment Method](Examples/PaymentMethod/VIEW.md)      | Get payment method by id   | 
+
+`/api/payment-methods` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
 [Back to contents](README.md#table-of-contents)
