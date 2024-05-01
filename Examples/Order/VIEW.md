@@ -197,6 +197,18 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 GET /api/orders/{id}
 ```
 
+OR
+
+```http request
+GET /api/orders?id={id}
+```
+
+OR
+
+```http request
+GET /api/orders?reference={reference}
+```
+
 ```json
 {
     "reference": "LTS123456",
