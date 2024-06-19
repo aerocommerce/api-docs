@@ -4,20 +4,22 @@
 
 ### Product
 
-| Name           | Type   | Description                                                        |
-|----------------|--------|--------------------------------------------------------------------|
-| `id`           | int    | The id of the product                                              |
-| `model`        | string | The model of the product                                           |
-| `name`         | string | The name of the product                                            |
-| `summary`      | string | The summary of the product                                         |
-| `description`  | string | The description of the product                                     |
-| `type`         | string | The type of the product                                            |
-| `published_at` | date   | The date that the product was published at                         |
-| `manufacturer` | object | The manufacturer of the product, see [Manufacturer](#manufacturer) |
-| `images`       | array  | The images of the product, see [Images](#images)                   |
-| `categories`   | array  | The categories of the product, see [Categories](#categories)       |
-| `tags`         | array  | The tags of the product, see [Tags](#tags)                         |
-| `variants`     | array  | The variants of the product, see [Variants](#variants)             |
+| Name           | Type    | Description                                                          |
+|----------------|---------|----------------------------------------------------------------------|
+| `id`           | int     | The id of the product                                                |
+| `model`        | string  | The model of the product                                             |
+| `name`         | string  | The name of the product                                              |
+| `summary`      | string  | The summary of the product                                           |
+| `description`  | string  | The description of the product                                       |
+| `type`         | string  | The type of the product                                              |
+| `active`       | boolean | Whether the product can be purchased                                 |
+| `visible`      | boolean | Whether the product is visible on the storefront                     |
+| `published_at` | date    | The date that the product was published at                           |
+| `manufacturer` | object  | The manufacturer of the product, see [Manufacturer](#manufacturer)   |
+| `images`       | array   | The images of the product, see [Images](#images)                     |
+| `categories`   | array   | The categories of the product, see [Categories](#categories)         |
+| `tags`         | array   | The tags of the product, see [Tags](#tags)                           |
+| `variants`     | array   | The variants of the product, see [Variants](#variants)               |
 
 ### Manufacturer
 
@@ -80,6 +82,10 @@ A product has variant(s), see attributes below:
 | `variants.*.summary`           | string  | The summary of the variant                                   |
 | `variants.*.description`       | string  | The description of the variant                               |
 | `variants.*.barcode`           | string  | The barcode of the variant                                   |
+| `variants.*.buyable`           | boolean | Whether the variant can be purchased                         |
+| `variants.*.visible`           | boolean | Whether the variant is visible on the storefront             |
+| `variants.*.shippable`         | boolean | Whether the variant requires shipping                        |
+| `variants.*.discountable`      | boolean | Whether the variant can be discounted                        |
 | `variants.*.infinite_stock`    | boolean | Whether the variant has infinite stock                       |
 | `variants.*.stock_level`       | int     | The stock level of the variant                               |
 | `variants.*.stock_buffer`      | int     | The stock buffer of the variant                              |
@@ -157,6 +163,8 @@ GET /api/products/{id}
     "summary": "Outer: Leather 100%, Polyamide 100%\r\nLining: Polyester 100%, Goose Down 90%, Wool 70%, Polyamide 20%, Cashmere 10%, Feather 10%",
     "description": "A quintessentially British brand, Burberry creates iconic designs that seamlessly infuse their rich heritage with a contemporary aesthetic. This deep blue wool and cashmere blend detachable sleeve puffer jacket from Burberry features a hood, a high standing collar, a zip and press stud fastening, detachable long sleeves, a contrast logo patch to one side, zipped side slit pockets and a puffer style.",
     "type": "variant",
+    "active": true,
+    "visible": true,
     "published_at": "2023-08-30T10:35:03.000000Z",
     "manufacturer": {
         "id": 1,
@@ -204,6 +212,10 @@ GET /api/products/{id}
             "summary": "",
             "description": "",
             "barcode": null,
+            "buyable": true,
+            "visible": true,
+            "shippable": true,
+            "discountable": true,
             "infinite_stock": false,
             "stock_level": 4,
             "stock_buffer": 0,
@@ -281,6 +293,10 @@ GET /api/products/{id}
             "summary": "",
             "description": "",
             "barcode": null,
+            "buyable": true,
+            "visible": true,
+            "shippable": true,
+            "discountable": true,
             "infinite_stock": false,
             "stock_level": 2,
             "stock_buffer": 0,
@@ -347,6 +363,10 @@ GET /api/products/{id}
             "summary": "",
             "description": "",
             "barcode": null,
+            "buyable": true,
+            "visible": true,
+            "shippable": true,
+            "discountable": true,
             "infinite_stock": false,
             "stock_level": 4,
             "stock_buffer": 0,
@@ -413,6 +433,10 @@ GET /api/products/{id}
             "summary": "",
             "description": "",
             "barcode": null,
+            "buyable": true,
+            "visible": true,
+            "shippable": true,
+            "discountable": true,
             "infinite_stock": false,
             "stock_level": 5,
             "stock_buffer": 0,

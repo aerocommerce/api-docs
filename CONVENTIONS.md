@@ -51,6 +51,10 @@ Any paginated endpoint accepts the following parameters
 
 Any paginated endpoint will return a response inline with the Laravel pagination system, e.g.:
 
+### Scoped Conventions
+
+Any scoped endpoint (typically an index endpoint) supports a `scope` parameter which should be a comma seperated string of the scopes you wish to use (the supported scopes are endpoint specific and as such will be outlined in the relevant section)
+
 ```json lines
 {
     "current_page": 1,
