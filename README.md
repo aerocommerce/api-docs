@@ -22,6 +22,7 @@
    5. Shipping Method
       1. [Index](Examples/ShippingMethod/INDEX.md)
       2. [View](Examples/ShippingMethod/VIEW.md)
+6. [Extending the API](EXTENDING.md) 
 
 ## Usage
 
