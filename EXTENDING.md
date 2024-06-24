@@ -25,11 +25,11 @@ To extend any validation used for endpoints you can extend the relevant request,
 You can also extend the `prepareForValidation` method of the request by extending the relevant pipeline, e.g.:
 
 ```php
-    \Aero\Api\Pipelines\Prepare\PrepareCreateOrder::extend(function (\Aero\Api\Helpers\Data $data, $next) {
-        // Transform payload before validation runs
-        
-        return $next($data);
-    });
+\Aero\Api\Pipelines\Prepare\PrepareCreateOrder::extend(function (\Aero\Api\Helpers\Data $data, $next) {
+    // Transform payload before validation runs
+    
+    return $next($data);
+});
 ```
 
 You can also extend the `validated` method of the request by extending the relevant pipeline, e.g.:
