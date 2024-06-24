@@ -35,7 +35,7 @@ You can also extend the `prepareForValidation` method of the request by extendin
 You can also extend the `validated` method of the request by extending the relevant pipeline, e.g.:
 
 ```php
- \Aero\Api\Pipelines\Validated\CreateOrderValidated::extend(function (\Aero\Api\Helpers\Data $data, $next) {
+\Aero\Api\Pipelines\Validated\CreateOrderValidated::extend(function (\Aero\Api\Helpers\Data $data, $next) {
     // Transform payload after validation has succeeded
     
     return $next($data);
