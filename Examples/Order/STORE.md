@@ -55,7 +55,7 @@ You can optionally provide a shipping address for the order using these attribut
 | `shipping_address.line_2`          | string  | The second line for the shipping address          | No        |
 | `shipping_address.city`            | string  | The city for the shipping address                 | Yes       |
 | `shipping_address.zone`            | string  | The zone code for the shipping address            | No        |
-| `shipping_address.postcode`        | string  | The postcode for the shipping address             | No        |
+| `shipping_address.postcode`        | string  | The postcode for the shipping address             | Yes       |
 | `shipping_address.country`         | string  | The country code for the shipping address         | No        |
 | `shipping_address.reference`       | string  | The **unique** reference for the shipping address | No        |
 | `shipping_address.eori_number`     | string  | The EORI number for the shipping address          | No        |
@@ -75,7 +75,7 @@ You can optionally provide a billing address for the order using these attribute
 | `billing_address.line_2`        | string  | The second line for the billing address          | No        |
 | `billing_address.city`          | string  | The city for the billing address                 | Yes       |
 | `billing_address.zone`          | string  | The zone code for the billing address            | No        |
-| `billing_address.postcode`      | string  | The postcode for the billing address             | No        |
+| `billing_address.postcode`      | string  | The postcode for the billing address             | Yes       |
 | `billing_address.country`       | string  | The country code for the billing address         | No        |
 | `billing_address.reference`     | string  | The **unique** reference for the billing address | No        |
 | `billing_address.eori_number`   | string  | The EORI number for the billing address          | No        |
