@@ -19,6 +19,8 @@
    4. Product
       1. [Index](Examples/Product/INDEX.md)
       2. [View](Examples/Product/VIEW.md)
+      3. [Store](Examples/Product/STORE.md)
+      4. [Update](Examples/Product/UPDATE.md)
    5. Shipping Method
       1. [Index](Examples/ShippingMethod/INDEX.md)
       2. [View](Examples/ShippingMethod/VIEW.md)

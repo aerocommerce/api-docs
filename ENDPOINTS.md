@@ -18,22 +18,20 @@
 
 ### Products
 
-| URL                | Permission     | Action | Examples                                   | Purpose           |
-|--------------------|----------------|--------|--------------------------------------------|-------------------|
-| /api/products      | products.index | GET    | [Product Index](Examples/Product/INDEX.md) | Get all products  |
-| /api/products/{id} | products.view  | GET    | [View Product](Examples/Product/VIEW.md)   | Get product by id | 
+| URL                | Permission     | Action | Examples                                     | Purpose                         |
+|--------------------|----------------|--------|----------------------------------------------|---------------------------------|
+| /api/products      | products.index | GET    | [Product Index](Examples/Product/INDEX.md)   | Get all products                |
+| /api/products/{id} | products.view  | GET    | [View Product](Examples/Product/VIEW.md)     | Get product by id               | 
+| /api/products      | products.store | POST   | [Store Product](Examples/Product/STORE.md)   | Create a product from json data | 
+| /api/products/{id} | products.store | PUT    | [Update Product](Examples/Product/UPDATE.md) | Update a product from json data |
 
 `/api/products` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
 
-The following query parameters can be passed in order to use Image Factory for generating the product's images urls
+`/api/products` supports image factory params, see [Image Factory Conventions](CONVENTIONS.md#image-factory-conventions) for more info
 
-| Parameter               | Description             | Example                               |
-|-------------------------|-------------------------|---------------------------------------|
-| `image_factory_width`   | The width               | ?image_factory_width=200              |
-| `image_factory_height`  | The height              | ?image_factory_height=200             |
-| `image_factory_options` | Comma seperated options | ?image_factory_options=flip,greyscale |
+**NOTE:** The `view` and `update` product routes support passing the product's `model` instead of the `id`
 
-If any of these query parameters are present in the GET requests then the Image Factory will be used
+
 
 ### Payment Methods
 
