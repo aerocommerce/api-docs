@@ -19,7 +19,7 @@ see [Date Conventions](../../CONVENTIONS.md#date-conventions) for more info on a
 
 This is also a scoped route (see [Scoped Conventions](../../CONVENTIONS.md#scoped-conventions))
 
-The available scopes to use are
+This route also has some specific scopes:
 
 | Name      | Description                  | Example        |
 |-----------|------------------------------|----------------|

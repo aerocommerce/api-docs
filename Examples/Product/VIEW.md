@@ -4,22 +4,23 @@
 
 ### Product
 
-| Name           | Type    | Description                                                          |
-|----------------|---------|----------------------------------------------------------------------|
-| `id`           | int     | The id of the product                                                |
-| `model`        | string  | The model of the product                                             |
-| `name`         | string  | The name of the product                                              |
-| `summary`      | string  | The summary of the product                                           |
-| `description`  | string  | The description of the product                                       |
-| `type`         | string  | The type of the product                                              |
-| `active`       | boolean | Whether the product can be purchased                                 |
-| `visible`      | boolean | Whether the product is visible on the storefront                     |
-| `published_at` | date    | The date that the product was published at                           |
-| `manufacturer` | object  | The manufacturer of the product, see [Manufacturer](#manufacturer)   |
-| `images`       | array   | The images of the product, see [Images](#images)                     |
-| `categories`   | array   | The categories of the product, see [Categories](#categories)         |
-| `tags`         | array   | The tags of the product, see [Tags](#tags)                           |
-| `variants`     | array   | The variants of the product, see [Variants](#variants)               |
+| Name                                | Type     | Description                                                        |
+|-------------------------------------|----------|--------------------------------------------------------------------|
+| `id`                                | int      | The id of the product                                              |
+| `model`                             | string   | The model of the product                                           |
+| `name`                              | string   | The name of the product                                            |
+| `summary`                           | string   | The summary of the product                                         |
+| `description`                       | string   | The description of the product                                     |
+| `type`                              | string   | The type of the product                                            |
+| `active`                            | boolean  | Whether the product can be purchased                               |
+| `visible`                           | boolean  | Whether the product is visible on the storefront                   |
+| `attribute_groups_to_split_by`      | ?array   | The attribute groups to split listings by                          |
+| `published_at`                      | date     | The date that the product was published at                         |
+| `manufacturer`                      | object   | The manufacturer of the product, see [Manufacturer](#manufacturer) |
+| `images`                            | array    | The images of the product, see [Images](#images)                   |
+| `categories`                        | array    | The categories of the product, see [Categories](#categories)       |
+| `tags`                              | array    | The tags of the product, see [Tags](#tags)                         |
+| `variants`                          | array    | The variants of the product, see [Variants](#variants)             |
 
 ### Manufacturer
 
@@ -34,9 +35,11 @@ A product can have a manufacturer, if it doesn't then `manufacturer` will be `nu
 
 A product can have images, see attributes below:
 
-| Name           | Type   | Description          |
-|----------------|--------|----------------------|
-| `images.*.url` | string | The url of the image |
+| Name                  | Type   | Description                  |
+|-----------------------|--------|------------------------------|
+| `images.*.url`        | string | The url of the image         |
+| `images.*.is_default` | bool   | Whether the image is default |
+| `images.*.attributes` | array  | The attributes of the image  |
 
 ### Categories
 
@@ -132,12 +135,12 @@ A variant has price(s), see attributes below:
 
 A variant can have attributes, see attributes below:
 
-| Name                     | Type   | Description                                                          |
-|--------------------------|--------|----------------------------------------------------------------------|
-| `attributes.*.id`        | string | The id of the tag                                                    |
-| `attributes.*.name`      | string | The name of the tag                                                  |
-| `attributes.*.reference` | string | The reference of the tag                                             |
-| `attributes.*.group`     | object | The group that the tag belongs to, see [Tag Group](#attribute-group) |
+| Name                     | Type   | Description                                                                        |
+|--------------------------|--------|------------------------------------------------------------------------------------|
+| `attributes.*.id`        | string | The id of the attribute                                                            |
+| `attributes.*.name`      | string | The name of the attribute                                                          |
+| `attributes.*.reference` | string | The reference of the attribute                                                     |
+| `attributes.*.group`     | object | The group that the attribute belongs to, see [Attribute Group](#attribute-group)   |
 
 ### Attribute Group
 
@@ -160,49 +163,67 @@ GET /api/products/{id}
     "id": 1,
     "model": "8021182",
     "name": "Detachable Sleeve Puffer Jacket",
-    "summary": "Outer: Leather 100%, Polyamide 100%\r\nLining: Polyester 100%, Goose Down 90%, Wool 70%, Polyamide 20%, Cashmere 10%, Feather 10%",
+    "summary": "Outer: Leather 100%, Polyamide 100%\nLining: Polyester 100%, Goose Down 90%, Wool 70%, Polyamide 20%, Cashmere 10%, Feather 10%",
     "description": "A quintessentially British brand, Burberry creates iconic designs that seamlessly infuse their rich heritage with a contemporary aesthetic. This deep blue wool and cashmere blend detachable sleeve puffer jacket from Burberry features a hood, a high standing collar, a zip and press stud fastening, detachable long sleeves, a contrast logo patch to one side, zipped side slit pockets and a puffer style.",
     "type": "variant",
     "active": true,
     "visible": true,
-    "published_at": "2023-08-30T10:35:03.000000Z",
+    "attribute_groups_to_split_by": null,
+    "published_at": "2025-06-13T07:34:34.000000Z",
     "manufacturer": {
         "id": 1,
         "name": "Burberry"
     },
     "images": [
         {
-            "url": "http:\/\/seg.test\/images\/products\/mNPSK2xf98t6ibTaw05UlSTxClxtTS6FNjybFu8r.jpg"
+            "url": "http://l11.test/storage/images/combinations/cwKh1ghevZp7r8HgK4qyVTmrRYRwgv0qMEZzvbuo.jpg",
+            "default": true,
+            "attributes": []
         },
         {
-            "url": "http:\/\/seg.test\/images\/products\/tDGk08ZHtemSzVNVwncboWqqHVxs3Gdug6oVCX2G.jpg"
+            "url": "http://l11.test/storage/images/products/PBjYqxoTxjX1Waj9tAqhmMFH0dakhuJGVkl2QpQ0.jpg",
+            "default": true,
+            "attributes": []
         },
         {
-            "url": "http:\/\/seg.test\/images\/products\/yDSBv5e1FQsM9V5qB5ErqYWVu8zDDz2OTeBjr51M.jpg"
+            "url": "http://l11.test/storage/images/products/lDc5Fkxb9rlMiy6gZmysVbZPzGISBgQDGZKOoHc7.jpg",
+            "default": true,
+            "attributes": []
         },
         {
-            "url": "http:\/\/seg.test\/images\/products\/ktZXNJxrEWd4UrbPnKqabF8ir2rnH9PUKbEFyyoa.jpg"
+            "url": "http://l11.test/storage/images/products/ZJ7WgzLpxO1JAB0AvJxJYQUjiYBcvu9tpWJTNmLk.jpg",
+            "default": true,
+            "attributes": []
         }
     ],
     "categories": [
         {
             "id": 3,
             "name": "Padded Coats",
-            "breadcrumb": "Mens \u00bb Coats \u00bb Padded Coats"
+            "breadcrumb": "Mens » Coats » Padded Coats"
         }
     ],
     "tags": [
         {
-            "id": 5,
+            "id": 1,
             "name": "Blue",
             "reference": null,
             "group": {
-                "id": 2,
+                "id": 1,
                 "name": "Colour",
                 "reference": null
             }
         }
     ],
+    "seo": {
+        "heading": "",
+        "page_title": "",
+        "meta_description": "",
+        "open_graph": "",
+        "canonical": "",
+        "noindex": null,
+        "nofollow": null
+    },
     "variants": [
         {
             "id": 1,
@@ -217,7 +238,7 @@ GET /api/products/{id}
             "shippable": true,
             "discountable": true,
             "infinite_stock": false,
-            "stock_level": 4,
+            "stock_level": 5,
             "stock_buffer": 0,
             "weight": null,
             "weight_unit": null,
@@ -228,7 +249,7 @@ GET /api/products/{id}
             "goods_description": null,
             "cost": {
                 "amount": null,
-                "currency": "GBP"
+                "currency": null
             },
             "price": {
                 "amount": 65833.33,
@@ -236,8 +257,8 @@ GET /api/products/{id}
                 "currency": "GBP"
             },
             "retail": {
-                "amount": 0,
-                "tax": 0,
+                "amount": null,
+                "tax": null,
                 "currency": "GBP"
             },
             "prices": [
@@ -246,13 +267,16 @@ GET /api/products/{id}
                     "currency": "GBP",
                     "quantity": 1,
                     "value": {
-                        "amount": 79000
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "sale_value": {
-                        "amount": null
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "retail_value": {
-                        "amount": null
+                        "amount": null,
+                        "tax": null
                     },
                     "start_at": null,
                     "end_at": null,
@@ -264,6 +288,7 @@ GET /api/products/{id}
                 {
                     "id": 1,
                     "name": "Small",
+                    "display_name": "Small",
                     "reference": null,
                     "group": {
                         "id": 1,
@@ -274,16 +299,17 @@ GET /api/products/{id}
             ],
             "tags": [
                 {
-                    "id": 5,
-                    "name": "Blue",
+                    "id": 2,
+                    "name": "Small",
                     "reference": null,
                     "group": {
                         "id": 2,
-                        "name": "Colour",
+                        "name": "Size",
                         "reference": null
                     }
                 }
-            ]
+            ],
+            "additional_attributes": []
         },
         {
             "id": 2,
@@ -298,7 +324,7 @@ GET /api/products/{id}
             "shippable": true,
             "discountable": true,
             "infinite_stock": false,
-            "stock_level": 2,
+            "stock_level": 5,
             "stock_buffer": 0,
             "weight": null,
             "weight_unit": null,
@@ -309,7 +335,7 @@ GET /api/products/{id}
             "goods_description": null,
             "cost": {
                 "amount": null,
-                "currency": "GBP"
+                "currency": null
             },
             "price": {
                 "amount": 65833.33,
@@ -317,8 +343,8 @@ GET /api/products/{id}
                 "currency": "GBP"
             },
             "retail": {
-                "amount": 0,
-                "tax": 0,
+                "amount": null,
+                "tax": null,
                 "currency": "GBP"
             },
             "prices": [
@@ -327,13 +353,16 @@ GET /api/products/{id}
                     "currency": "GBP",
                     "quantity": 1,
                     "value": {
-                        "amount": 79000
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "sale_value": {
-                        "amount": null
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "retail_value": {
-                        "amount": null
+                        "amount": null,
+                        "tax": null
                     },
                     "start_at": null,
                     "end_at": null,
@@ -345,6 +374,7 @@ GET /api/products/{id}
                 {
                     "id": 2,
                     "name": "Medium",
+                    "display_name": "Medium",
                     "reference": null,
                     "group": {
                         "id": 1,
@@ -353,7 +383,19 @@ GET /api/products/{id}
                     }
                 }
             ],
-            "tags": []
+            "tags": [
+                {
+                    "id": 3,
+                    "name": "Medium",
+                    "reference": null,
+                    "group": {
+                        "id": 2,
+                        "name": "Size",
+                        "reference": null
+                    }
+                }
+            ],
+            "additional_attributes": []
         },
         {
             "id": 3,
@@ -368,7 +410,7 @@ GET /api/products/{id}
             "shippable": true,
             "discountable": true,
             "infinite_stock": false,
-            "stock_level": 4,
+            "stock_level": 5,
             "stock_buffer": 0,
             "weight": null,
             "weight_unit": null,
@@ -379,7 +421,7 @@ GET /api/products/{id}
             "goods_description": null,
             "cost": {
                 "amount": null,
-                "currency": "GBP"
+                "currency": null
             },
             "price": {
                 "amount": 65833.33,
@@ -387,8 +429,8 @@ GET /api/products/{id}
                 "currency": "GBP"
             },
             "retail": {
-                "amount": 0,
-                "tax": 0,
+                "amount": null,
+                "tax": null,
                 "currency": "GBP"
             },
             "prices": [
@@ -397,13 +439,16 @@ GET /api/products/{id}
                     "currency": "GBP",
                     "quantity": 1,
                     "value": {
-                        "amount": 79000
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "sale_value": {
-                        "amount": null
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "retail_value": {
-                        "amount": null
+                        "amount": null,
+                        "tax": null
                     },
                     "start_at": null,
                     "end_at": null,
@@ -415,6 +460,7 @@ GET /api/products/{id}
                 {
                     "id": 3,
                     "name": "Large",
+                    "display_name": "Large",
                     "reference": null,
                     "group": {
                         "id": 1,
@@ -423,7 +469,19 @@ GET /api/products/{id}
                     }
                 }
             ],
-            "tags": []
+            "tags": [
+                {
+                    "id": 4,
+                    "name": "Large",
+                    "reference": null,
+                    "group": {
+                        "id": 2,
+                        "name": "Size",
+                        "reference": null
+                    }
+                }
+            ],
+            "additional_attributes": []
         },
         {
             "id": 4,
@@ -449,7 +507,7 @@ GET /api/products/{id}
             "goods_description": null,
             "cost": {
                 "amount": null,
-                "currency": "GBP"
+                "currency": null
             },
             "price": {
                 "amount": 65833.33,
@@ -457,8 +515,8 @@ GET /api/products/{id}
                 "currency": "GBP"
             },
             "retail": {
-                "amount": 0,
-                "tax": 0,
+                "amount": null,
+                "tax": null,
                 "currency": "GBP"
             },
             "prices": [
@@ -467,13 +525,16 @@ GET /api/products/{id}
                     "currency": "GBP",
                     "quantity": 1,
                     "value": {
-                        "amount": 79000
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "sale_value": {
-                        "amount": null
+                        "amount": 65833.33,
+                        "tax": 13166.669999999998
                     },
                     "retail_value": {
-                        "amount": null
+                        "amount": null,
+                        "tax": null
                     },
                     "start_at": null,
                     "end_at": null,
@@ -485,6 +546,7 @@ GET /api/products/{id}
                 {
                     "id": 4,
                     "name": "Extra Large",
+                    "display_name": "Extra Large",
                     "reference": null,
                     "group": {
                         "id": 1,
@@ -493,8 +555,22 @@ GET /api/products/{id}
                     }
                 }
             ],
-            "tags": []
+            "tags": [
+                {
+                    "id": 5,
+                    "name": "Extra Large",
+                    "reference": null,
+                    "group": {
+                        "id": 2,
+                        "name": "Size",
+                        "reference": null
+                    }
+                }
+            ],
+            "additional_attributes": []
         }
-    ]
+    ],
+    "additional_attributes": [],
+    "settings": []
 }
 ```

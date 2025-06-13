@@ -1,5 +1,26 @@
 ## Extending the API
 
+### Routes
+
+To add some API routes you can use the `addApiRoutes` method on the Router, e.g.:
+
+```php
+\Illuminate\Routing\Router::addApiRoutes(__DIR__.'/../routes/api.php');
+```
+
+This prefixes the routes with `api` and also attaches the `aero.api` middleware group which has the following middleware:
+
+```php
+'middleware' => [
+    \Aero\Api\Http\Middleware\ForceJsonResponse::class, //Forces Response to be JSON instead of HTML
+    \Aero\Api\Http\Middleware\LogApiUsage::class, //Logs API Usage so it can be viewed in Admin
+    \Aero\Api\Http\Middleware\CheckApiToken::class, //Validates API Token 
+    \Aero\Api\Http\Middleware\SetLanguageHeader::class, //Sets "Language" Header used for Translations
+],
+```
+
+Can modify the middleware in this group via the `api` config file
+
 ### Queries
 
 To extend any queries used in the view/index endpoints you can extend the relevant pipeline, e.g.:
