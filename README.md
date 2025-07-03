@@ -7,21 +7,29 @@
 3. [Endpoints](ENDPOINTS.md)
 4. [Responses](RESPONSES.md)
 5. Examples
-   1. Order
+   1. Orders
       1. [Store](Examples/Order/STORE.md)
       2. [View](Examples/Order/VIEW.md)
-   2. Order Status
+   2. Order Statuses
       1. [Index](Examples/OrderStatus/INDEX.md)
       2. [View](Examples/OrderStatus/VIEW.md)
-   3. Payment Method
+   3. Payment Methods
       1. [Index](Examples/PaymentMethod/INDEX.md)
       2. [View](Examples/PaymentMethod/VIEW.md)
-   4. Product
+   4. Products
       1. [Index](Examples/Product/INDEX.md)
       2. [View](Examples/Product/VIEW.md)
       3. [Store](Examples/Product/STORE.md)
       4. [Update](Examples/Product/UPDATE.md)
-   5. Shipping Method
+   5. Customers
+       1. [Index](Examples/Customer/INDEX.md)
+       2. [View](Examples/Customer/VIEW.md)
+       3. [Update](Examples/Customer/UPDATE.md)
+   6. Addresses
+       1. [Create](Examples/Address/CREATE.md)
+       2. [Update](Examples/Address/UPDATE.md)
+       3. [Delete](Examples/Address/DELETE.md)
+   7. Shipping Methods
       1. [Index](Examples/ShippingMethod/INDEX.md)
       2. [View](Examples/ShippingMethod/VIEW.md)
 6. [Extending the API](EXTENDING.md) 
