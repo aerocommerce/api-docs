@@ -177,11 +177,12 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 
 ### Returns
 
-| Name                   | Type  | Description                                                |
-|------------------------|-------|------------------------------------------------------------|
-| `returns.*.id`         | int   | The id of the order return                                 |
-| `returns.*.created_at` | date  | The date the return was made                               |
-| `returns.*.items`      | array | The items of the return, see [Return Items](#return-items) |
+| Name                   | Type   | Description                                                |
+|------------------------|--------|------------------------------------------------------------|
+| `returns.*.id`         | int    | The id of the order return                                 |
+| `returns.*.reason`     | string | The reason for the return - `null` if no reason given      |
+| `returns.*.created_at` | date   | The date the return was made                               |
+| `returns.*.items`      | array  | The items of the return, see [Return Items](#return-items) |
 
 ### Return Items
 
