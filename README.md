@@ -8,8 +8,10 @@
 4. [Responses](RESPONSES.md)
 5. Examples
    1. Orders
-      1. [Store](Examples/Order/STORE.md)
+      1. [Index](Examples/Order/INDEX.md)
       2. [View](Examples/Order/VIEW.md)
+      3. [Store](Examples/Order/STORE.md)
+
    2. Order Statuses
       1. [Index](Examples/OrderStatus/INDEX.md)
       2. [View](Examples/OrderStatus/VIEW.md)
