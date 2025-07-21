@@ -27,6 +27,7 @@
 | `deliver_on`       | date   | When the order should be delivered                                                          |
 | `items`            | array  | The items of the order,<br/>see [Order Items](#order-items)                                 |
 | `payments`         | array  | The payments for the order,<br/>see [Payments](#payments)                                   |
+| `payments`         | array  | The fulfillments for the order,<br/>see [Fulfillments](#fulfillments)                       |
 | `returns`          | array  | The returns for the order,<br/>see [Returns](#returns)                                      |
 
 ### Order Status
@@ -114,37 +115,37 @@ An order can have a billing address, if it doesn't then `billing_address` will b
 
 An order has items, see attributes below:
 
-| Name                          | Type    | Description                                                                                       |
-|-------------------------------|---------|---------------------------------------------------------------------------------------------------|
-| `items.*.id`                  | int     | The id of the order item                                                                          |
-| `items.*.variant_id`          | int     | The variant id of the buyable (not set if the buyable is not a variant)                           |
-| `items.*.product_id`          | int     | The product id of the buyable                                                                     |
-| `items.*.buyable_type`        | string  | The buyable type of the order item                                                                |
-| `items.*.buyable_id`          | int     | The buyable id of the order item                                                                  |
-| `items.*.name`                | string  | The name for the order item                                                                       |
-| `items.*.url`                 | string  | The url for the order item                                                                        |
-| `items.*.sku`                 | string  | The sku for the order item                                                                        |
-| `items.*.reference`           | string  | The **unique** reference for the order item                                                       |
-| `items.*.manufacturer`        | object  | The manufacturer for the order item, see [Manufacturer](#manufacturer)                            |
-| `items.*.image.url`           | string  | The image url for the order item                                                                  |
-| `items.*.shippable`           | boolean | Whether the order item is shippable                                                               |
-| `items.*.quantity`            | int     | The quantity for the order item                                                                   |
-| `items.*.returned_quantity`   | int     | The quantity returned for the order item                                                          |
-| `items.*.price.amount`        | float   | The **unit** price of the order item **excluding tax**                                            |
-| `items.*.price.tax`           | float   | The **unit** tax for the order item                                                               |
-| `items.*.discount.amount`     | float   | The **total** discount of the order item **excluding tax**                                        |
-| `items.*.discount.tax`        | float   | The **total** discount tax for the order item                                                     |
-| `items.*.full_price.amount`   | float   | The **unit** full price (including extras) of the order item **excluding tax**                    |
-| `items.*.full_price.tax`      | float   | The **unit** full tax (including extras) for the order item                                       |
-| `items.*.cost_price.amount`   | float   | The **unit** cost price of the order item **excluding tax**                                       |
-| `items.*.cost_price.currency` | string  | The currency code for the cost price                                                              |
-| `items.*.weight`              | float   | The weight for the order item                                                                     |
-| `items.*.weight_unit`         | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit if not passed |
-| `items.*.volume`              | float   | The volume for the order item                                                                     |
-| `items.*.volume_unit`         | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit if not passed  |
-| `items.*.hs`                  | string  | The HS code for the order item                                                                    |
-| `items.*.origin_country`      | string  | The origin country code for the order item                                                        |
-| `items.*.goods_description`   | string  | The goods description for the order item                                                          |
+| Name                          | Type    | Description                                                                          |
+|-------------------------------|---------|--------------------------------------------------------------------------------------|
+| `items.*.id`                  | int     | The id of the order item                                                             |
+| `items.*.variant_id`          | int     | The variant id of the buyable (not set if the buyable is not a variant)              |
+| `items.*.product_id`          | int     | The product id of the buyable                                                        |
+| `items.*.buyable_type`        | string  | The buyable type of the order item                                                   |
+| `items.*.buyable_id`          | int     | The buyable id of the order item                                                     |
+| `items.*.name`                | string  | The name for the order item                                                          |
+| `items.*.url`                 | string  | The url for the order item                                                           |
+| `items.*.sku`                 | string  | The sku for the order item                                                           |
+| `items.*.reference`           | string  | The **unique** reference for the order item                                          |
+| `items.*.manufacturer`        | object  | The manufacturer for the order item, see [Manufacturer](#manufacturer)               |
+| `items.*.image.url`           | string  | The image url for the order item                                                     |
+| `items.*.shippable`           | boolean | Whether the order item is shippable                                                  |
+| `items.*.quantity`            | int     | The quantity for the order item                                                      |
+| `items.*.returned_quantity`   | int     | The quantity returned for the order item                                             |
+| `items.*.price.amount`        | float   | The **unit** price of the order item **excluding tax**                               |
+| `items.*.price.tax`           | float   | The **unit** tax for the order item                                                  |
+| `items.*.discount.amount`     | float   | The **total** discount of the order item **excluding tax**                           |
+| `items.*.discount.tax`        | float   | The **total** discount tax for the order item                                        |
+| `items.*.full_price.amount`   | float   | The **unit** full price (including extras) of the order item **excluding tax**       |
+| `items.*.full_price.tax`      | float   | The **unit** full tax (including extras) for the order item                          |
+| `items.*.cost_price.amount`   | float   | The **unit** cost price of the order item **excluding tax**                          |
+| `items.*.cost_price.currency` | string  | The currency code for the cost price                                                 |
+| `items.*.weight`              | float   | The weight for the order item                                                        |
+| `items.*.weight_unit`         | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit  |
+| `items.*.volume`              | float   | The volume for the order item                                                        |
+| `items.*.volume_unit`         | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit   |
+| `items.*.hs`                  | string  | The HS code for the order item                                                       |
+| `items.*.origin_country`      | string  | The origin country code for the order item                                           |
+| `items.*.goods_description`   | string  | The goods description for the order item                                             |
 
 ### Manufacturer
 
@@ -174,6 +175,41 @@ An order item can have a manufacturer, if it doesn't then `manufacturer` will be
 | `method.id`     | int    | The id of the payment method     |
 | `method.name`   | string | The name of the payment method   |
 | `method.driver` | string | The driver of the payment method |
+
+### Fulfillments
+
+| Name                           | Type   | Description                                                                          |
+|--------------------------------|--------|--------------------------------------------------------------------------------------|
+| `fulfillments.*.id`            | int    | The id of the order return                                                           |
+| `fulfillments.*.method`        | object | The method for the fulfillment, see [Fulfillment Method](#fulfillment-method)        |
+| `fulfillments.*.reference`     | string | The reference of the fulfillment                                                     |
+| `fulfillments.*.state`         | string | The state of the fulfillment                                                         |
+| `fulfillments.*.mobile`        | string | The mobile number for the fulfillment                                                |
+| `fulfillments.*.phone`         | string | The phone number for the fulfillment                                                 |
+| `fulfillments.*.tracking_code` | string | The tracking code for the fulfillment                                                |
+| `fulfillments.*.tracking_url`  | string | The tracking url for the fulfillment                                                 |
+| `fulfillments.*.weight`        | float  | The weight for the fulfillment                                                       |
+| `fulfillments.*.weight_unit`   | string | The weight unit for the fulfillment, defaults to stores normalized <br/> weight unit |
+| `fulfillments.*.volume`        | float  | The volume for the order item                                                        |
+| `fulfillments.*.volume_unit`   | string | The volume unit for the fulfillment, defaults to stores normalized <br/>volume unit  |
+| `fulfillments.*.delivery_note` | string | The delivery note for the fulfillment                                                |
+| `fulfillments.*.created_at`    | date   | The date the fulfillment was made                                                    |
+| `fulfillments.*.items`         | array  | The items of the fulfillment, see [Fulfillment Items](#fulfillment-items)            |
+
+### Fulfillment Method
+
+| Name            | Type   | Description                          |
+|-----------------|--------|--------------------------------------|
+| `method.id`     | int    | The id of the fulfillment method     |
+| `method.name`   | string | The name of the fulfillment method   |
+| `method.driver` | string | The driver of the fulfillment method |
+
+### Fulfillment Items
+
+| Name                       | Type | Description                                                                                    |
+|----------------------------|------|------------------------------------------------------------------------------------------------|
+| `items.*.id`               | int  | The id of the order item that was fulfilled                                                    |
+| `items.*.quantity`         | int  | The quantity of the order item that was fulfilled                                              |
 
 ### Returns
 
@@ -317,7 +353,9 @@ GET /api/orders?reference={reference}
             "currency": "GBP",
             "captured_at": "2023-09-12T10:17:03.000000Z"
         }
-    ]
+    ],
+    "fulfillments": [],
+    "returns": []
 }
 ```
 
