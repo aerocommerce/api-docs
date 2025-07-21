@@ -30,7 +30,7 @@ This route also has some specific scopes:
 ## Example Response
 
 ```http request
-GET /api/products?per_page=2&min_ordered_at=2023-08-30%2010:36:23
+GET /api/orders?per_page=2&min_ordered_at=2023-08-30%2010:36:23
 ```
 
 ```json lines
