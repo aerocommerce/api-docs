@@ -33,6 +33,54 @@ To extend any queries used in the view/index endpoints you can extend the releva
 });
 ```
 
+#### Adding custom scope
+
+Create a scope class (can also just pass a closure):
+
+```php
+class ProductScheduledScope extends \Aero\Api\Scopes\ElasticApiScope
+{
+    public function __invoke(\Aero\Search\Elastic\Query\Builder $query): void
+    {
+        $query->publishedAfter(Carbon::now());
+    }
+}
+```
+
+```php
+\Aero\Api\Pipelines\Query\ElasticProductQuery::addScope('scheduled', \Aero\Api\Scopes\Products\Elastic\ProductScheduledScope::class)
+```
+
+For eloquent queries it is the same procedure but you receive an eloquent query builder instead of an elastic query (and extend EloquentApiScope instead)
+
+#### Adding custom filter
+
+Create a filter class (can also just pass a closure):
+
+```php
+class ProductManufacturersFilter extends \Aero\Api\Filters\ElasticApiFilter
+{
+    public function __invoke(\Aero\Search\Elastic\Query\Builder $query): void
+    {
+        $rawManufacturers = $this->request->get('manufacturers');
+
+        if (! $rawManufacturers) {
+            return;
+        }
+
+        $manufacturers = explode(\Aero\Api\Http\Requests\ApiIndexRequest::IDS_SEPARATOR, $rawManufacturers);
+
+        $query->withFacets([
+            'm' => $manufacturers,
+        ]);
+    }
+}
+```
+
+For eloquent queries it is the same procedure but you receive an eloquent query builder instead of an elastic query (and extend EloquentApiFilter instead)
+
+**NOTE:** The difference between scopes and queries are that scopes don't receive parameters and are called via `?scope=scope1,scope2` while filters can accept parameters e.g. `?manufacturers=1,2,3`
+
 ### Validation
 
 To extend any validation used for endpoints you can extend the relevant request, e.g.:
