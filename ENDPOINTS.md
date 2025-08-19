@@ -18,12 +18,12 @@
 
 ### Products
 
-| URL                | Permission     | Action | Examples                                     | Purpose                         |
-|--------------------|----------------|--------|----------------------------------------------|---------------------------------|
-| /api/products      | products.index | GET    | [Product Index](Examples/Product/INDEX.md)   | Get all products                |
-| /api/products/{id} | products.view  | GET    | [View Product](Examples/Product/VIEW.md)     | Get product by id               | 
-| /api/products      | products.store | POST   | [Store Product](Examples/Product/STORE.md)   | Create a product from json data | 
-| /api/products/{id} | products.store | PUT    | [Update Product](Examples/Product/UPDATE.md) | Update a product from json data |
+| URL                | Permission      | Action | Examples                                     | Purpose                         |
+|--------------------|-----------------|--------|----------------------------------------------|---------------------------------|
+| /api/products      | products.index  | GET    | [Product Index](Examples/Product/INDEX.md)   | Get all products                |
+| /api/products/{id} | products.view   | GET    | [View Product](Examples/Product/VIEW.md)     | Get product by id               | 
+| /api/products      | products.store  | POST   | [Store Product](Examples/Product/STORE.md)   | Create a product from json data | 
+| /api/products/{id} | products.update | PUT    | [Update Product](Examples/Product/UPDATE.md) | Update a product from json data |
 
 `/api/products` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
 
@@ -31,7 +31,12 @@
 
 **NOTE:** The `view` and `update` product routes support passing the product's `model` instead of the `id`
 
+### Variants
 
+| URL                              | Permission      | Action | Examples                                        | Purpose                         |
+|----------------------------------|-----------------|--------|-------------------------------------------------|---------------------------------|
+| /api/products/{id}/variants      | products.store  | POST   | [Store Variant](Examples/Variant/STORE.md)      | Create a variant from json data |
+| /api/products/{id}/variants/{id} | products.update | PUT    | [Update Product](Examples/Product/UPDATE.md)    | Update a product from json data |
 
 ### Payment Methods
 
