@@ -74,16 +74,6 @@
 | `position`   | integer | The position/sort of the image                                             | No        |
 | `attributes` | array   | The attributes that the image should show for, see [Attribute](#attribute) | Yes       |
 
-### Image
-
-| Name         | Type    | Description                                                                | Required? |
-|--------------|---------|----------------------------------------------------------------------------|-----------|
-| `src`        | string  | The src of the image                                                       | Yes       |
-| `alt`        | string  | The alt of the image                                                       | No        |
-| `is_default` | boolean | Whether the image is default                                               | No        |
-| `position`   | integer | The position/sort of the image                                             | No        |
-| `attributes` | array   | The attributes that the image should show for, see [Attribute](#attribute) | No        |
-
 ### Cost Price
 
 | Name       | Type  | Description                                                     | Required? |

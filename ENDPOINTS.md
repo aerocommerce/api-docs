@@ -36,7 +36,7 @@
 | URL                              | Permission      | Action | Examples                                        | Purpose                         |
 |----------------------------------|-----------------|--------|-------------------------------------------------|---------------------------------|
 | /api/products/{id}/variants      | products.store  | POST   | [Store Variant](Examples/Variant/STORE.md)      | Create a variant from json data |
-| /api/products/{id}/variants/{id} | products.update | PUT    | [Update Product](Examples/Product/UPDATE.md)    | Update a product from json data |
+| /api/products/{id}/variants/{id} | products.update | PUT    | [Update Product](Examples/Product/UPDATE.md)    | Update a variant from json data |
 
 ### Payment Methods
 
