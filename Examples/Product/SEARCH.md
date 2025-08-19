@@ -42,16 +42,16 @@ This route also has some specific scopes:
 
 This route also has some specific filters:
 
-| Name              | Description                                                                             | Example              |
-|-------------------|-----------------------------------------------------------------------------------------|----------------------|
-| `manufacturers`   | Only return products with specific manufacturer ids                                     | ?manufacturers=1,2,3 |
-| `price`           | Only return products with specific price in whole units (e.g. pounds, not pence)        | ?price=123           |
-| `min_price`       | Only return products with price above min price in whole units (e.g. pounds, not pence) | ?min_price=123       |
-| `max_price`       | Only return products with price below max price in whole units (e.g. pounds, not pence) | ?max_price=123       |
-| `stock_level`     | Only return products with specific stock level                                          | ?stock_level=1       |
-| `min_stock_level` | Only return products with stock above specific stock level                              | ?min_stock_level=1   |
-| `max_stock_level` | Only return products with stock below specific stock level                              | ?max_stock_level=10  |
-| `type`            | Only return products of a certain type (e.g. simple or variant)                         | ?type=variant        |
+| Name              | Description                                                                             | Example                                                        |
+|-------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| `manufacturers`   | Only return products with specific manufacturer ids                                     | <span style="white-space: nowrap;">?manufacturers=1,2,3</span> |
+| `price`           | Only return products with specific price in whole units (e.g. pounds, not pence)        | ?price=123                                                     |
+| `min_price`       | Only return products with price above min price in whole units (e.g. pounds, not pence) | ?min_price=123                                                 |
+| `max_price`       | Only return products with price below max price in whole units (e.g. pounds, not pence) | ?max_price=123                                                 |
+| `stock_level`     | Only return products with specific stock level                                          | ?stock_level=1                                                 |
+| `min_stock_level` | Only return products with stock above specific stock level                              | ?min_stock_level=1                                             |
+| `max_stock_level` | Only return products with stock below specific stock level                              | ?max_stock_level=10                                            |
+| `type`            | Only return products of a certain type (e.g. simple or variant)                         | ?type=variant                                                  |
 
 ## Example Response
 
