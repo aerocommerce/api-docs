@@ -28,9 +28,10 @@
    6. Customers
        1. [Index](Examples/Customer/INDEX.md)
        2. [View](Examples/Customer/VIEW.md)
-       3. [Update](Examples/Customer/UPDATE.md)
+       3. [Store](Examples/Customer/STORE.md)
+       4. [Update](Examples/Customer/UPDATE.md)
    7. Addresses
-       1. [Create](Examples/Address/CREATE.md)
+       1. [Create](Examples/Address/STORE.md)
        2. [Update](Examples/Address/UPDATE.md)
        3. [Delete](Examples/Address/DELETE.md)
    8. Shipping Methods
