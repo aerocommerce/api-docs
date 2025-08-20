@@ -31,6 +31,15 @@
 
 **NOTE:** The `view` and `update` product routes support passing the product's `model` instead of the `id`
 
+### Variants
+
+| URL                              | Permission      | Action | Examples                                     | Purpose                         |
+|----------------------------------|-----------------|--------|----------------------------------------------|---------------------------------|
+| /api/products/{id}/variants      | products.store  | POST   | [Store Variant](Examples/Variant/STORE.md)   | Create a variant from json data |
+| /api/products/{id}/variants/{id} | products.update | PUT    | [Update Variant](Examples/Product/UPDATE.md) | Update a variant from json data |
+
+**NOTE:** The `update` variant route supports passing the variant's `sku` instead of the `id`
+
 ### Customers
 
 | URL                   | Permission       | Action  | Examples                                       | Purpose                           |
