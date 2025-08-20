@@ -40,6 +40,8 @@
 | /api/customers        | customers.store  | POST    | [Store Customer](Examples/Customer/STORE.md)   | Create a customer from json data  | 
 | /api/customers/{id}   | customers.update | PUT     | [Update Customer](Examples/Customer/UPDATE.md) | Update a customer from json data  |
 
+`/api/customers` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
 ### Addresses
 
 | URL                                | Permission       | Action | Examples                                     | Purpose                          |
