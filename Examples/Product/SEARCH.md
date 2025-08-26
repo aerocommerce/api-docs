@@ -1,5 +1,13 @@
 # Product Search
 
+## Required
+
+This route performs product search queries using elasticsearch, as such you should reindex your product documents, e.g.:
+
+```
+php artisan aero:search:reindex --type=product
+```
+
 ## Attributes:
 
 See [View Product](VIEW.md)
@@ -44,7 +52,7 @@ This route also has some specific filters:
 
 | Name              | Description                                                                             | Example                                                        |
 |-------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| `manufacturers`   | Only return products with specific manufacturer ids                                     | <span style="white-space: nowrap;">?manufacturers=1,2,3</span> |
+| `manufacturers`   | Only return products with specific manufacturer ids (or names)                          | <span style="white-space: nowrap;">?manufacturers=1,2,3</span> |
 | `price`           | Only return products with specific price in whole units (e.g. pounds, not pence)        | ?price=123                                                     |
 | `min_price`       | Only return products with price above min price in whole units (e.g. pounds, not pence) | ?min_price=123                                                 |
 | `max_price`       | Only return products with price below max price in whole units (e.g. pounds, not pence) | ?max_price=123                                                 |
