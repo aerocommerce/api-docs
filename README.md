@@ -19,9 +19,10 @@
       2. [View](Examples/PaymentMethod/VIEW.md)
    4. Products
       1. [Index](Examples/Product/INDEX.md)
-      2. [View](Examples/Product/VIEW.md)
-      3. [Store](Examples/Product/STORE.md)
-      4. [Update](Examples/Product/UPDATE.md)
+      2. [Search](Examples/Product/SEARCH.md)
+      3. [View](Examples/Product/VIEW.md)
+      4. [Store](Examples/Product/STORE.md)
+      5. [Update](Examples/Product/UPDATE.md)
    5. Variants
       1. [Store](Examples/Variant/STORE.md)
       2. [Update](Examples/Variant/UPDATE.md)

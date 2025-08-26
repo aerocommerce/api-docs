@@ -18,16 +18,19 @@
 
 ### Products
 
-| URL                | Permission      | Action | Examples                                     | Purpose                         |
-|--------------------|-----------------|--------|----------------------------------------------|---------------------------------|
-| /api/products      | products.index  | GET    | [Product Index](Examples/Product/INDEX.md)   | Get all products                |
-| /api/products/{id} | products.view   | GET    | [View Product](Examples/Product/VIEW.md)     | Get product by id               | 
-| /api/products      | products.store  | POST   | [Store Product](Examples/Product/STORE.md)   | Create a product from json data | 
-| /api/products/{id} | products.update | PUT    | [Update Product](Examples/Product/UPDATE.md) | Update a product from json data |
+| URL                  | Permission      | Action | Examples                                       | Purpose                         |
+|----------------------|-----------------|--------|------------------------------------------------|---------------------------------|
+| /api/products        | products.index  | GET    | [Product Index](Examples/Product/INDEX.md)     | Get all products                |
+| /api/products/search | products.search | GET    | [Product Search](Examples/Product/SEARCH.md)   | Search all products             |
+| /api/products/{id}   | products.view   | GET    | [View Product](Examples/Product/VIEW.md)       | Get product by id               | 
+| /api/products        | products.store  | POST   | [Store Product](Examples/Product/STORE.md)     | Create a product from json data | 
+| /api/products/{id}   | products.store  | PUT    | [Update Product](Examples/Product/UPDATE.md)   | Update a product from json data |
 
 `/api/products` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
 
 `/api/products` supports image factory params, see [Image Factory Conventions](CONVENTIONS.md#image-factory-conventions) for more info
+
+**NOTE:** The `/api/products/search` exists to allow filtering at elasticsearch document level rather than eloquent level
 
 **NOTE:** The `view` and `update` product routes support passing the product's `model` instead of the `id`
 
@@ -35,8 +38,8 @@
 
 | URL                              | Permission      | Action | Examples                                     | Purpose                         |
 |----------------------------------|-----------------|--------|----------------------------------------------|---------------------------------|
-| /api/products/{id}/variants      | products.store  | POST   | [Store Variant](Examples/Variant/STORE.md)   | Create a variant from json data |
-| /api/products/{id}/variants/{id} | products.update | PUT    | [Update Variant](Examples/Product/UPDATE.md) | Update a variant from json data |
+| /api/products/{id}/variants      | variants.store  | POST   | [Store Variant](Examples/Variant/STORE.md)   | Create a variant from json data |
+| /api/products/{id}/variants/{id} | variants.update | PUT    | [Update Variant](Examples/Variant/UPDATE.md) | Update a variant from json data |
 
 **NOTE:** The `update` variant route supports passing the variant's `sku` instead of the `id`
 
