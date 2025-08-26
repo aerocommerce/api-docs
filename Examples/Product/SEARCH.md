@@ -64,7 +64,7 @@ This route also has some specific filters:
 ## Example Response
 
 ```http request
-GET /api/products?per_page=2&min_updated_at=2023-08-30%2010:36:23&min_stock_level=1&max_stock_level=10
+GET /api/products/search?per_page=2&min_updated_at=2023-08-30%2010:36:23&min_stock_level=1&max_stock_level=10
 ```
 
 ```json lines
@@ -73,12 +73,12 @@ GET /api/products?per_page=2&min_updated_at=2023-08-30%2010:36:23&min_stock_leve
     "data": [
       //...
     ],
-    "first_page_url": "http:\/\/seg.test\/api\/products?page=1",
+    "first_page_url": "http://l9.test/api/products/search?per_page=2&min_updated_at=2023-08-30%2010%3A36%3A23&min_stock_level=1&max_stock_level=10&page=1",
     "from": 1,
     "last_page": 3,
-    "last_page_url": "http:\/\/seg.test\/api\/products?page=3",
-    "next_page_url": "http:\/\/seg.test\/api\/products?page=2",
-    "path": "http:\/\/seg.test\/api\/products",
+    "last_page_url": "http://l9.test/api/products/search?per_page=2&min_updated_at=2023-08-30%2010%3A36%3A23&min_stock_level=1&max_stock_level=10&page=18",
+    "next_page_url": "http://l9.test/api/products/search?per_page=2&min_updated_at=2023-08-30%2010%3A36%3A23&min_stock_level=1&max_stock_level=10&page=2",
+    "path": "http:\/\/seg.test\/api\/products\/search",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
