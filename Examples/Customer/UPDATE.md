@@ -1,4 +1,4 @@
-# Store Product
+# Update Customer
 
 ## Attributes:
 
@@ -27,7 +27,7 @@ PUT /api/customers/{id}
 ```json lines
 {
     "name": "Test",
-    "email": "Test",
+    "email": "test@gmail.com",
     "group": "Group Name",
     "additional_attributes": [
         {

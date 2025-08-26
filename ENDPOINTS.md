@@ -34,6 +34,34 @@
 
 **NOTE:** The `view` and `update` product routes support passing the product's `model` instead of the `id`
 
+### Variants
+
+| URL                              | Permission      | Action | Examples                                     | Purpose                         |
+|----------------------------------|-----------------|--------|----------------------------------------------|---------------------------------|
+| /api/products/{id}/variants      | variants.store  | POST   | [Store Variant](Examples/Variant/STORE.md)   | Create a variant from json data |
+| /api/products/{id}/variants/{id} | variants.update | PUT    | [Update Variant](Examples/Variant/UPDATE.md) | Update a variant from json data |
+
+**NOTE:** The `update` variant route supports passing the variant's `sku` instead of the `id`
+
+### Customers
+
+| URL                   | Permission       | Action  | Examples                                       | Purpose                           |
+|-----------------------|------------------|---------|------------------------------------------------|-----------------------------------|
+| /api/customers        | customers.index  | GET     | [Customer Index](Examples/Customer/INDEX.md)   | Get all customers                 |
+| /api/customers/{id}   | customers.view   | GET     | [View Customer](Examples/Customer/VIEW.md)     | Get customer by id                | 
+| /api/customers        | customers.store  | POST    | [Store Customer](Examples/Customer/STORE.md)   | Create a customer from json data  | 
+| /api/customers/{id}   | customers.update | PUT     | [Update Customer](Examples/Customer/UPDATE.md) | Update a customer from json data  |
+
+`/api/customers` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+### Addresses
+
+| URL                                | Permission       | Action | Examples                                     | Purpose                          |
+|------------------------------------|------------------|--------|----------------------------------------------|----------------------------------|
+| /api/customers/{id}/addresses      | addresses.store  | POST   | [Store Address](Examples/Address/STORE.md)   | Create an address from json data | 
+| /api/customers/{id}/addresses/{id} | addresses.update | PUT    | [Update Address](Examples/Address/UPDATE.md) | Update an address from json data |
+| /api/customers/{id}/addresses/{id} | addresses.delete | DELETE | [Delete Address](Examples/Address/UPDATE.md) | Delete an address                |
+
 ### Payment Methods
 
 | URL                        | Permission              | Action  | Examples                                                   | Purpose                    |
