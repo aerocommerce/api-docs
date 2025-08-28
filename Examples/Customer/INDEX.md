@@ -1,8 +1,8 @@
-# Product Index
+# Customer Index
 
 ## Attributes:
 
-See [View Product](VIEW.md)
+See [View Customer](VIEW.md)
 
 ## Remarks
 

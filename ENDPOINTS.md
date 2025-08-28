@@ -18,20 +18,49 @@
 
 ### Products
 
-| URL                | Permission     | Action | Examples                                     | Purpose                         |
-|--------------------|----------------|--------|----------------------------------------------|---------------------------------|
-| /api/products      | products.index | GET    | [Product Index](Examples/Product/INDEX.md)   | Get all products                |
-| /api/products/{id} | products.view  | GET    | [View Product](Examples/Product/VIEW.md)     | Get product by id               | 
-| /api/products      | products.store | POST   | [Store Product](Examples/Product/STORE.md)   | Create a product from json data | 
-| /api/products/{id} | products.store | PUT    | [Update Product](Examples/Product/UPDATE.md) | Update a product from json data |
+| URL                  | Permission      | Action | Examples                                       | Purpose                         |
+|----------------------|-----------------|--------|------------------------------------------------|---------------------------------|
+| /api/products        | products.index  | GET    | [Product Index](Examples/Product/INDEX.md)     | Get all products                |
+| /api/products/search | products.search | GET    | [Product Search](Examples/Product/SEARCH.md)   | Search all products             |
+| /api/products/{id}   | products.view   | GET    | [View Product](Examples/Product/VIEW.md)       | Get product by id               | 
+| /api/products        | products.store  | POST   | [Store Product](Examples/Product/STORE.md)     | Create a product from json data | 
+| /api/products/{id}   | products.store  | PUT    | [Update Product](Examples/Product/UPDATE.md)   | Update a product from json data |
 
 `/api/products` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
 
 `/api/products` supports image factory params, see [Image Factory Conventions](CONVENTIONS.md#image-factory-conventions) for more info
 
+**NOTE:** The `/api/products/search` exists to allow filtering at elasticsearch document level rather than eloquent level
+
 **NOTE:** The `view` and `update` product routes support passing the product's `model` instead of the `id`
 
+### Variants
 
+| URL                              | Permission      | Action | Examples                                     | Purpose                         |
+|----------------------------------|-----------------|--------|----------------------------------------------|---------------------------------|
+| /api/products/{id}/variants      | variants.store  | POST   | [Store Variant](Examples/Variant/STORE.md)   | Create a variant from json data |
+| /api/products/{id}/variants/{id} | variants.update | PUT    | [Update Variant](Examples/Variant/UPDATE.md) | Update a variant from json data |
+
+**NOTE:** The `update` variant route supports passing the variant's `sku` instead of the `id`
+
+### Customers
+
+| URL                   | Permission       | Action  | Examples                                       | Purpose                           |
+|-----------------------|------------------|---------|------------------------------------------------|-----------------------------------|
+| /api/customers        | customers.index  | GET     | [Customer Index](Examples/Customer/INDEX.md)   | Get all customers                 |
+| /api/customers/{id}   | customers.view   | GET     | [View Customer](Examples/Customer/VIEW.md)     | Get customer by id                | 
+| /api/customers        | customers.store  | POST    | [Store Customer](Examples/Customer/STORE.md)   | Create a customer from json data  | 
+| /api/customers/{id}   | customers.update | PUT     | [Update Customer](Examples/Customer/UPDATE.md) | Update a customer from json data  |
+
+`/api/customers` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+### Addresses
+
+| URL                                | Permission       | Action | Examples                                     | Purpose                          |
+|------------------------------------|------------------|--------|----------------------------------------------|----------------------------------|
+| /api/customers/{id}/addresses      | addresses.store  | POST   | [Store Address](Examples/Address/STORE.md)   | Create an address from json data | 
+| /api/customers/{id}/addresses/{id} | addresses.update | PUT    | [Update Address](Examples/Address/UPDATE.md) | Update an address from json data |
+| /api/customers/{id}/addresses/{id} | addresses.delete | DELETE | [Delete Address](Examples/Address/UPDATE.md) | Delete an address                |
 
 ### Payment Methods
 
@@ -41,5 +70,24 @@
 | /api/payment-methods/{id}  | payment-methods.view    | GET     | [View Payment Method](Examples/PaymentMethod/VIEW.md)      | Get payment method by id   | 
 
 `/api/payment-methods` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+### Price Lists
+
+| URL                   | Permission          | Action | Examples                                          | Purpose                            |
+|-----------------------|---------------------|--------|---------------------------------------------------|------------------------------------|
+| /api/price-lists      | price-lists.index   | GET    | [Price List Index](Examples/PriceList/INDEX.md)   | Get all price lists                |
+| /api/price-lists/{id} | price-lists.view    | GET    | [View Price List](Examples/PriceList/VIEW.md)     | Get price list by id               | 
+| /api/price-lists      | price-lists.store   | POST   | [Store Price List](Examples/PriceList/STORE.md)   | Create a price list from json data | 
+| /api/price-lists/{id} | price-lists.store   | PUT    | [Update Price List](Examples/PriceList/UPDATE.md) | Update a price list from json data |
+
+`/api/price-lists` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+### Price List Entries
+
+| URL                                  | Permission                | Action | Examples                                                     | Purpose                                  |
+|--------------------------------------|---------------------------|--------|--------------------------------------------------------------|------------------------------------------|
+| /api/price-lists/{id}/entries        | price-list-entries.store  | POST   | [Store Price List Entry](Examples/PriceListEntry/STORE.md)   | Create a price list entry from json data |
+| /api/price-lists/{id}/entries/{id}   | price-list-entries.update | PUT    | [Update Price List Entry](Examples/PriceListEntry/UPDATE.md) | Update a price list entry from json data |
+
 
 [Back to contents](README.md#table-of-contents)

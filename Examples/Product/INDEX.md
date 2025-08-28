@@ -21,10 +21,17 @@ This is also a scoped route (see [Scoped Conventions](../../CONVENTIONS.md#scope
 
 This route also has some specific scopes:
 
-| Name      | Description                  | Example        |
-|-----------|------------------------------|----------------|
-| `visible` | Only return visible products | ?scope=visible |
-| `active`  | Only return active products  | ?scope=active  |
+| Name                 | Description                                     | Example                   |
+|----------------------|-------------------------------------------------|---------------------------|
+| `active`             | Only return active products                     | ?scope=active             |
+| `inactive`           | Only return inactive products                   | ?scope=inactive           |
+| `visible`            | Only return visible products                    | ?scope=visible            |
+| `hidden`             | Only return hidden products                     | ?scope=hidden             |
+| `published`          | Only return published products                  | ?scope=published          |
+| `unpublished`        | Only return unpublished products                | ?scope=unpublished        |
+| `scheduled`          | Only return scheduled to be published products  | ?scope=scheduled          |
+
+**NOTE:** Some of these scopes may not be 100% accurate, for precise searching please use the [Search Product](SEARCH.md) endpoint which queries at ES level rather than using Eloquent
 
 ## Example Response
 
