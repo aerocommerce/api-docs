@@ -38,6 +38,14 @@
    8. Shipping Methods
       1. [Index](Examples/ShippingMethod/INDEX.md)
       2. [View](Examples/ShippingMethod/VIEW.md)
+   9. Price Lists
+       1. [Index](Examples/PriceList/INDEX.md)
+       2. [View](Examples/PriceList/VIEW.md)
+       3. [Store](Examples/PriceList/STORE.md)
+       4. [Update](Examples/PriceList/UPDATE.md)
+   10. Price List Entries
+       1. [Store](Examples/PriceListEntry/STORE.md)
+       2. [Update](Examples/PriceListEntry/UPDATE.md)
 6. [Extending the API](EXTENDING.md) 
 
 ## Usage
