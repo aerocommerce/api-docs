@@ -2,10 +2,13 @@
 
 ### Orders
 
-| URL               | Permission   | Action | Examples                               | Purpose                        |
-|-------------------|--------------|--------|----------------------------------------|--------------------------------|
-| /api/orders/{id}  | orders.view  | GET    | [View Order](Examples/Order/VIEW.md)   | Get an order by id             |
-| /api/orders       | orders.store | POST   | [Store Order](Examples/Order/STORE.md) | Create an order from json data |
+| URL                         | Permission          | Action | Examples                                     | Purpose                                    |
+|-----------------------------|---------------------|--------|----------------------------------------------|--------------------------------------------|
+| /api/orders/                | orders.index        | GET    | [Order Index](Examples/Order/INDEX.md)       | Get all orders                             |
+| /api/orders/{id}            | orders.view         | GET    | [View Order](Examples/Order/VIEW.md)         | Get an order by id                         |
+| /api/orders                 | orders.store        | POST   | [Store Order](Examples/Order/STORE.md)       | Create an order from json data             |
+| /api/orders/{id}/flags      | orders.flags.store  | POST   | [Store Order Flag](Examples/Order/FLAGS.md)  | Attach a flag to an order from json data   |
+| /api/orders/{id}/flags/{id} | orders.flags.delete | DELETE | [Delete Order Flag](Examples/Order/FLAGS.md) | Detach a flag from an order from json data |
 
 ### Order Statuses
 
@@ -70,6 +73,16 @@
 | /api/payment-methods/{id}  | payment-methods.view    | GET     | [View Payment Method](Examples/PaymentMethod/VIEW.md)      | Get payment method by id   | 
 
 `/api/payment-methods` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+### Flags
+
+| URL              | Permission   | Action | Examples                                 | Purpose                      |
+|------------------|--------------|--------|------------------------------------------|------------------------------|
+| /api/flags       | flags.index  | GET    | [Flag Index](Examples/Flag/INDEX.md)     | Get all flags                |
+| /api/flags/{id}  | flags.view   | GET    | [View Flag](Examples/Flag/VIEW.md)       | Get flags by id              | 
+| /api/flags       | flags.store  | POST   | [Store Flag](Examples/Flag/STORE.md)     | Create a flag from json data | 
+| /api/flags/{id}  | flags.update | PUT    | [Update Flag](Examples/Flag/UPDATE.md)   | Update a flag from json data |
+| /api/flags/{id}  | flags.delete | DELETE | [Delete Flag](Examples/Flag/DELETE.md)   | Delete a flag                |
 
 ### Price Lists
 

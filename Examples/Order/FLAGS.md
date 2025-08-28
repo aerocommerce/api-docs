@@ -1,6 +1,6 @@
 # Order Flags
 
-## AttacH Flag
+## Attach Flag
 
 ```http request
 POST /api/orders/{orderId}/flags/{flagId}
