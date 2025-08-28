@@ -71,4 +71,23 @@
 
 `/api/payment-methods` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
 
+### Price Lists
+
+| URL                   | Permission          | Action | Examples                                          | Purpose                            |
+|-----------------------|---------------------|--------|---------------------------------------------------|------------------------------------|
+| /api/price-lists      | price-lists.index   | GET    | [Price List Index](Examples/PriceList/INDEX.md)   | Get all price lists                |
+| /api/price-lists/{id} | price-lists.view    | GET    | [View Price List](Examples/PriceList/VIEW.md)     | Get price list by id               | 
+| /api/price-lists      | price-lists.store   | POST   | [Store Price List](Examples/PriceList/STORE.md)   | Create a price list from json data | 
+| /api/price-lists/{id} | price-lists.store   | PUT    | [Update Price List](Examples/PriceList/UPDATE.md) | Update a price list from json data |
+
+`/api/price-lists` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+### Price List Entries
+
+| URL                                  | Permission                | Action | Examples                                                     | Purpose                                  |
+|--------------------------------------|---------------------------|--------|--------------------------------------------------------------|------------------------------------------|
+| /api/price-lists/{id}/entries        | price-list-entries.store  | POST   | [Store Price List Entry](Examples/PriceListEntry/STORE.md)   | Create a price list entry from json data |
+| /api/price-lists/{id}/entries/{id}   | price-list-entries.update | PUT    | [Update Price List Entry](Examples/PriceListEntry/UPDATE.md) | Update a price list entry from json data |
+
+
 [Back to contents](README.md#table-of-contents)
