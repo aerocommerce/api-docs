@@ -128,6 +128,55 @@
 PUT /api/products/{id}
 ```
 
+### Simple Product
+
+```json lines
+{
+    "name": "Detachable Sleeve Puffer Jacket v2",
+    "manufacturer": "Burberry v2",
+    "active": true,
+    "visible": true,
+    "hide_when_no_stock": false,
+    "categories": [
+        {
+            "name": "test"
+        }
+    ],
+    "tags": [
+        {
+            "group": {
+                "name": "Colour"
+            },
+            "name": "Indigo"
+        }
+    ],
+    "variants": [
+        {
+            "sku": "9021182",
+            "barcode": "new-barcode",
+            "tags": [
+                {
+                    "group": {
+                        "name": "Style"
+                    },
+                    "name": "Cool"
+                }
+            ]
+        }
+    ],
+    "settings": {
+        "_": {
+            "no_group": "value2"
+        },
+        "group": {
+            "key": "value2"
+        }
+    },
+}
+```
+
+### Variant Product
+
 ```json lines
 {
     "name": "Detachable Sleeve Puffer Jacket v2",

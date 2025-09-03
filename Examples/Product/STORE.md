@@ -149,6 +149,58 @@ Settings are organized as key-value pairs, where each top-level key represents a
 POST /api/products
 ```
 
+### Simple Product
+
+```json lines
+{
+    "model": "9021182",
+    "name": "Detachable Sleeve Puffer Jacket",
+    "manufacturer": "Burberry",
+    "categories": [
+        {
+            "name": "Mens > Coats > Padded Coats"
+        }
+    ],
+    "summary": "Summary",
+    "description": "Description",
+    "images": [
+        {
+            "src": "https://aero-data.s3.eu-west-2.amazonaws.com/images/14450507_21292633_1000.jpg",
+            "position": "0",
+            "is_default": "1"
+        }
+    ],
+    "variants": [
+        {
+            "sku": "9021182",
+            "barcode": "abc123",
+            "stock_level": "5",
+            "prices": [
+                {
+                    "currency": "GBP",
+                    "price": "790",
+                    "quantity": 1
+                }
+            ],
+            "tax_group": "Taxable Product"
+        }
+    ],
+    "tags": [
+        {
+            "group": {
+                "name": "Colour"
+            },
+            "name": "Blue"
+        }
+    ],
+    "active": true,
+    "visible": true,
+    "hide_when_no_stock": false
+}
+```
+
+### Variant Product
+
 ```json lines
 {
     "model": "9021182",
