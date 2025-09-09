@@ -30,9 +30,9 @@
 
 ### Image
 
-| Name  | Type   | Description             |
-|-------|--------|-------------------------|
-| `url` | string | The source of the image |
+| Name  | Type   | Description          |
+|-------|--------|----------------------|
+| `url` | string | The url of the image |
 
 ## Example Response
 

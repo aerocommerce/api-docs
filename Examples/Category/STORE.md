@@ -49,8 +49,8 @@
 | `data`               | object | The data for the rule, required keys vary based on `type` of the rule                                                                                 | Yes         |
 | `data.tags`          | array  | The tag ids (or names formatted as `group\|name`) for a `have_tags` rule                                                                              | Conditional |
 | `data.manufacturers` | array  | The manufacturer ids (or names) for a `have_manufacturers` rule                                                                                       | Conditional |
-| `data.price_list`    | int    | The price list id for an `in_price_list` rule                                                                                                         | Conditional |
-| `data.category`      | int    | The category id for an `in_category` rule                                                                                                             | Conditional |
+| `data.price_list`    | int    | The price list id (or name) for an `in_price_list` rule                                                                                               | Conditional |
+| `data.category`      | int    | The category id (or breadcrumb) for an `in_category` rule                                                                                             | Conditional |
 | `data.days`          | int    | The days for a `published_within_days` rule                                                                                                           | Conditional |
 | `data.start_at`      | date   | The start at date for a `published_within` rule                                                                                                       | Conditional |
 | `data.end_at`        | date   | The end at date for a `published_within` rule (optional)                                                                                              | Conditional |
@@ -75,7 +75,7 @@
 |------------------------------|---------|-----------------------------------------------------------------------------------------------|-------------|
 | `categories.mode`            | string  | The categories mode, e.g. show_all/hide_all/show_some (defaults to show_all)                  | No          |
 | `categories.values`          | array   | The options for categories on the listings page (required if and only if mode is `show_some`) | No          |
-| `categories.values.*.id`     | int     | The id of category to show (required if and only if mode is `show_some`)                      | Conditional |
+| `categories.values.*`        | string  | The id of category (or breadcrumb) to show (required if and only if mode is `show_some`)      | Conditional |
 | `filters.mode`               | int     | The filters mode, e.g. show_all/hide_all/show_some (defaults to show_all)                     | No          |
 | `filters.values`             | array   | The options for filters on the listings page (required if and only if mode is `show_some`)    | Conditional |
 | `filters.values.*.name`      | string  | The name of the filter, e.g. Category, Price, etc...                                          | Yes         |
@@ -198,9 +198,7 @@ POST /api/categories/
         "categories": {
             "mode": "show_some",
             "values": [
-                {
-                    "id": 1
-                }
+                1
             ]
         },
         "filters": {
