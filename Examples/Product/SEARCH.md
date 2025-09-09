@@ -50,19 +50,23 @@ This route also has some specific scopes:
 
 This route also has some specific filters:
 
-| Name              | Description                                                                               | Example                                                             |
-|-------------------|-------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| `manufacturers`   | Only return products with specific manufacturer ids (or names)                            | <span style="white-space: nowrap;">?manufacturers=1,burberry</span> |
-| `tags`            | Only return products with specific tag ids (or names formatted as `group\|name`)          | <span style="white-space: nowrap;">?tags=1,colour\|red</span>       |
-| `price`           | Only return products with specific price in whole units (e.g. pounds, not pence)          | ?price=123                                                          |
-| `min_price`       | Only return products with price above min price in whole units (e.g. pounds, not pence)   | ?min_price=123                                                      |
-| `max_price`       | Only return products with price below max price in whole units (e.g. pounds, not pence)   | ?max_price=123                                                      |
-| `stock_level`     | Only return products with specific stock level                                            | ?stock_level=1                                                      |
-| `min_stock_level` | Only return products with stock above specific stock level                                | ?min_stock_level=1                                                  |
-| `max_stock_level` | Only return products with stock below specific stock level                                | ?max_stock_level=10                                                 |
-| `type`            | Only return products of a certain type (e.g. simple or variant)                           | ?type=variant                                                       |
+| Name              | Description                                                                             | Example                                                             |
+|-------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `manufacturers`   | Only return products with specific manufacturer ids (or names)                          | <span style="white-space: nowrap;">?manufacturers=1,burberry</span> |
+| `tags`            | Only return products with specific tag ids (or names formatted as `group\|name`)        | <span style="white-space: nowrap;">?tags=1,colour\|red</span>       |
+| `barcodes`        | Only return products with specific barcodes                                             | <span style="white-space: nowrap;">?barcodes=123,abc</span>         |
+| `references`      | Only return products with specific references                                           | <span style="white-space: nowrap;">?references=123,abc</span>       |
+| `price`           | Only return products with specific price in whole units (e.g. pounds, not pence)        | ?price=123                                                          |
+| `min_price`       | Only return products with price above min price in whole units (e.g. pounds, not pence) | ?min_price=123                                                      |
+| `max_price`       | Only return products with price below max price in whole units (e.g. pounds, not pence) | ?max_price=123                                                      |
+| `stock_level`     | Only return products with specific stock level                                          | ?stock_level=1                                                      |
+| `min_stock_level` | Only return products with stock above specific stock level                              | ?min_stock_level=1                                                  |
+| `max_stock_level` | Only return products with stock below specific stock level                              | ?max_stock_level=10                                                 |
+| `type`            | Only return products of a certain type (e.g. simple or variant)                         | ?type=variant                                                       |
 
 **NOTE:** Tags filter logically applies AND across groups and OR inside of groups, e.g. `?tags=size|small,colour|red` = small AND red, `?tags=colour|red,colour|green` = red OR green
+
+**NOTE:** Plural filters can also be used in singular form, e.g. `?manufacturer=burberry` for `?manufacturers=burberry`
 
 ## Example Response
 
