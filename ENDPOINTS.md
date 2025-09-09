@@ -10,6 +10,8 @@
 | /api/orders/{id}/flags      | orders.flags.store  | POST   | [Store Order Flag](Examples/Order/FLAGS.md)  | Attach a flag to an order from json data   |
 | /api/orders/{id}/flags/{id} | orders.flags.delete | DELETE | [Delete Order Flag](Examples/Order/FLAGS.md) | Detach a flag from an order from json data |
 
+`/api/orders` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
 ### Order Statuses
 
 | URL                      | Permission            | Action | Examples                                             | Purpose                |
@@ -56,6 +58,10 @@
 | /api/manufacturers/{id} | manufacturers.update  | PUT    | [Update Manufacturer](Examples/Manufacturer/UPDATE.md) | Update a manufacturer from json data |
 | /api/manufacturers/{id} | manufacturers.delete  | DELETE | [Delete Manufacturer](Examples/Manufacturer/DELETE.md) | Delete a manufacturers               |
 
+`/api/manufacturers` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant manufacturer endpoints
+
 ### Attribute Groups
 
 | URL                         | Permission               | Action  | Examples                                                     | Purpose                                   |
@@ -66,6 +72,10 @@
 | /api/attribute-groups/{id}  | attribute-groups.update  | PUT     | [Update Attribute Group](Examples/AttributeGroup/UPDATE.md)  | Update an attribute group from json data  |
 | /api/attribute-groups/{id}  | attribute-groups.delete  | DELETE  | [Delete Attribute Group](Examples/AttributeGroup/DELETE.md)  | Delete an attribute group                 |
 
+`/api/attribute-groups` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant attribute group endpoints
+
 ### Attributes
 
 | URL                                         | Permission         | Action  | Examples                                          | Purpose                             |
@@ -73,6 +83,10 @@
 | /api/attribute-groups/{id}/attributes       | attributes.store   | POST    | [Store Attribute](Examples/Attribute/STORE.md)    | Create an attribute from json data  |
 | /api/attribute-groups/{id}/attributes/{id}  | attributes.update  | PUT     | [Update Attribute](Examples/Attribute/UPDATE.md)  | Update an attribute from json data  |
 | /api/attribute-groups/{id}/attributes/{id}  | attributes.delete  | DELETE  | [Delete Attribute](Examples/Attribute/DELETE.md)  | Delete an attribute                 |
+
+`/api/attributes` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant attribute endpoints
 
 ### Categories
 
@@ -84,6 +98,10 @@
 | /api/categories/{id}  | categories.update  | PUT     | [Update Category](Examples/Category/UPDATE.md)  | Update a category from json data  |
 | /api/categories/{id}  | categories.delete  | DELETE  | [Delete Category](Examples/Category/DELETE.md)  | Delete a category                 |
 
+`/api/categories` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` or `breadcrumb` in place of an `id` is supported for all relevant category endpoints
+
 ### Tag Groups
 
 | URL                   | Permission         | Action  | Examples                                         | Purpose                            |
@@ -94,6 +112,10 @@
 | /api/tag-groups/{id}  | tag-groups.update  | PUT     | [Update Tag Group](Examples/TagGroup/UPDATE.md)  | Update a tag group from json data  |
 | /api/tag-groups/{id}  | tag-groups.delete  | DELETE  | [Delete Tag Group](Examples/TagGroup/DELETE.md)  | Delete a tag group                 |
 
+`/api/tag-groups` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant tag group endpoints
+
 ### Tags
 
 | URL                             | Permission   | Action  | Examples                              | Purpose                      |
@@ -101,6 +123,10 @@
 | /api/tag-groups/{id}/tags       | tags.store   | POST    | [Store Tag](Examples/Tag/STORE.md)    | Create a tag from json data  |
 | /api/tag-groups/{id}/tags/{id}  | tags.update  | PUT     | [Update Tag](Examples/Tag/UPDATE.md)  | Update a tag from json data  |
 | /api/tag-groups/{id}/tags/{id}  | tags.delete  | DELETE  | [Delete Tag](Examples/Tag/DELETE.md)  | Delete a tag                 |
+
+`/api/tags` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant tag endpoints
 
 ### Collections
 
@@ -111,6 +137,10 @@
 | /api/collections        | collections.store    | POST     | [Store Collection](Examples/Collection/STORE.md)    | Create a collection from json data  |
 | /api/collections/{id}   | collections.update   | PUT      | [Update Collection](Examples/Collection/UPDATE.md)  | Update a collection from json data  |
 | /api/collections/{id}   | collections.delete   | DELETE   | [Delete Collection](Examples/Collection/DELETE.md)  | Delete a collection                 |
+
+`/api/collections` is paginated, see [Pagination Conventions](CONVENTIONS.md#pagination-conventions) for more info
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant collection endpoints
 
 ### Customers
 
