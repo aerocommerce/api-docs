@@ -44,6 +44,6 @@ GET /api/flags?per_page=2
 }
 ```
 
-See [Flag View Example Response](./VIEW.md#example-response) for the structure of the orders data
+See [Flag View Example Response](./VIEW.md#example-response) for the structure of the flags data
 
 

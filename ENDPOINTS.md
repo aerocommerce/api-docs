@@ -46,6 +46,72 @@
 
 **NOTE:** The `update` variant route supports passing the variant's `sku` instead of the `id`
 
+### Manufacturers
+
+| URL                     | Permission            | Action | Examples                                               | Purpose                              |
+|-------------------------|-----------------------|--------|--------------------------------------------------------|--------------------------------------|
+| /api/manufacturers      | manufacturers.index   | GET    | [Manufacturer Index](Examples/Manufacturer/INDEX.md)   | Get all manufacturers                |
+| /api/manufacturers/{id} | manufacturers.view    | GET    | [View Manufacturer](Examples/Manufacturer/VIEW.md)     | Get manufacturers by id              | 
+| /api/manufacturers      | manufacturers.store   | POST   | [Store Manufacturer](Examples/Manufacturer/STORE.md)   | Create a manufacturer from json data | 
+| /api/manufacturers/{id} | manufacturers.update  | PUT    | [Update Manufacturer](Examples/Manufacturer/UPDATE.md) | Update a manufacturer from json data |
+| /api/manufacturers/{id} | manufacturers.delete  | DELETE | [Delete Manufacturer](Examples/Manufacturer/DELETE.md) | Delete a manufacturers               |
+
+### Attribute Groups
+
+| URL                         | Permission               | Action  | Examples                                                     | Purpose                                   |
+|-----------------------------|--------------------------|---------|--------------------------------------------------------------|-------------------------------------------|
+| /api/attribute-groups       | attribute-groups.index   | GET     | [Attribute Group Index](Examples/AttributeGroup/INDEX.md)    | Get all attribute groups                  |
+| /api/attribute-groups/{id}  | attribute-groups.view    | GET     | [View Attribute Group](Examples/AttributeGroup/VIEW.md)      | Get attribute groups by id                |
+| /api/attribute-groups       | attribute-groups.store   | POST    | [Store Attribute Group](Examples/AttributeGroup/STORE.md)    | Create an attribute group from json data  |
+| /api/attribute-groups/{id}  | attribute-groups.update  | PUT     | [Update Attribute Group](Examples/AttributeGroup/UPDATE.md)  | Update an attribute group from json data  |
+| /api/attribute-groups/{id}  | attribute-groups.delete  | DELETE  | [Delete Attribute Group](Examples/AttributeGroup/DELETE.md)  | Delete an attribute group                 |
+
+### Attributes
+
+| URL                                         | Permission         | Action  | Examples                                          | Purpose                             |
+|---------------------------------------------|--------------------|---------|---------------------------------------------------|-------------------------------------|
+| /api/attribute-groups/{id}/attributes       | attributes.store   | POST    | [Store Attribute](Examples/Attribute/STORE.md)    | Create an attribute from json data  |
+| /api/attribute-groups/{id}/attributes/{id}  | attributes.update  | PUT     | [Update Attribute](Examples/Attribute/UPDATE.md)  | Update an attribute from json data  |
+| /api/attribute-groups/{id}/attributes/{id}  | attributes.delete  | DELETE  | [Delete Attribute](Examples/Attribute/DELETE.md)  | Delete an attribute                 |
+
+### Categories
+
+| URL                   | Permission         | Action  | Examples                                        | Purpose                           |
+|-----------------------|--------------------|---------|-------------------------------------------------|-----------------------------------|
+| /api/categories       | categories.index   | GET     | [Category Index](Examples/Category/INDEX.md)    | Get all categories                |
+| /api/categories/{id}  | categories.view    | GET     | [View Category](Examples/Category/VIEW.md)      | Get categories by id              |
+| /api/categories       | categories.store   | POST    | [Store Category](Examples/Category/STORE.md)    | Create a category from json data  |
+| /api/categories/{id}  | categories.update  | PUT     | [Update Category](Examples/Category/UPDATE.md)  | Update a category from json data  |
+| /api/categories/{id}  | categories.delete  | DELETE  | [Delete Category](Examples/Category/DELETE.md)  | Delete a category                 |
+
+### Tag Groups
+
+| URL                   | Permission         | Action  | Examples                                         | Purpose                            |
+|-----------------------|--------------------|---------|--------------------------------------------------|------------------------------------|
+| /api/tag-groups       | tag-groups.index   | GET     | [Tag Group Index](Examples/TagGroup/INDEX.md)    | Get all tag groups                 |
+| /api/tag-groups/{id}  | tag-groups.view    | GET     | [View Tag Group](Examples/TagGroup/VIEW.md)      | Get tag groups by id               |
+| /api/tag-groups       | tag-groups.store   | POST    | [Store Tag Group](Examples/TagGroup/STORE.md)    | Create a tag group from json data  |
+| /api/tag-groups/{id}  | tag-groups.update  | PUT     | [Update Tag Group](Examples/TagGroup/UPDATE.md)  | Update a tag group from json data  |
+| /api/tag-groups/{id}  | tag-groups.delete  | DELETE  | [Delete Tag Group](Examples/TagGroup/DELETE.md)  | Delete a tag group                 |
+
+### Tags
+
+| URL                             | Permission   | Action  | Examples                              | Purpose                      |
+|---------------------------------|--------------|---------|---------------------------------------|------------------------------|
+| /api/tag-groups/{id}/tags       | tags.store   | POST    | [Store Tag](Examples/Tag/STORE.md)    | Create a tag from json data  |
+| /api/tag-groups/{id}/tags/{id}  | tags.update  | PUT     | [Update Tag](Examples/Tag/UPDATE.md)  | Update a tag from json data  |
+| /api/tag-groups/{id}/tags/{id}  | tags.delete  | DELETE  | [Delete Tag](Examples/Tag/DELETE.md)  | Delete a tag                 |
+
+### Collections
+
+| URL                     | Permission           | Action   | Examples                                            | Purpose                             |
+|-------------------------|----------------------|----------|-----------------------------------------------------|-------------------------------------|
+| /api/collections        | collections.index    | GET      | [Collection Index](Examples/Collection/INDEX.md)    | Get all collections                 |
+| /api/collections/{id}   | collections.view     | GET      | [View Collection](Examples/Collection/VIEW.md)      | Get collections by id               |
+| /api/collections        | collections.store    | POST     | [Store Collection](Examples/Collection/STORE.md)    | Create a collection from json data  |
+| /api/collections/{id}   | collections.update   | PUT      | [Update Collection](Examples/Collection/UPDATE.md)  | Update a collection from json data  |
+| /api/collections/{id}   | collections.delete   | DELETE   | [Delete Collection](Examples/Collection/DELETE.md)  | Delete a collection                 |
+
 ### Customers
 
 | URL                   | Permission       | Action  | Examples                                       | Purpose                           |
