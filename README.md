@@ -8,48 +8,86 @@
 4. [Responses](RESPONSES.md)
 5. Examples
    1. Orders
-      1. [Index](Examples/Order/INDEX.md)
-      2. [View](Examples/Order/VIEW.md)
-      3. [Store](Examples/Order/STORE.md)
-      4. [Flags](Examples/Order/FLAGS.md)
+       1. [Index](Examples/Order/INDEX.md)
+       2. [View](Examples/Order/VIEW.md)
+       3. [Store](Examples/Order/STORE.md)
+       4. [Flags](Examples/Order/FLAGS.md)
    2. Order Statuses
-      1. [Index](Examples/OrderStatus/INDEX.md)
-      2. [View](Examples/OrderStatus/VIEW.md)
+       1. [Index](Examples/OrderStatus/INDEX.md)
+       2. [View](Examples/OrderStatus/VIEW.md)
    3. Payment Methods
-      1. [Index](Examples/PaymentMethod/INDEX.md)
-      2. [View](Examples/PaymentMethod/VIEW.md)
+       1. [Index](Examples/PaymentMethod/INDEX.md)
+       2. [View](Examples/PaymentMethod/VIEW.md)
    4. Products
-      1. [Index](Examples/Product/INDEX.md)
-      2. [Search](Examples/Product/SEARCH.md)
-      3. [View](Examples/Product/VIEW.md)
-      4. [Store](Examples/Product/STORE.md)
-      5. [Update](Examples/Product/UPDATE.md)
+       1. [Index](Examples/Product/INDEX.md)
+       2. [Search](Examples/Product/SEARCH.md)
+       3. [View](Examples/Product/VIEW.md)
+       4. [Store](Examples/Product/STORE.md)
+       5. [Update](Examples/Product/UPDATE.md)
    5. Variants
-      1. [Store](Examples/Variant/STORE.md)
-      2. [Update](Examples/Variant/UPDATE.md)
-   6. Customers
+       1. [Store](Examples/Variant/STORE.md)
+       2. [Update](Examples/Variant/UPDATE.md)
+   6. Manufacturers
+       1. [Index](Examples/Collection/INDEX.md)
+       2. [View](Examples/Collection/VIEW.md)
+       3. [Store](Examples/Collection/STORE.md)
+       4. [Update](Examples/Collection/UPDATE.md)
+       5. [Delete](Examples/Collection/DELETE.md)
+   7. Attribute Groups
+       1. [Index](Examples/AttributeGroup/INDEX.md)
+       2. [View](Examples/AttributeGroup/VIEW.md)
+       3. [Store](Examples/AttributeGroup/STORE.md)
+       4. [Update](Examples/AttributeGroup/UPDATE.md)
+       5. [Delete](Examples/AttributeGroup/DELETE.md)
+   8. Attributes
+       1. [Store](Examples/Attribute/STORE.md)
+       2. [Update](Examples/Attribute/UPDATE.md)
+       3. [Delete](Examples/Attribute/DELETE.md)
+   9. Categories
+       1. [Index](Examples/Category/INDEX.md)
+       2. [View](Examples/Category/VIEW.md)
+       3. [Store](Examples/Category/STORE.md)
+       4. [Update](Examples/Category/UPDATE.md)
+       5. [Delete](Examples/Category/DELETE.md)
+   10. Tag Groups
+       1. [Index](Examples/TagGroup/INDEX.md)
+       2. [View](Examples/TagGroup/VIEW.md)
+       3. [Store](Examples/TagGroup/STORE.md)
+       4. [Update](Examples/TagGroup/UPDATE.md)
+       5. [Delete](Examples/TagGroup/DELETE.md)
+   11. Tags
+       1. [Store](Examples/Tag/STORE.md)
+       2. [Update](Examples/Tag/UPDATE.md)
+       3. [Delete](Examples/Tag/DELETE.md)
+   12. Collections
+       1. [Index](Examples/Collection/INDEX.md)
+       2. [View](Examples/Collection/VIEW.md)
+       3. [Store](Examples/Collection/STORE.md)
+       4. [Update](Examples/Collection/UPDATE.md)
+       5. [Delete](Examples/Collection/DELETE.md)
+   13. Customers
        1. [Index](Examples/Customer/INDEX.md)
        2. [View](Examples/Customer/VIEW.md)
        3. [Update](Examples/Customer/UPDATE.md)
-   7. Addresses
+   14. Addresses
        1. [Create](Examples/Address/STORE.md)
        2. [Update](Examples/Address/UPDATE.md)
        3. [Delete](Examples/Address/DELETE.md)
-   8. Shipping Methods
-      1. [Index](Examples/ShippingMethod/INDEX.md)
-      2. [View](Examples/ShippingMethod/VIEW.md)
-   9. Flags
-      1. [Index](Examples/Flag/INDEX.md)
-      2. [View](Examples/Flag/VIEW.md)
-      3. [Store](Examples/Flag/STORE.md)
-      4. [Update](Examples/Flag/UPDATE.md)
-      5. [Delete](Examples/Flag/DELETE.md)
-   10. Price Lists
+   15. Shipping Methods
+       1. [Index](Examples/ShippingMethod/INDEX.md)
+       2. [View](Examples/ShippingMethod/VIEW.md)
+   16. Flags
+       1. [Index](Examples/Flag/INDEX.md)
+       2. [View](Examples/Flag/VIEW.md)
+       3. [Store](Examples/Flag/STORE.md)
+       4. [Update](Examples/Flag/UPDATE.md)
+       5. [Delete](Examples/Flag/DELETE.md)
+   17. Price Lists
        1. [Index](Examples/PriceList/INDEX.md)
        2. [View](Examples/PriceList/VIEW.md)
        3. [Store](Examples/PriceList/STORE.md)
        4. [Update](Examples/PriceList/UPDATE.md)
-   11. Price List Entries
+   18. Price List Entries
        1. [Store](Examples/PriceListEntry/STORE.md)
        2. [Update](Examples/PriceListEntry/UPDATE.md)
 6. [Extending the API](EXTENDING.md) 
