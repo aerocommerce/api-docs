@@ -209,11 +209,11 @@ This endpoint retrieves a single order by `id` or `reference`
 
 ## Example Request
 
+### 1. Unfulfilled & Unreturned Order Response
+
 ```http request
 GET /api/orders/{id|reference}
 ```
-
-### Unfulfilled & Unreturned Order Response
 
 ```json
 {
@@ -329,7 +329,11 @@ GET /api/orders/{id|reference}
 }
 ```
 
-### Fulfilled Order Response
+### 2. Fulfilled Order Response
+
+```http request
+GET /api/orders/{id|reference}
+```
 
 ```json
 {
@@ -507,7 +511,11 @@ GET /api/orders/{id|reference}
 }
 ```
 
-### Returned Order Response (Exchange)
+### 3. Returned Order Response (Exchange)
+
+```http request
+GET /api/orders/{id|reference}
+```
 
 ```json
 {
@@ -656,7 +664,11 @@ GET /api/orders/{id|reference}
 }
 ```
 
-### Returned Order Response (Refund)
+### 4. Returned Order Response (Refund)
+
+```http request
+GET /api/orders/{id|reference}
+```
 
 ```json
 {

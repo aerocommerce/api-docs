@@ -27,7 +27,7 @@ This endpoint updates an existing price list entry by its `id`. Only the fields 
 ## Example Request
 
 ```http request
-POST /api/price-lists/{priceListId}/entries/{priceListEntryId}
+POST /api/price-lists/{id}/entries/{id}
 ```
 
 ```json lines
