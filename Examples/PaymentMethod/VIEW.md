@@ -1,6 +1,10 @@
 # View Payment Method
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single payment method by `id`
+
+## Structure
 
 ### Payment Method
 
@@ -25,3 +29,5 @@ GET /api/payment-methods/{id}
     "available": true
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

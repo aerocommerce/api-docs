@@ -1,60 +1,64 @@
 # View Customer
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single customer by `id`
+
+## Structure
 
 ### Product
 
-| Name                    | Type    | Description                                                                                  |
-|-------------------------|---------|----------------------------------------------------------------------------------------------|
-| `id`                    | int     | The id of the customer                                                                       |
-| `name`                  | string  | The name of the customer                                                                     |
-| `email`                 | string  | The email of the customer                                                                    |
-| `created_at`            | date    | The date that the customer was created at                                                    |
-| `group`                 | object  | The group the customer belongs to, see [Group](#group)                                       |
-| `addresses`             | array   | The address of the customer, see [Address](#addresses)                                       |
-| `tax_group`             | object  | The tax group of the customer, see [Tax Group](#tax-group)                                   |
-| `additional_attributes` | object  | The additional attributes of the customer, see [Additional Attribute](#additional-attribute) |
+| Name                    | Type      | Description                                                       |
+|-------------------------|-----------|-------------------------------------------------------------------|
+| `id`                    | int       | The id of the customer                                            |
+| `name`                  | string    | The name of the customer                                          |
+| `email`                 | string    | The email of the customer                                         |
+| `created_at`            | timestamp | The date that the customer was created at                         |
+| `group`                 | object    | The group the customer belongs to, see [Group](#group)            |
+| `addresses`             | array     | An array of [Address](#addresses) objects                         |
+| `tax_group`             | object    | The [Tax Group](#tax-group) of the customer                       |
+| `additional_attributes` | object    | An array of [Additional Attribute](#additional-attribute) objects |
 
 ### Group
 
 A customer can belong to a group, if it doesn't then `group` will be `null`, see attributes below:
 
-| Name              | Type   | Description                                                      |
-|-------------------|--------|------------------------------------------------------------------|
-| `group.id`        | string | The id of the customer group                                     |
-| `group.name`      | string | The name of the customer group                                   |
-| `group.tax_group` | object | The tax group of the customer group, see [Tax Group](#tax-group) |
+| Name        | Type   | Description                                                      |
+|-------------|--------|------------------------------------------------------------------|
+| `id`        | int    | The id of the customer group                                     |
+| `name`      | string | The name of the customer group                                   |
+| `tax_group` | object | The tax group of the customer group, see [Tax Group](#tax-group) |
 
 ### Tax Group
 
 A customer & customer group can have a tax group, if they don't then `tax_group` will be `null`, see attributes below:
 
-| Name              | Type   | Description                        |
-|-------------------|--------|------------------------------------|
-| `tax_group.id`    | string | The id of the customer tax group   |
-| `tax_group.name`  | string | The name of the customer tax group |
+| Name   | Type   | Description                        |
+|--------|--------|------------------------------------|
+| `id`   | int    | The id of the customer tax group   |
+| `name` | string | The name of the customer tax group |
 
 ### Addresses
 
 A customer can have addresses, see attributes below:
 
-| Name                      | Type    | Description                              |
-|---------------------------|---------|------------------------------------------|
-| `addresses.*.name`        | string  | The name of the address                  |
-| `addresses.*.first_name`  | string  | The first name for the address           |
-| `addresses.*.last_name`   | string  | The last name for the address            |
-| `addresses.*.company`     | string  | The company for the address              |
-| `addresses.*.mobile`      | string  | The mobile number for the address        |
-| `addresses.*.phone`       | string  | The phone number for the address         |
-| `addresses.*.line_1`      | string  | The first line for the address           |
-| `addresses.*.line_2`      | string  | The second line for the address          |
-| `addresses.*.city`        | string  | The city for the address                 |
-| `addresses.*.zone`        | string  | The zone code for the address            |
-| `addresses.*.postcode`    | string  | The postcode for the address             |
-| `addresses.*.country`     | string  | The country code for the address         |
-| `addresses.*.reference`   | string  | The **unique** reference for the address |
-| `addresses.*.eori_number` | string  | The EORI number for the address          |
-| `addresses.*.is_default`  | boolean | Whether the address is default           |
+| Name          | Type    | Description                              |
+|---------------|---------|------------------------------------------|
+| `name`        | string  | The name of the address                  |
+| `first_name`  | string  | The first name for the address           |
+| `last_name`   | string  | The last name for the address            |
+| `company`     | string  | The company for the address              |
+| `mobile`      | string  | The mobile number for the address        |
+| `phone`       | string  | The phone number for the address         |
+| `line_1`      | string  | The first line for the address           |
+| `line_2`      | string  | The second line for the address          |
+| `city`        | string  | The city for the address                 |
+| `zone`        | string  | The zone code for the address            |
+| `postcode`    | string  | The postcode for the address             |
+| `country`     | string  | The country code for the address         |
+| `reference`   | string  | The **unique** reference for the address |
+| `eori_number` | string  | The EORI number for the address          |
+| `is_default`  | boolean | Whether the address is default           |
 
 ### Additional Attribute
 
@@ -125,3 +129,5 @@ GET /api/customers/{id}
     "additional_attributes": []
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

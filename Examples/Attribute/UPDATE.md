@@ -1,40 +1,44 @@
 # Update Attribute
 
-## Attributes:
+## Overview
+
+This endpoint updates an existing attribute in a specific group by its `id` or `name`. Only the fields provided in the request will be updated; unspecified fields remain unchanged.
+
+## Structure
 
 ### Attribute
 
-| Name           | Type   | Description                                     | Required? |
-|----------------|--------|-------------------------------------------------|-----------|
-| `name`         | string | The name of the attribute                       | No        |
-| `display_name` | string | The display name of the attribute               | No        |
-| `reference`    | string | The reference of the attribute                  | No        |
-| `image`        | object | The image of the attribute, see [Image](#image) | No        |
-| `tags`         | array  | The tags of the attribute, see [Tag](#tag)      | No        |
+| Name           | Type   | Description                                    | Required? |
+|----------------|--------|------------------------------------------------|-----------|
+| `name`         | string | The name of the attribute (e.g., Small or Red) | No        |
+| `display_name` | string | The display name of the attribute              | No        |
+| `reference`    | string | The reference of the attribute                 | No        |
+| `image`        | object | The [Image](#image) of the attribute           | No        |
+| `tags`         | array  | An array of [Tag](#tag) objects                | No        |
 
 ### Image
 
-| Name  | Type   | Description             | Required? |
-|-------|--------|-------------------------|-----------|
-| `src` | string | The source of the image | Yes       |
+| Name  | Type   | Description                 | Required? |
+|-------|--------|-----------------------------|-----------|
+| `src` | string | The source url of the image | Yes       |
 
 ### Tag
 
 | Name       | Type   | Description                                | Required? |
 |------------|--------|--------------------------------------------|-----------|
-| `name`     | string | The name of the tag                        | Yes       |
+| `name`     | string | The name of the tag (e.g., Small or Red)   | Yes       |
 | `group`    | object | The tag group, see [Tag Group](#tag-group) | Yes       |
 
 ### Tag Group
 
-| Name      | Type   | Description               | Required? |
-|-----------|--------|---------------------------|-----------|
-| `name`    | string | The name of the tag group | Yes       |
+| Name      | Type   | Description                                      | Required? |
+|-----------|--------|--------------------------------------------------|-----------|
+| `name`    | string | The name of the tag group (e.g., Size or Colour) | Yes       |
 
 ## Example Request
 
 ```http request
-POST /api/attribute-groups/{attributeGroupId}/attributes/{attributeId}
+POST /api/attribute-groups/{id|name}/attributes/{id|name}
 ```
 
 ```json lines
@@ -54,3 +58,4 @@ POST /api/attribute-groups/{attributeGroupId}/attributes/{attributeId}
 }
 ```
 
+[Back to contents](../../README.md#table-of-contents)

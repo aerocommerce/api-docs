@@ -1,162 +1,261 @@
 # View Product
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single product by `id` or `model`
+
+## Structure
 
 ### Product
 
-| Name                                | Type     | Description                                                        |
-|-------------------------------------|----------|--------------------------------------------------------------------|
-| `id`                                | int      | The id of the product                                              |
-| `model`                             | string   | The model of the product                                           |
-| `name`                              | string   | The name of the product                                            |
-| `summary`                           | string   | The summary of the product                                         |
-| `description`                       | string   | The description of the product                                     |
-| `type`                              | string   | The type of the product                                            |
-| `active`                            | boolean  | Whether the product can be purchased                               |
-| `visible`                           | boolean  | Whether the product is visible on the storefront                   |
-| `attribute_groups_to_split_by`      | ?array   | The attribute groups to split listings by                          |
-| `published_at`                      | date     | The date that the product was published at                         |
-| `manufacturer`                      | object   | The manufacturer of the product, see [Manufacturer](#manufacturer) |
-| `images`                            | array    | The images of the product, see [Images](#images)                   |
-| `categories`                        | array    | The categories of the product, see [Categories](#categories)       |
-| `tags`                              | array    | The tags of the product, see [Tags](#tags)                         |
-| `variants`                          | array    | The variants of the product, see [Variants](#variants)             |
+| Name                            | Type      | Description                                                       |
+|---------------------------------|-----------|-------------------------------------------------------------------|
+| `model`                         | string    | The **unique** model identifier for the product                   |
+| `name`                          | string    | The display name of the product                                   |
+| `manufacturer`                  | object    | The [Manufacturer](#manufacturer) object (null when none)         |
+| `summary`                       | string    | A short summary of the product                                    |
+| `description`                   | string    | A detailed description of the product                             |
+| `active`                        | boolean   | Whether the product is active (available for purchase)            |
+| `visible`                       | boolean   | Whether the product is visible in the storefront                  |
+| `attribute_groups_to_split_by`  | ?array    | The attribute groups to split listings by (null when none)        |
+| `published_at`                  | timestamp | When the product was published                                    |
+| `images`                        | array     | An array of [Image](#image) objects                               |
+| `categories`                    | array     | An array of [Category](#category) objects                         |
+| `tags`                          | array     | An array of [Tag](#tag) objects                                   |
+| `variants`                      | array     | An array of [Variant](#variant) objects                           |
+| `seo`                           | object    | A [SEO](#seo) object                                              |
+| `settings`                      | object    | A [Settings](#settings) object with grouped key-value pairs       |
+| `additional_attributes`         | array     | An array of [Additional Attribute](#additional-attribute) objects |
 
 ### Manufacturer
 
-A product can have a manufacturer, if it doesn't then `manufacturer` will be `null`, see attributes below:
+| Name    | Type   | Description                  |
+|---------|--------|------------------------------|
+| `id`    | int    | The id of the manufacturer   |
+| `name`  | string | The name of the manufacturer |
 
-| Name                | Type   | Description                  |
-|---------------------|--------|------------------------------|
-| `manufacturer.id`   | string | The id of the manufacturer   |
-| `manufacturer.name` | string | The name of the manufacturer |
+### Image
 
-### Images
+| Name         | Type   | Description                  |
+|--------------|--------|------------------------------|
+| `url`        | string | The url of the image         |
+| `default`    | bool   | Whether the image is default |
+| `attributes` | array  | The attributes of the image  |
 
-A product can have images, see attributes below:
+### Category
 
-| Name                  | Type   | Description                  |
-|-----------------------|--------|------------------------------|
-| `images.*.url`        | string | The url of the image         |
-| `images.*.is_default` | bool   | Whether the image is default |
-| `images.*.attributes` | array  | The attributes of the image  |
+| Name         | Type   | Description                                               |
+|--------------|--------|-----------------------------------------------------------|
+| `id`         | int    | The id of the category                                    |
+| `name`       | string | The name of the category (e.g., Coats)                    |
+| `breadcrumb` | string | The breadcrumb path for the category (e.g., Mens > Coats) |
 
-### Categories
+### Variant
 
-A product can have categories, see attributes below:
+| Name                    | Type     | Description                                                       |
+|-------------------------|----------|-------------------------------------------------------------------|
+| `sku`                   | string   | The **unique** SKU for the variant                                |
+| `reference`             | string   | The **unique** reference for the variant                          |
+| `name`                  | string   | Display name of the variant                                       |
+| `summary`               | string   | A short summary of the variant                                    |
+| `description`           | string   | A detailed description of the variant                             |
+| `barcode`               | string   | The barcode/UPC/EAN of the variant                                |
+| `buyable`               | boolean  | Whether the variant can be purchased                              |
+| `visible`               | boolean  | Whether the variant is visible in listings                        |
+| `shippable`             | boolean  | Whether the variant is shippable                                  |
+| `discountable`          | boolean  | Whether discounts can be applied to this variant                  |
+| `hide_when_no_stock`    | boolean  | Whether the variant should be hidden when out of stock            |
+| `infinite_stock`        | boolean  | Whether the variant has unlimited stock                           |
+| `stock_level`           | int      | Current stock level                                               |
+| `stock_buffer`          | int      | The stock buffer                                                  |
+| `tax_group`             | string   | The tax group applied to the variant                              |
+| `minimum_quantity`      | int      | Minimum quantity per purchase                                     |
+| `maximum_quantity`      | int      | Maximum quantity per purchase                                     |
+| `multiples_of`          | int      | Purchasable only in multiples of this number                      |
+| `weight`                | float    | Weight of the variant                                             |
+| `weight_unit`           | string   | Unit of weight (e.g., `kg`, `lb`)                                 |
+| `volume`                | float    | Volume of the variant                                             |
+| `volume_unit`           | string   | Unit of volume (e.g., `m^3`, `cm^3`)                              |
+| `hs`                    | string   | HS (Harmonized System) code for customs                           |
+| `price.amount`          | float    | The current price of the variant **excluding tax**                |
+| `price.tax`             | float    | The tax of the current price                                      |
+| `price.currency`        | string   | The currency of the current price                                 |
+| `retail.amount`         | float    | The RRP for the variant **excluding tax**                         |
+| `retail.tax`            | float    | The tax of the RRP                                                |
+| `retail.currency`       | string   | The currency of the RRP                                           |
+| `origin_country`        | string   | ISO country code of origin (e.g., `US`, `GB`)                     |
+| `goods_description`     | string   | Description of goods for customs                                  |
+| `attributes`            | array    | An array of [Attribute](#attribute) objects                       |
+| `tags`                  | array    | An array of [Tag](#tag) objects                                   |
+| `cost`                  | object   | The [Cost Price](#cost-price) of the variant                      |
+| `prices`                | array    | An array of [Price](#price) objects                               |
+| `additional_attributes` | array    | An array of [Additional Attribute](#additional-attribute) objects |
 
-| Name                      | Type   | Description                                             |
-|---------------------------|--------|---------------------------------------------------------|
-| `categories.*.id`         | int    | The id of the category                                  |
-| `categories.*.name`       | string | The name of the category, e.g. coats                    |
-| `categories.*.breadcrumb` | string | The breadcrumb path for the category, e.g. mens > coats |
+### Attribute
 
-### Tags
-
-A product can have tags, see attributes below:
-
-| Name               | Type   | Description                                                    |
-|--------------------|--------|----------------------------------------------------------------|
-| `tags.*.id`        | string | The id of the tag                                              |
-| `tags.*.name`      | string | The name of the tag                                            |
-| `tags.*.reference` | string | The reference of the tag                                       |
-| `tags.*.group`     | object | The group that the tag belongs to, see [Tag Group](#tag-group) |
-
-### Tag Group
-
-A tag has a tag group, see attributes below:
-
-| Name              | Type   | Description                    |
-|-------------------|--------|--------------------------------|
-| `group.id`        | string | The id of the tag group        |
-| `group.name`      | string | The name of the tag group      |
-| `group.reference` | string | The reference of the tag group |
-
-### Variants
-
-A product has variant(s), see attributes below:
-
-| Name                           | Type    | Description                                                  |
-|--------------------------------|---------|--------------------------------------------------------------|
-| `variants.*.id`                | int     | The id of the variant                                        |
-| `variants.*.sku`               | string  | The sku of the variant                                       |
-| `variants.*.reference`         | string  | The reference of the variant                                 |
-| `variants.*.name`              | string  | The name of the variant                                      |
-| `variants.*.summary`           | string  | The summary of the variant                                   |
-| `variants.*.description`       | string  | The description of the variant                               |
-| `variants.*.barcode`           | string  | The barcode of the variant                                   |
-| `variants.*.buyable`           | boolean | Whether the variant can be purchased                         |
-| `variants.*.visible`           | boolean | Whether the variant is visible on the storefront             |
-| `variants.*.shippable`         | boolean | Whether the variant requires shipping                        |
-| `variants.*.discountable`      | boolean | Whether the variant can be discounted                        |
-| `variants.*.infinite_stock`    | boolean | Whether the variant has infinite stock                       |
-| `variants.*.stock_level`       | int     | The stock level of the variant                               |
-| `variants.*.stock_buffer`      | int     | The stock buffer of the variant                              |
-| `variants.*.weight`            | float   | The weight of the variant                                    |
-| `variants.*.weight_unit`       | string  | The unit for the weight                                      |
-| `variants.*.volume`            | float   | The volume of the variant                                    |
-| `variants.*.volume_unit`       | string  | The unit for the volume                                      |
-| `variants.*.hs`                | string  | The hs code for the variant                                  |
-| `variants.*.origin_country`    | string  | The origin country code for the variant                      |
-| `variants.*.goods_description` | string  | The goods description for the variant                        |
-| `variants.*.cost.amount`       | float   | The cost price of the variant **excluding tax**              |
-| `variants.*.cost.currency`     | string  | The currency for the cost price                              |
-| `variants.*.price.amount`      | float   | The current price of the variant **excluding tax**           |
-| `variants.*.price.tax`         | float   | The tax of the current price                                 |
-| `variants.*.price.currency`    | string  | The currency of the current price                            |
-| `variants.*.retail.amount`     | float   | The RRP for the variant **excluding tax**                    |
-| `variants.*.retail.tax`        | float   | The tax of the RRP                                           |
-| `variants.*.retail.currency`   | string  | The currency of the RRP                                      |
-| `variants.*.prices`            | array   | The prices of the variant, see [Price](#price)               |
-| `variants.*.images`            | array   | The images of the variant, see [Images](#images)             |
-| `variants.*.attributes`        | array   | The attributes of the variant, see [Attributes](#attributes) |
-| `variants.*.tags`              | array   | The attributes of the variant, see [Tags](#tags)             |
-
-### Price
-
-A variant has price(s), see attributes below:
-
-| Name                           | Type   | Description                                                |
-|--------------------------------|--------|------------------------------------------------------------|
-| `prices.*.id`                  | int    | The id of the price                                        |
-| `prices.*.currency`            | string | The currency code for the price                            |
-| `prices.*.quantity`            | int    | The quantity required for the price to be detected/applied |
-| `prices.*.value.amount`        | float  | The normal price **excluding tax**                         |
-| `prices.*.value.tax`           | float  | The tax for the normal price                               |
-| `prices.*.sale_value.amount`   | float  | The sale price **excluding tax**                           |
-| `prices.*.sale_value.tax`      | float  | The tax for the sale price                                 |
-| `prices.*.retail_value.amount` | float  | The retail price **excluding tax**                         |
-| `prices.*.retail_value.tax`    | float  | The tax for the retail price                               |
-| `prices.*.start_at`            | date   | The start date for when the price is active                |
-| `prices.*.end_at`              | date   | The end date for when the price is active                  |
-| `prices.*.reference`           | string | The reference for the price                                |
-
-### Attributes
-
-A variant can have attributes, see attributes below:
-
-| Name                     | Type   | Description                                                                        |
-|--------------------------|--------|------------------------------------------------------------------------------------|
-| `attributes.*.id`        | string | The id of the attribute                                                            |
-| `attributes.*.name`      | string | The name of the attribute                                                          |
-| `attributes.*.reference` | string | The reference of the attribute                                                     |
-| `attributes.*.group`     | object | The group that the attribute belongs to, see [Attribute Group](#attribute-group)   |
+| Name        | Type   | Description                                    |
+|-------------|--------|------------------------------------------------|
+| `id`        | int    | The id of the attribute                        |
+| `name`      | string | The name of the attribute                      |
+| `reference` | string | The reference of the attribute                 |
+| `group`     | object | The [Attribute Group](#attribute-group) object |
 
 ### Attribute Group
 
-An attribute has an attribute group, see attributes below:
+| Name         | Type   | Description                    |
+|--------------|--------|--------------------------------|
+| `id`         | int    | The id of the tag group        |
+| `name`       | string | The name of the tag group      |
+| `reference`  | string | The reference of the tag group |
 
-| Name              | Type   | Description                    |
-|-------------------|--------|--------------------------------|
-| `group.id`        | string | The id of the tag group        |
-| `group.name`      | string | The name of the tag group      |
-| `group.reference` | string | The reference of the tag group |
+### Tag
+
+| Name          | Type   | Description                        |
+|---------------|--------|------------------------------------|
+| `id`          | int    | The id of the tag                  |
+| `name`        | string | The name of the tag                |
+| `reference`   | string | The reference of the tag           |
+| `group`       | object | The [Tag Group](#tag-group) object |
+
+### Tag Group
+
+| Name        | Type   | Description                    |
+|-------------|--------|--------------------------------|
+| `id`        | int    | The id of the tag group        |
+| `name`      | string | The name of the tag group      |
+| `reference` | string | The reference of the tag group |
+
+### Cost Price
+
+| Name       | Type   | Description                                                |
+|------------|--------|------------------------------------------------------------|
+| `amount`   | float  | The cost price **including tax**                           |
+| `currency` | string | Currency code (defaults to store default if not provided)  |
+
+### Price
+
+| Name                  | Type      | Description                                                |
+|-----------------------|-----------|------------------------------------------------------------|
+| `id`                  | int       | The id of the price                                        |
+| `currency`            | string    | The currency code for the price                            |
+| `quantity`            | int       | The quantity required for the price to be detected/applied |
+| `value.amount`        | float     | The normal price **excluding tax**                         |
+| `value.tax`           | float     | The tax for the normal price                               |
+| `sale_value.amount`   | float     | The sale price **excluding tax**                           |
+| `sale_value.tax`      | float     | The tax for the sale price                                 |
+| `retail_value.amount` | float     | The retail price **excluding tax**                         |
+| `retail_value.tax`    | float     | The tax for the retail price                               |
+| `start_at`            | timestamp | The start date for when the price is active                |
+| `end_at`              | timestamp | The end date for when the price is active                  |
+| `reference`           | string    | The reference for the price                                |
+
+### SEO
+
+| Name               | Type      | Description                |
+|--------------------|-----------|----------------------------|
+| `heading`          | string    | The SEO Heading            |
+| `page_title`       | string    | The SEO Page Title         |
+| `meta_description` | string    | The SEO Meta Description   |
+| `canonical`        | string    | The SEO Canonical          |
+| `noindex`          | boolean   | The SEO No Index           |
+| `nofollow`         | boolean   | The SEO No Follow          |
+
+### Settings
+
+Settings are grouped as key-value pairs.
+- Use "_" for ungrouped settings.
+- Each group contains its own object of key-value pairs.
+
+```json
+{
+    "settings": {
+        "_": {
+            "no_group": "value"
+        },
+        "group": {
+            "key": "value"
+        }
+    }
+}
+```
+
+### Additional Attribute
+
+| Name    | Type    | Description                           |
+|---------|---------|---------------------------------------|
+| `key`   | string  | The key of the additional attribute   |
+| `value` | string  | The value of the additional attribute |
+
+## Example Request
+
+```http request
+GET /api/products/{id|model}
+```
 
 ## Example Response
 
-```http request
-GET /api/products/{id}
+### Simple Product
+
+```json lines
+{
+    "model": "9021182",
+    "name": "Detachable Sleeve Puffer Jacket",
+    "manufacturer": "Burberry",
+    "categories": [
+        { 
+            "name": "Mens > Coats > Padded Coats"
+        }
+    ],
+    "summary": "Summary",
+    "description": "Description",
+    "active": true,
+    "visible": true,
+    "images": [
+        {
+            "src": "https://picsum.photos/seed/first/600/400",
+            "default": true
+        }
+    ],
+    "variants": [
+        {
+            "sku": "9021182",
+            "barcode": "abc123",
+            "stock_level": 5,
+            "prices": [
+                {
+                    "currency": "GBP",
+                    "price": 790,
+                    "quantity": 1
+                }
+            ],
+            "tax_group": "Taxable Product"
+        }
+    ],
+    "tags": [
+        {
+            "group": { 
+                "name": "Colour"
+            },
+            "name": "Blue"
+        }
+    ],
+    "seo": {
+        "heading": "test heading",
+        "page_title": "test page title",
+        "meta_description": "test meta description",
+        "noindex": 0,
+        "nofollow": 0
+    },
+    "additional_attributes": [
+        {
+            "key": "test_name",
+            "value": "test_value"
+        }
+    ]
+}
 ```
+
+### Variant Product
 
 ```json lines
 {
@@ -176,25 +275,17 @@ GET /api/products/{id}
     },
     "images": [
         {
-            "url": "http://l11.test/storage/images/combinations/cwKh1ghevZp7r8HgK4qyVTmrRYRwgv0qMEZzvbuo.jpg",
-            "default": true,
-            "attributes": []
+            "url": "https://picsum.photos/seed/first/600/400",
+            "default": "1"
         },
         {
-            "url": "http://l11.test/storage/images/products/PBjYqxoTxjX1Waj9tAqhmMFH0dakhuJGVkl2QpQ0.jpg",
-            "default": true,
-            "attributes": []
+            "url": "https://picsum.photos/seed/second/600/400",
+            "default": "1"
         },
         {
-            "url": "http://l11.test/storage/images/products/lDc5Fkxb9rlMiy6gZmysVbZPzGISBgQDGZKOoHc7.jpg",
-            "default": true,
-            "attributes": []
+            "url": "https://picsum.photos/seed/third/600/400",
+            "default": "1"
         },
-        {
-            "url": "http://l11.test/storage/images/products/ZJ7WgzLpxO1JAB0AvJxJYQUjiYBcvu9tpWJTNmLk.jpg",
-            "default": true,
-            "attributes": []
-        }
     ],
     "categories": [
         {
@@ -216,9 +307,9 @@ GET /api/products/{id}
         }
     ],
     "seo": {
-        "heading": "",
-        "page_title": "",
-        "meta_description": "",
+        "heading": "test heading",
+        "page_title": "test page title",
+        "meta_description": "test meta description",
         "open_graph": "",
         "canonical": "",
         "noindex": null,
@@ -248,8 +339,8 @@ GET /api/products/{id}
             "origin_country": null,
             "goods_description": null,
             "cost": {
-                "amount": null,
-                "currency": null
+                "amount": 5623.54,
+                "currency": "GBP"
             },
             "price": {
                 "amount": 65833.33,
@@ -283,7 +374,20 @@ GET /api/products/{id}
                     "reference": null
                 }
             ],
-            "images": [],
+            "images": [
+                {
+                    "url": "https://picsum.photos/seed/fourth/600/400",
+                    "default": "1",
+                    "attributes": [
+                        {
+                            "group": {
+                                "name": "Size"
+                            },
+                            "name": "Small"
+                        }
+                    ]
+                }
+            ],
             "attributes": [
                 {
                     "id": 1,
@@ -521,7 +625,7 @@ GET /api/products/{id}
             },
             "prices": [
                 {
-                    "id": 4,
+                    "id": 1,
                     "currency": "GBP",
                     "quantity": 1,
                     "value": {
@@ -574,3 +678,5 @@ GET /api/products/{id}
     "settings": []
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

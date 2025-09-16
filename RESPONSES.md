@@ -20,7 +20,7 @@ Example below illustrates the response received when making a `GET` request to `
 
 ```json
 {
-    "reference": "LTS123456",
+    "reference": "ABC123",
     "email": "testing@gmail.com",
     "subtotal": {
         "amount": 84166.67,
@@ -40,10 +40,7 @@ Example below illustrates the response received when making a `GET` request to `
     },
     "ordered_at": "2023-09-01T09:29:41.000000Z",
     "deliver_on": null,
-    "currency": {
-        "code": "GBP",
-        "symbol": "£"
-    },
+    "currency": "GBP",
     "status": {
         "id": 3,
         "name": "Successful",
@@ -51,15 +48,15 @@ Example below illustrates the response received when making a `GET` request to `
     },
     "customer": {
         "id": 1,
-        "name": "1",
-        "email": "1@gmail.com"
+        "name": "Test",
+        "email": "test@gmail.com"
     },
     "shipping_method": {
         "id": 1,
         "name": "Standard"
     },
     "billing_address": {
-        "id": 331,
+        "id": 1,
         "first_name": "Aero",
         "last_name": "Commerce",
         "company": "Aero Commerce",
@@ -75,7 +72,7 @@ Example below illustrates the response received when making a `GET` request to `
         "eori_number": null
     },
     "shipping_address": {
-        "id": 331,
+        "id": 1,
         "first_name": "Aero",
         "last_name": "Commerce",
         "company": "Aero Commerce",
@@ -92,9 +89,9 @@ Example below illustrates the response received when making a `GET` request to `
     },
     "items": [
         {
-            "id": 148,
-            "name": "Sandro Paris Checked Trench Coat",
-            "sku": "SHPMA00148-M",
+            "id": 1,
+            "name": "Test",
+            "sku": "TEST-S",
             "product_id": 4,
             "variant_id": 14,
             "shippable": true,
@@ -168,7 +165,7 @@ Example below illustrates the response received when making a `POST` request to 
 {
     "message": "The given data was invalid.",
     "errors": {
-        "currency_code": ["The currency code field is required."]
+        "currency": ["The currency field is required."]
     }
 }
 ```

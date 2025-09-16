@@ -1,14 +1,12 @@
 # Customer Index
 
-## Attributes:
+## Overview
 
-See [View Customer](VIEW.md)
+This endpoint retrieves a paginated list of all customers
 
-## Remarks
+## Structure
 
-This is a paginated route (see [Pagination Conventions](../../CONVENTIONS.md#pagination-conventions))
-
-This is also a scoped route (see [Scoped Conventions](../../CONVENTIONS.md#scoped-conventions))
+See [View Customer](VIEW.md) for the structure of the customer payloads inside the `data` array
 
 ## Example Response
 
@@ -22,29 +20,12 @@ GET /api/customers?per_page=2
     "data": [
         //...
     ],
-    "first_page_url": "http://l11.test/api/customers?page=1",
+    "first_page_url": "http://aero.test/api/customers?page=1",
     "from": 1,
     "last_page": 1,
-    "last_page_url": "http://l11.test/api/customers?page=1",
-    "links": [
-        {
-            "url": null,
-            "label": "&laquo; Previous",
-            "active": false
-        },
-        {
-            "url": "http://l11.test/api/customers?page=1",
-            "label": "1",
-            "active": true
-        },
-        {
-            "url": null,
-            "label": "Next &raquo;",
-            "active": false
-        }
-    ],
+    "last_page_url": "http://aero.test/api/customers?page=1",
     "next_page_url": null,
-    "path": "http://l11.test/api/customers",
+    "path": "http://aero.test/api/customers",
     "per_page": 2,
     "prev_page_url": null,
     "to": 1,
@@ -52,6 +33,4 @@ GET /api/customers?per_page=2
 }
 ```
 
-See [Customer View Example Response](./VIEW.md#example-response) for the structure of the customers data
-
-
+[Back to contents](../../README.md#table-of-contents)

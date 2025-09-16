@@ -1,32 +1,30 @@
 # View Tag Group
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single tag group by `id` or `model`
+
+## Structure
 
 ### Tag Group
 
-| Name              | Type    | Description                                                                  |
-|-------------------|---------|------------------------------------------------------------------------------|
-| `name`            | string  | The name of the tag group                                                    |
-| `reference`       | string  | The reference of the tag group                                               |
-| `show_in_filters` | boolean | Whether the tag group shows in filters on listings page (defaults to `true`) |
-| `tags`            | array   | The tags of the tag group, see [Tag](#tag)                                   |
+| Name              | Type    | Description                                             |
+|-------------------|---------|---------------------------------------------------------|
+| `name`            | string  | The name of the tag group (e.g., Size or Colour)        |
+| `reference`       | string  | The reference of the tag group                          |
+| `show_in_filters` | boolean | Whether the tag group shows in filters on listings page |
+| `tags`            | array   | An array of [Tag](#tag) objects                         |
 
 ### Tag
 
-| Name       | Type   | Description                                |
-|------------|--------|--------------------------------------------|
-| `name`     | string | The name of the tag                        |
-| `group`    | object | The tag group, see [Tag Group](#tag-group) |
-
-### Tag Group
 
 | Name        | Type    | Description                                                        |
 |-------------|---------|--------------------------------------------------------------------|
-| `name`      | string  | The name of the tag                                                |
+| `name`      | string  | The name of the tag (e.g., Small or Red)                           |
 | `slug`      | string  | The slug of the tag, if not present it is auto-generated from name |
 | `reference` | string  | The reference of the tag                                           |
 | `image`     | object  | The image of the tag, see [Image](#image)                          |
-| `has_slug`  | boolean | Whether the tag has a slug or not (defaults to `false`)            |
+| `has_slug`  | boolean | Whether the tag has a slug or not                                  |
 
 ### Image
 
@@ -34,11 +32,13 @@
 |-------|--------|----------------------|
 | `url` | string | The url of the image |
 
-## Example Response
+## Example Request
 
 ```http request
-GET /api/tag-groups/{id}
+GET /api/tag-groups/{id|name}
 ```
+
+## Example Response
 
 ```json
 {

@@ -1,23 +1,12 @@
 # Collection Index
 
-## Attributes:
+## Overview
 
-See [View Collection](VIEW.md)
+This endpoint retrieves a paginated list of all collections
 
-## Remarks
+## Structure
 
-This is a paginated route (see [Pagination Conventions](../../CONVENTIONS.md#pagination-conventions))
-
-In addition to the standard parameters accepted for a paginated route, this route also accepts:
-
-| Parameter        | Description                             | Example                                 |
-|------------------|-----------------------------------------|-----------------------------------------|
-| `min_updated_at` | The min updated at for a manufacturer   | ?min_updated_at=2023-08-30%2010:35:05   |
-| `max_updated_at` | The max updated at for a manufacturer   | ?max_updated_at=2023-08-30%2010:35:05   |
-
-see [Date Conventions](../../CONVENTIONS.md#date-conventions) for more info on acceptable values for these parameters
-
-This is also a scoped route (see [Scoped Conventions](../../CONVENTIONS.md#scoped-conventions))
+See [View Collection](VIEW.md) for the structure of the collection payloads inside the `data` array
 
 ## Example Response
 
@@ -31,12 +20,12 @@ GET /api/collections?per_page=2
     "data": [
       //...
     ],
-    "first_page_url": "http:\/\/seg.test\/api\/collections?page=1",
+    "first_page_url": "http://aero.test/api/collections?page=1",
     "from": 1,
     "last_page": 3,
-    "last_page_url": "http:\/\/seg.test\/api\/collections?page=3",
-    "next_page_url": "http:\/\/seg.test\/api\/collections?page=2",
-    "path": "http:\/\/seg.test\/api\/orders",
+    "last_page_url": "http://aero.test/api/collections?page=3",
+    "next_page_url": "http://aero.test/api/collections?page=2",
+    "path": "http://aero.test/api/collections",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
@@ -44,6 +33,4 @@ GET /api/collections?per_page=2
 }
 ```
 
-See [Collection View Example Response](./VIEW.md#example-response) for the structure of the collections data
-
-
+[Back to contents](../../README.md#table-of-contents)

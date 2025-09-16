@@ -1,15 +1,19 @@
 # Update Customer
 
-## Attributes:
+## Overview
+
+This endpoint updates an existing customer by its `id`. Only the fields provided in the request will be updated; unspecified fields remain unchanged.
+
+## Structure
 
 ### Customer
-| Name                    | Type      | Description                                                                                  | Required? |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------|-----------|
-| `name`                  | string    | The name of the customer                                                                     | No        |
-| `email`                 | string    | The email of the customer                                                                    | No        |
-| `group`                 | string    | The group name of the customer                                                               | No        |
-| `tax_group`             | string    | The tax group name of the customer                                                           | No        |
-| `additional_attributes` | array     | The additional attributes of the customer, see [Additional Attribute](#additional-attribute) | No        |
+| Name                    | Type      | Description                                                       | Required? |
+|-------------------------|-----------|-------------------------------------------------------------------|-----------|
+| `name`                  | string    | The name of the customer                                          | No        |
+| `email`                 | string    | The email of the customer                                         | No        |
+| `group`                 | string    | The group name of the customer                                    | No        |
+| `tax_group`             | string    | The tax group name of the customer                                | No        |
+| `additional_attributes` | array     | An array of [Additional Attribute](#additional-attribute) objects | No        |
 
 ### Additional Attribute
 
@@ -31,8 +35,8 @@ PUT /api/customers/{id}
     "group": "Group Name",
     "additional_attributes": [
         {
-            "key": "api",
-            "value": "true"
+            "key": "last-api-update",
+            "value": "2023-09-01 09:29:41"
         }
     ]
 }
@@ -47,3 +51,5 @@ PUT /api/customers/{id}
     }
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

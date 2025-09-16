@@ -1,254 +1,224 @@
 # View Order
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single order by `id` or `reference`
+
+## Structure
 
 ### Order
 
-| Name               | Type   | Description                                                                                 |
-|--------------------|--------|---------------------------------------------------------------------------------------------|
-| `reference`        | string | The **unique** reference for the order                                                      |
-| `status`           | object | The status of the order, see [Order Status](#order-status)                                  |
-| `state`            | string | Alternative to passing `status_id`, resolves <br/>the first status with the specified state |
-| `customer`         | object | The customer of the order, see [Customer](#customer)                                        |
-| `email`            | string | The email of the customer that placed the order                                             |
-| `subtotal.amount`  | float  | The subtotal of the order **excluding tax**                                                 |
-| `subtotal.tax`     | float  | The subtotal tax for the order                                                              |
-| `shipping.amount`  | float  | The shipping of the order **excluding tax**                                                 |
-| `shipping.tax`     | float  | The shipping tax for the order                                                              |
-| `discount.amount`  | float  | The discount of the order **excluding tax**                                                 |
-| `discount.tax`     | float  | The discount tax for the order                                                              |
-| `surcharge.amount` | float  | The surcharge of the order **excluding tax**                                                |
-| `surcharge.tax`    | float  | The surcharge tax for the order                                                             |
-| `currency`         | string | The currency code of the order                                                              |
-| `shipping_method`  | object | The shipping method of the order, see <br/>[Shipping Method](#shipping-method)              |
-| `shipping_address` | object | The shipping address of the order,<br/>see [Shipping Address](#shipping-address)            |
-| `billing_address ` | object | The billing address of the order,<br/>see [Billing Address](#billing-address)               |
-| `ordered_at`       | date   | When the order was ordered                                                                  |
-| `deliver_on`       | date   | When the order should be delivered                                                          |
-| `items`            | array  | The items of the order,<br/>see [Order Items](#order-items)                                 |
-| `payments`         | array  | The payments for the order,<br/>see [Payments](#payments)                                   |
-| `payments`         | array  | The fulfillments for the order,<br/>see [Fulfillments](#fulfillments)                       |
-| `returns`          | array  | The returns for the order,<br/>see [Returns](#returns)                                      |
+| Name               | Type      | Description                                                           |
+|--------------------|-----------|-----------------------------------------------------------------------|
+| `reference`        | string    | The **unique** reference for the order                                |
+| `status`           | object    | The [Order Status](#order-status) of the order (null if none)         |
+| `customer`         | object    | The [Customer](#customer) of the order (null if none)                 |
+| `email`            | string    | The email of the customer that placed the order                       |
+| `subtotal.amount`  | float     | The subtotal of the order **excluding tax**                           |
+| `subtotal.tax`     | float     | The subtotal tax for the order                                        |
+| `shipping.amount`  | float     | The shipping of the order **excluding tax**                           |
+| `shipping.tax`     | float     | The shipping tax for the order                                        |
+| `discount.amount`  | float     | The discount of the order **excluding tax**                           |
+| `discount.tax`     | float     | The discount tax for the order                                        |
+| `surcharge.amount` | float     | The surcharge of the order **excluding tax**                          |
+| `surcharge.tax`    | float     | The surcharge tax for the order                                       |
+| `currency`         | string    | The currency code of the order                                        |
+| `shipping_method`  | object    | The [Shipping Method](#shipping-method) of the order (null if none)   |
+| `shipping_address` | object    | The [Shipping Address](#shipping-address) of the order (null if none) |
+| `billing_address ` | object    | The [Billing Address](#billing-address) of the order (null if none)   |
+| `ordered_at`       | timestamp | When the order was ordered                                            |
+| `deliver_on`       | timestamp | When the order should be delivered                                    |
+| `items`            | array     | An array of [Order Item](#order-item) objects                         |
+| `payments`         | array     | An array of [Payment](#payment) objects                               |
+| `fulfillments`     | array     | An array of [Fulfillment](#fulfillment) objects                       |
+| `returns`          | array     | An array of [Return](#return) objects                                 |
 
 ### Order Status
 
-An order can have a status, if it doesn't then `status` will be `null`, see attributes below:
+| Name    | Type   | Description                   |
+|---------|--------|-------------------------------|
+| `id`    | int    | The id of the order status    |
+| `name`  | string | The name of the order status  |
+| `state` | string | The state of the order status |
 
-| Name           | Type   | Description                   |
-|----------------|--------|-------------------------------|
-| `status.id`    | int    | The id of the order status    |
-| `status.name`  | string | The name of the order status  |
-| `status.state` | string | The state of the order status |
-
-The `state` is restricted to one of the following values:
-- cancelled
-- on_hold
-- successful
-- complete
-- processing
-- closed
-- partially_dispatched
-- dispatched
-- partially_returned
-- returned
+**Valid states:** cancelled, on_hold, successful, complete, processing, closed, partially_dispatched, dispatched, partially_returned, returned
 
 ### Customer
 
-An order can have a customer, if it doesn't then `customer` will be `null`, see attributes below:
-
-| Name             | Type   | Description               |
-|------------------|--------|---------------------------|
-| `customer.id`    | int    | The id of the customer    |
-| `customer.name`  | string | The name of the customer  |
-| `customer.email` | string | The email of the customer |
+| Name    | Type   | Description               |
+|---------|--------|---------------------------|
+| `id`    | int    | The id of the customer    |
+| `name`  | string | The name of the customer  |
+| `email` | string | The email of the customer |
 
 ### Shipping Method
 
-An order can have a shipping method, if it doesn't then `shipping_method` will be `null`, see attributes below:
-
-| Name                   | Type   | Description                     |
-|------------------------|--------|---------------------------------|
-| `shipping_method.id`   | int    | The id of the shipping method   |
-| `shipping_method.name` | string | The name of the shipping method |
+| Name    | Type   | Description                     |
+|---------|--------|---------------------------------|
+| `id`    | int    | The id of the shipping method   |
+| `name`  | string | The name of the shipping method |
 
 ### Shipping Address
 
-An order can have a shipping address, if it doesn't then `shipping_address` will be `null`, see attributes below:
-
-| Name                               | Type    | Description                                       |
-|------------------------------------|---------|---------------------------------------------------|
-| `shipping_address.first_name`      | string  | The first name for the shipping address           |
-| `shipping_address.last_name`       | string  | The last name for the shipping address            |
-| `shipping_address.company`         | string  | The company for the shipping address              |
-| `shipping_address.mobile`          | string  | The mobile number for the shipping address        |
-| `shipping_address.phone`           | string  | The phone number for the shipping address         |
-| `shipping_address.line_1`          | string  | The first line for the shipping address           |
-| `shipping_address.line_2`          | string  | The second line for the shipping address          |
-| `shipping_address.city`            | string  | The city for the shipping address                 |
-| `shipping_address.zone`            | string  | The zone code for the shipping address            |
-| `shipping_address.postcode`        | string  | The postcode for the shipping address             |
-| `shipping_address.country`         | string  | The country code for the shipping address         |
-| `shipping_address.reference`       | string  | The **unique** reference for the shipping address |
-| `shipping_address.eori_number`     | string  | The EORI number for the shipping address          |
+| Name               | Type    | Description                                       |
+|--------------------|---------|---------------------------------------------------|
+| `first_name`       | string  | The first name for the shipping address           |
+| `last_name`        | string  | The last name for the shipping address            |
+| `company`          | string  | The company for the shipping address              |
+| `mobile`           | string  | The mobile number for the shipping address        |
+| `phone`            | string  | The phone number for the shipping address         |
+| `line_1`           | string  | The first line for the shipping address           |
+| `line_2`           | string  | The second line for the shipping address          |
+| `city`             | string  | The city for the shipping address                 |
+| `zone`             | string  | The zone code for the shipping address            |
+| `postcode`         | string  | The postcode for the shipping address             |
+| `country`          | string  | The country code for the shipping address         |
+| `reference`        | string  | The **unique** reference for the shipping address |
+| `eori_number`      | string  | The EORI number for the shipping address          |
 
 ### Billing Address
 
-An order can have a billing address, if it doesn't then `billing_address` will be `null`, see attributes below:
+| Name             | Type    | Description                                      |
+|------------------|---------|--------------------------------------------------|
+| `first_name`     | string  | The first name for the billing address           |
+| `last_name`      | string  | The last name for the billing address            |
+| `company`        | string  | The company for the billing address              |
+| `mobile`         | string  | The mobile number for the billing address        |
+| `phone`          | string  | The phone number for the billing address         |
+| `line_1`         | string  | The first line for the billing address           |
+| `line_2`         | string  | The second line for the billing address          |
+| `city`           | string  | The city for the billing address                 |
+| `zone`           | string  | The zone code for the billing address            |
+| `postcode`       | string  | The postcode for the billing address             |
+| `country`        | string  | The country code for the billing address         |
+| `reference`      | string  | The **unique** reference for the billing address |
+| `eori_number`    | string  | The EORI number for the billing address          |
 
-| Name                            | Type    | Description                                      |
-|---------------------------------|---------|--------------------------------------------------|
-| `billing_address.first_name`    | string  | The first name for the billing address           |
-| `billing_address.last_name`     | string  | The last name for the billing address            |
-| `billing_address.company`       | string  | The company for the billing address              |
-| `billing_address.mobile`        | string  | The mobile number for the billing address        |
-| `billing_address.phone`         | string  | The phone number for the billing address         |
-| `billing_address.line_1`        | string  | The first line for the billing address           |
-| `billing_address.line_2`        | string  | The second line for the billing address          |
-| `billing_address.city`          | string  | The city for the billing address                 |
-| `billing_address.zone`          | string  | The zone code for the billing address            |
-| `billing_address.postcode`      | string  | The postcode for the billing address             |
-| `billing_address.country`       | string  | The country code for the billing address         |
-| `billing_address.reference`     | string  | The **unique** reference for the billing address |
-| `billing_address.eori_number`   | string  | The EORI number for the billing address          |
+### Order Item
 
-### Order Items
-
-An order has items, see attributes below:
-
-| Name                          | Type    | Description                                                                          |
-|-------------------------------|---------|--------------------------------------------------------------------------------------|
-| `items.*.id`                  | int     | The id of the order item                                                             |
-| `items.*.variant_id`          | int     | The variant id of the buyable (not set if the buyable is not a variant)              |
-| `items.*.product_id`          | int     | The product id of the buyable                                                        |
-| `items.*.buyable_type`        | string  | The buyable type of the order item                                                   |
-| `items.*.buyable_id`          | int     | The buyable id of the order item                                                     |
-| `items.*.name`                | string  | The name for the order item                                                          |
-| `items.*.url`                 | string  | The url for the order item                                                           |
-| `items.*.sku`                 | string  | The sku for the order item                                                           |
-| `items.*.reference`           | string  | The **unique** reference for the order item                                          |
-| `items.*.manufacturer`        | object  | The manufacturer for the order item, see [Manufacturer](#manufacturer)               |
-| `items.*.image.url`           | string  | The image url for the order item                                                     |
-| `items.*.shippable`           | boolean | Whether the order item is shippable                                                  |
-| `items.*.quantity`            | int     | The quantity for the order item                                                      |
-| `items.*.returned_quantity`   | int     | The quantity returned for the order item                                             |
-| `items.*.price.amount`        | float   | The **unit** price of the order item **excluding tax**                               |
-| `items.*.price.tax`           | float   | The **unit** tax for the order item                                                  |
-| `items.*.discount.amount`     | float   | The **total** discount of the order item **excluding tax**                           |
-| `items.*.discount.tax`        | float   | The **total** discount tax for the order item                                        |
-| `items.*.full_price.amount`   | float   | The **unit** full price (including extras) of the order item **excluding tax**       |
-| `items.*.full_price.tax`      | float   | The **unit** full tax (including extras) for the order item                          |
-| `items.*.cost_price.amount`   | float   | The **unit** cost price of the order item **excluding tax**                          |
-| `items.*.cost_price.currency` | string  | The currency code for the cost price                                                 |
-| `items.*.weight`              | float   | The weight for the order item                                                        |
-| `items.*.weight_unit`         | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit  |
-| `items.*.volume`              | float   | The volume for the order item                                                        |
-| `items.*.volume_unit`         | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit   |
-| `items.*.hs`                  | string  | The HS code for the order item                                                       |
-| `items.*.origin_country`      | string  | The origin country code for the order item                                           |
-| `items.*.goods_description`   | string  | The goods description for the order item                                             |
+| Name                   | Type    | Description                                                                         |
+|------------------------|---------|-------------------------------------------------------------------------------------|
+| `id`                   | int     | The id of the order item                                                            |
+| `variant_id`           | int     | The variant id of the buyable (not set if the buyable is not a variant)             |
+| `product_id`           | int     | The product id of the buyable                                                       |
+| `buyable_type`         | string  | The buyable type of the order item                                                  |
+| `buyable_id`           | int     | The buyable id of the order item                                                    |
+| `name`                 | string  | The name for the order item                                                         |
+| `url`                  | string  | The url for the order item                                                          |
+| `sku`                  | string  | The sku for the order item                                                          |
+| `reference`            | string  | The **unique** reference for the order item                                         |
+| `manufacturer`         | object  | The [Manufacturer](#manufacturer) for the order item (null if none)                 |
+| `image.url`            | string  | The image url for the order item                                                    |
+| `shippable`            | boolean | Whether the order item is shippable                                                 |
+| `quantity`             | int     | The quantity for the order item                                                     |
+| `returned_quantity`    | int     | The quantity returned for the order item                                            |
+| `price.amount`         | float   | The **unit** price of the order item **excluding tax**                              |
+| `price.tax`            | float   | The **unit** tax for the order item                                                 |
+| `discount.amount`      | float   | The **total** discount of the order item **excluding tax**                          |
+| `discount.tax`         | float   | The **total** discount tax for the order item                                       |
+| `full_price.amount`    | float   | The **unit** full price (including extras) of the order item **excluding tax**      |
+| `full_price.tax`       | float   | The **unit** full tax (including extras) for the order item                         |
+| `cost_price.amount`    | float   | The **unit** cost price of the order item **excluding tax**                         |
+| `cost_price.currency`  | string  | The currency code for the cost price                                                |
+| `weight`               | float   | The weight for the order item                                                       |
+| `weight_unit`          | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit |
+| `volume`               | float   | The volume for the order item                                                       |
+| `volume_unit`          | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit  |
+| `hs`                   | string  | The HS code for the order item                                                      |
+| `origin_country`       | string  | The origin country code for the order item                                          |
+| `goods_description`    | string  | The goods description for the order item                                            |
 
 ### Manufacturer
 
-An order item can have a manufacturer, if it doesn't then `manufacturer` will be `null`, see attributes below:
+| Name   | Type   | Description                  |
+|--------|--------|------------------------------|
+| `id`   | int    | The id of the manufacturer   |
+| `name` | string | The name of the manufacturer |
 
-| Name                | Type   | Description                  |
-|---------------------|--------|------------------------------|
-| `manufacturer.id`   | string | The id of the manufacturer   |
-| `manufacturer.name` | string | The name of the manufacturer |
+### Payment
 
-### Payments
-
-| Name                     | Type   | Description                                                       |
-|--------------------------|--------|-------------------------------------------------------------------|
-| `payments.*.id`          | string | The id of the payment                                             |
-| `payments.*.method`      | object | The method for the payment, see [Payment Method](#payment-method) |
-| `payments.*.reference`   | string | The reference for the payment                                     |
-| `payments.*.state`       | string | The state of the payment                                          |
-| `payments.*.amount`      | float  | The total amount for the payment                                  |
-| `payments.*.currency`    | string | The currency code for the payment                                 |
-| `payments.*.captured_at` | date   | The date the payment was captured                                 |
+| Name           | Type      | Description                                           |
+|----------------|-----------|-------------------------------------------------------|
+| `id`           | int       | The id of the payment                                 |
+| `method`       | object    | The [Payment Method](#payment-method) for the payment |
+| `reference`    | string    | The reference for the payment                         |
+| `state`        | string    | The state of the payment                              |
+| `amount`       | float     | The total amount for the payment                      |
+| `currency`     | string    | The currency code for the payment                     |
+| `captured_at`  | timestamp | The date the payment was captured                     |
 
 ### Payment Method
 
-| Name            | Type   | Description                      |
-|-----------------|--------|----------------------------------|
-| `method.id`     | int    | The id of the payment method     |
-| `method.name`   | string | The name of the payment method   |
-| `method.driver` | string | The driver of the payment method |
+| Name      | Type   | Description                      |
+|-----------|--------|----------------------------------|
+| `id`      | int    | The id of the payment method     |
+| `name`    | string | The name of the payment method   |
+| `driver`  | string | The driver of the payment method |
 
-### Fulfillments
+### Fulfillment
 
-| Name                           | Type   | Description                                                                          |
-|--------------------------------|--------|--------------------------------------------------------------------------------------|
-| `fulfillments.*.id`            | int    | The id of the order return                                                           |
-| `fulfillments.*.method`        | object | The method for the fulfillment, see [Fulfillment Method](#fulfillment-method)        |
-| `fulfillments.*.reference`     | string | The reference of the fulfillment                                                     |
-| `fulfillments.*.state`         | string | The state of the fulfillment                                                         |
-| `fulfillments.*.mobile`        | string | The mobile number for the fulfillment                                                |
-| `fulfillments.*.phone`         | string | The phone number for the fulfillment                                                 |
-| `fulfillments.*.tracking_code` | string | The tracking code for the fulfillment                                                |
-| `fulfillments.*.tracking_url`  | string | The tracking url for the fulfillment                                                 |
-| `fulfillments.*.weight`        | float  | The weight for the fulfillment                                                       |
-| `fulfillments.*.weight_unit`   | string | The weight unit for the fulfillment, defaults to stores normalized <br/> weight unit |
-| `fulfillments.*.volume`        | float  | The volume for the order item                                                        |
-| `fulfillments.*.volume_unit`   | string | The volume unit for the fulfillment, defaults to stores normalized <br/>volume unit  |
-| `fulfillments.*.delivery_note` | string | The delivery note for the fulfillment                                                |
-| `fulfillments.*.created_at`    | date   | The date the fulfillment was made                                                    |
-| `fulfillments.*.items`         | array  | The items of the fulfillment, see [Fulfillment Items](#fulfillment-items)            |
+| Name            | Type      | Description                                                                          |
+|-----------------|-----------|--------------------------------------------------------------------------------------|
+| `id`            | int       | The id of the order return                                                           |
+| `method`        | object    | The [Fulfillment Method](#fulfillment-method) for the fulfillment                    |
+| `reference`     | string    | The reference of the fulfillment                                                     |
+| `state`         | string    | The state of the fulfillment                                                         |
+| `mobile`        | string    | The mobile number for the fulfillment                                                |
+| `phone`         | string    | The phone number for the fulfillment                                                 |
+| `tracking_code` | string    | The tracking code for the fulfillment                                                |
+| `tracking_url`  | string    | The tracking url for the fulfillment                                                 |
+| `weight`        | float     | The weight for the fulfillment                                                       |
+| `weight_unit`   | string    | The weight unit for the fulfillment, defaults to stores normalized <br/> weight unit |
+| `volume`        | float     | The volume for the order item                                                        |
+| `volume_unit`   | string    | The volume unit for the fulfillment, defaults to stores normalized <br/>volume unit  |
+| `delivery_note` | string    | The delivery note for the fulfillment                                                |
+| `created_at`    | timestamp | The date the fulfillment was made                                                    |
+| `items`         | array     | An array of [Fulfillment Items](#fulfillment-items) objects                          |
 
 ### Fulfillment Method
 
-| Name            | Type   | Description                          |
-|-----------------|--------|--------------------------------------|
-| `method.id`     | int    | The id of the fulfillment method     |
-| `method.name`   | string | The name of the fulfillment method   |
-| `method.driver` | string | The driver of the fulfillment method |
+| Name       | Type   | Description                          |
+|------------|--------|--------------------------------------|
+| `id`       | int    | The id of the fulfillment method     |
+| `name`     | string | The name of the fulfillment method   |
+| `driver`   | string | The driver of the fulfillment method |
 
 ### Fulfillment Items
 
-| Name                       | Type | Description                                                                                    |
-|----------------------------|------|------------------------------------------------------------------------------------------------|
-| `items.*.id`               | int  | The id of the order item that was fulfilled                                                    |
-| `items.*.quantity`         | int  | The quantity of the order item that was fulfilled                                              |
+| Name       | Type | Description                                                                                    |
+|------------|------|------------------------------------------------------------------------------------------------|
+| `id`       | int  | The id of the order item that was fulfilled                                                    |
+| `quantity` | int  | The quantity of the order item that was fulfilled                                              |
 
 ### Returns
 
-| Name                   | Type   | Description                                                |
-|------------------------|--------|------------------------------------------------------------|
-| `returns.*.id`         | int    | The id of the order return                                 |
-| `returns.*.reason`     | string | The reason for the return - `null` if no reason given      |
-| `returns.*.created_at` | date   | The date the return was made                               |
-| `returns.*.items`      | array  | The items of the return, see [Return Items](#return-items) |
+| Name           | Type      | Description                                           |
+|----------------|-----------|-------------------------------------------------------|
+| `id`           | int       | The id of the order return                            |
+| `reason`       | string    | The reason for the return - `null` if no reason given |
+| `created_at`   | timestamp | The date the return was made                          |
+| `items`        | array     | An array of [Return Item](#return-item) objects       |
 
-### Return Items
+### Return Item
 
-| Name                       | Type | Description                                                                                    |
-|----------------------------|------|------------------------------------------------------------------------------------------------|
-| `items.*.id`               | int  | The id of the order item that was returned                                                     |
-| `items.*.quantity`         | int  | The quantity of the order item that was returned                                               |
-| `items.*.exchanged_for_id` | int  | The id of the order item that the item was returned for (`null` if the item was not exchanged) |
+| Name                | Type | Description                                                                                    |
+|---------------------|------|------------------------------------------------------------------------------------------------|
+| `id`                | int  | The id of the order item that was returned                                                     |
+| `quantity`          | int  | The quantity of the order item that was returned                                               |
+| `exchanged_for_id`  | int  | The id of the order item that the item was returned for (`null` if the item was not exchanged) |
 
-## Example Response
-
-```http request
-GET /api/orders/{id}
-```
-
-OR
+## Example Request
 
 ```http request
-GET /api/orders?id={id}
+GET /api/orders/{id|reference}
 ```
 
-OR
-
-```http request
-GET /api/orders?reference={reference}
-```
+### Unfulfilled & Unreturned Order Response
 
 ```json
 {
-    "reference": "LTS123456",
+    "id": 1,
+    "reference": "ABC123",
     "email": "testing@gmail.com",
     "subtotal": {
         "amount": 84166.67,
@@ -276,15 +246,15 @@ GET /api/orders?reference={reference}
     },
     "customer": {
         "id": 1,
-        "name": "1",
-        "email": "1@gmail.com"
+        "name": "Test",
+        "email": "test@gmail.com"
     },
     "shipping_method": {
         "id": 1,
         "name": "Standard"
     },
     "billing_address": {
-        "id": 331,
+        "id": 1,
         "first_name": "Aero",
         "last_name": "Commerce",
         "company": "Aero Commerce",
@@ -300,7 +270,7 @@ GET /api/orders?reference={reference}
         "eori_number": null
     },
     "shipping_address": {
-        "id": 331,
+        "id": 1,
         "first_name": "Aero",
         "last_name": "Commerce",
         "company": "Aero Commerce",
@@ -349,13 +319,495 @@ GET /api/orders?reference={reference}
                 "driver": "cash"
             },
             "reference": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
-            "amount": 101100,
+            "amount": 91000,
             "currency": "GBP",
             "captured_at": "2023-09-12T10:17:03.000000Z"
         }
     ],
     "fulfillments": [],
     "returns": []
+}
+```
+
+### Fulfilled Order Response
+
+```json
+{
+    "id": 1,
+    "reference": "ABC123",
+    "email": "testing@gmail.com",
+    "subtotal": {
+        "amount": 84166.67,
+        "tax": 16833.33
+    },
+    "shipping": {
+        "amount": 83.33,
+        "tax": 16.67
+    },
+    "discount": {
+        "amount": 8416.67,
+        "tax": 1683.33
+    },
+    "surcharge": {
+        "amount": 0,
+        "tax": 0
+    },
+    "currency": "GBP",
+    "ordered_at": "2023-09-01T08:29:41.000000Z",
+    "deliver_on": null,
+    "status": {
+        "id": 6,
+        "name": "Dispatched",
+        "state": "dispatched"
+    },
+    "customer": {
+        "id": 1,
+        "name": "Test",
+        "email": "test@gmail.com"
+    },
+    "shipping_method": {
+        "id": 1,
+        "name": "Standard"
+    },
+    "billing_address": {
+        "id": 1,
+        "first_name": "Aero",
+        "last_name": "Commerce",
+        "company": "Aero Commerce",
+        "mobile": null,
+        "phone": null,
+        "line_1": "28-32 Albert Rd",
+        "line_2": null,
+        "city": "Middlesbrough",
+        "zone": null,
+        "postcode": "TS1 1QD",
+        "country": "GB",
+        "eori_number": null
+    },
+    "shipping_address": {
+        "id": 1,
+        "first_name": "Aero",
+        "last_name": "Commerce",
+        "company": "Aero Commerce",
+        "mobile": null,
+        "phone": null,
+        "line_1": "28-32 Albert Rd",
+        "line_2": null,
+        "city": "Middlesbrough",
+        "zone": null,
+        "postcode": "TS1 1QD",
+        "country": "GB",
+        "eori_number": null
+    },
+    "items": [
+        {
+            "id": 26,
+            "name": "Sandro Paris Checked Trench Coat",
+            "url": "/product/sandro-paris-checked-trench-coat-4?variant=2",
+            "sku": "SHPMA00148-M",
+            "reference": null,
+            "manufacturer": {
+                "id": 2,
+                "name": "Sandro Paris"
+            },
+            "image": {
+                "url": "http://l9.test/storage/images/products/uaaVbTbqbZxs1FH3N28Tw0a7dc6I7Xd08DiyPAG6.jpg"
+            },
+            "product_id": 4,
+            "variant_id": 14,
+            "buyable_type": "variant",
+            "buyable_id": 14,
+            "shippable": true,
+            "quantity": 2,
+            "returned_quantity": 0,
+            "price": {
+                "amount": 42083.33,
+                "tax": 8416.67
+            },
+            "discount": {
+                "amount": 8416.67,
+                "tax": 1683.33
+            },
+            "full_price": {
+                "amount": 42083.33,
+                "tax": 8416.67
+            },
+            "weight": 0,
+            "volume": 0,
+            "cost_price": {
+                "amount": null,
+                "currency": null
+            },
+            "hs": null,
+            "origin_country": null,
+            "goods_description": null
+        }
+    ],
+    "flags": [],
+    "payments": [
+        {
+            "id": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "method": {
+                "id": 1,
+                "name": "Cash",
+                "driver": "cash"
+            },
+            "reference": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "state": "captured",
+            "amount": 91000,
+            "currency": "GBP",
+            "captured_at": "2023-09-12T10:17:03.000000ZZ",
+            "refunds": []
+        }
+    ],
+    "fulfillments": [
+        {
+            "id": 3,
+            "method": {
+                "id": 1,
+                "name": "Manual Fulfillment",
+                "driver": "manual"
+            },
+            "address": {
+                "id": 3,
+                "first_name": "Aero",
+                "last_name": "Commerce",
+                "company": "Aero Commerce",
+                "mobile": null,
+                "phone": null,
+                "line_1": "28-32 Albert Rd",
+                "line_2": null,
+                "city": "Middlesbrough",
+                "zone": null,
+                "postcode": "TS1 1QD",
+                "country": "GB",
+                "eori_number": null
+            },
+            "reference": "F3-128",
+            "state": "successful",
+            "mobile": null,
+            "email": "testing@gmail.com",
+            "tracking_code": "test tracking code",
+            "tracking_url": null,
+            "weight": 0,
+            "weight_unit": null,
+            "volume": 0,
+            "volume_unit": "cm^3",
+            "delivery_note": "test delivery note",
+            "created_at": "2023-09-12T10:17:03.000000Z",
+            "items": [
+                {
+                    "id": 26,
+                    "quantity": 2
+                }
+            ]
+        }
+    ],
+    "returns": []
+}
+```
+
+### Returned Order Response (Exchange)
+
+```json
+{
+    "id": 1,
+    "reference": "ABC123",
+    "email": "testing@gmail.com",
+    "subtotal": {
+        "amount": 84166.67,
+        "tax": 16833.33
+    },
+    "shipping": {
+        "amount": 83.33,
+        "tax": 16.67
+    },
+    "discount": {
+        "amount": 8416.67,
+        "tax": 1683.33
+    },
+    "surcharge": {
+        "amount": 0,
+        "tax": 0
+    },
+    "currency": "GBP",
+    "ordered_at": "2023-09-01T08:29:41.000000Z",
+    "deliver_on": null,
+    "status": {
+        "id": 7,
+        "name": "Partially Returned",
+        "state": "partially_returned"
+    },
+    "customer": {
+        "id": 1,
+        "name": "Test",
+        "email": "test@gmail.com"
+    },
+    "shipping_method": {
+        "id": 1,
+        "name": "Standard"
+    },
+    "billing_address": {
+        "id": 1,
+        "first_name": "Aero",
+        "last_name": "Commerce",
+        "company": "Aero Commerce",
+        "mobile": null,
+        "phone": null,
+        "line_1": "28-32 Albert Rd",
+        "line_2": null,
+        "city": "Middlesbrough",
+        "zone": null,
+        "postcode": "TS1 1QD",
+        "country": "GB",
+        "eori_number": null
+    },
+    "shipping_address": {
+        "id": 1,
+        "first_name": "Aero",
+        "last_name": "Commerce",
+        "company": "Aero Commerce",
+        "mobile": null,
+        "phone": null,
+        "line_1": "28-32 Albert Rd",
+        "line_2": null,
+        "city": "Middlesbrough",
+        "zone": null,
+        "postcode": "TS1 1QD",
+        "country": "GB",
+        "eori_number": null
+    },
+    "items": [
+        {
+            "id": 26,
+            "name": "Sandro Paris Checked Trench Coat",
+            "url": "/product/sandro-paris-checked-trench-coat-4?variant=2",
+            "sku": "SHPMA00148-M",
+            "reference": null,
+            "manufacturer": {
+                "id": 2,
+                "name": "Sandro Paris"
+            },
+            "image": {
+                "url": "http://l9.test/storage/images/products/uaaVbTbqbZxs1FH3N28Tw0a7dc6I7Xd08DiyPAG6.jpg"
+            },
+            "product_id": 4,
+            "variant_id": 14,
+            "buyable_type": "variant",
+            "buyable_id": 14,
+            "shippable": true,
+            "quantity": 2,
+            "returned_quantity": 0,
+            "price": {
+                "amount": 42083.33,
+                "tax": 8416.67
+            },
+            "discount": {
+                "amount": 8416.67,
+                "tax": 1683.33
+            },
+            "full_price": {
+                "amount": 42083.33,
+                "tax": 8416.67
+            },
+            "weight": 0,
+            "volume": 0,
+            "cost_price": {
+                "amount": null,
+                "currency": null
+            },
+            "hs": null,
+            "origin_country": null,
+            "goods_description": null
+        }
+    ],
+    "flags": [],
+    "payments": [
+        {
+            "id": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "method": {
+                "id": 1,
+                "name": "Cash",
+                "driver": "cash"
+            },
+            "reference": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "state": "captured",
+            "amount": 91000,
+            "currency": "GBP",
+            "captured_at": "2023-09-12T10:17:03.000000ZZ",
+            "refunds": []
+        }
+    ],
+    "fulfillments": [],
+    "returns": [
+        {
+            "id": 1,
+            "reason": "Test Reason",
+            "created_at": "2023-09-12T10:17:03.000000ZZ",
+            "items": [
+                {
+                    "id": 26,
+                    "quantity": 2,
+                    "exchanged_for_id": 27
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Returned Order Response (Refund)
+
+```json
+{
+    "id": 1,
+    "reference": "ABC123",
+    "email": "testing@gmail.com",
+    "subtotal": {
+        "amount": 84166.67,
+        "tax": 16833.33
+    },
+    "shipping": {
+        "amount": 83.33,
+        "tax": 16.67
+    },
+    "discount": {
+        "amount": 8416.67,
+        "tax": 1683.33
+    },
+    "surcharge": {
+        "amount": 0,
+        "tax": 0
+    },
+    "currency": "GBP",
+    "ordered_at": "2023-09-01T08:29:41.000000Z",
+    "deliver_on": null,
+    "status": {
+        "id": 8,
+        "name": "Returned",
+        "state": "returned"
+    },
+    "customer": {
+        "id": 1,
+        "name": "Test",
+        "email": "test@gmail.com"
+    },
+    "shipping_method": {
+        "id": 1,
+        "name": "Standard"
+    },
+    "billing_address": {
+        "id": 1,
+        "first_name": "Aero",
+        "last_name": "Commerce",
+        "company": "Aero Commerce",
+        "mobile": null,
+        "phone": null,
+        "line_1": "28-32 Albert Rd",
+        "line_2": null,
+        "city": "Middlesbrough",
+        "zone": null,
+        "postcode": "TS1 1QD",
+        "country": "GB",
+        "eori_number": null
+    },
+    "shipping_address": {
+        "id": 1,
+        "first_name": "Aero",
+        "last_name": "Commerce",
+        "company": "Aero Commerce",
+        "mobile": null,
+        "phone": null,
+        "line_1": "28-32 Albert Rd",
+        "line_2": null,
+        "city": "Middlesbrough",
+        "zone": null,
+        "postcode": "TS1 1QD",
+        "country": "GB",
+        "eori_number": null
+    },
+    "items": [
+        {
+            "id": 26,
+            "name": "Sandro Paris Checked Trench Coat",
+            "url": "/product/sandro-paris-checked-trench-coat-4?variant=2",
+            "sku": "SHPMA00148-M",
+            "reference": null,
+            "manufacturer": {
+                "id": 2,
+                "name": "Sandro Paris"
+            },
+            "image": {
+                "url": "http://l9.test/storage/images/products/uaaVbTbqbZxs1FH3N28Tw0a7dc6I7Xd08DiyPAG6.jpg"
+            },
+            "product_id": 4,
+            "variant_id": 14,
+            "buyable_type": "variant",
+            "buyable_id": 14,
+            "shippable": true,
+            "quantity": 2,
+            "returned_quantity": 0,
+            "price": {
+                "amount": 42083.33,
+                "tax": 8416.67
+            },
+            "discount": {
+                "amount": 8416.67,
+                "tax": 1683.33
+            },
+            "full_price": {
+                "amount": 42083.33,
+                "tax": 8416.67
+            },
+            "weight": 0,
+            "volume": 0,
+            "cost_price": {
+                "amount": null,
+                "currency": null
+            },
+            "hs": null,
+            "origin_country": null,
+            "goods_description": null
+        }
+    ],
+    "flags": [],
+    "payments": [
+        {
+            "id": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "method": {
+                "id": 1,
+                "name": "Cash",
+                "driver": "cash"
+            },
+            "reference": "a53c31f9-43bd-4fc4-b308-cded0b533a2c",
+            "state": "captured",
+            "amount": 91000,
+            "currency": "GBP",
+            "captured_at": "2023-09-12T10:17:03.000000ZZ",
+            "refunds": [
+                {
+                    "id": 1,
+                    "amount": 91000,
+                    "created_at": "2025-09-16T07:40:22.000000Z"
+                }
+            ]
+        }
+    ],
+    "fulfillments": [],
+    "returns": [
+        {
+            "id": 1,
+            "reason": "Test reason",
+            "created_at": "2025-09-16T07:40:22.000000Z",
+            "items": [
+                {
+                    "id": 28,
+                    "quantity": 2,
+                    "exchanged_for_id": null
+                }
+            ]
+        }
+    ]
 }
 ```
 

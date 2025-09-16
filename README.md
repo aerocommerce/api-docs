@@ -96,26 +96,26 @@
 
 ### Creating a token
 
-To create a token navigate to `/admin/module/api-tokens/create`
+To create a new API token, navigate to `/admin/module/api-tokens/create`
 
-To be secure it is recommended that you should only give the token the necessary permissions for its functionality and consider adding an expiry date
-
-The permissions of a token can be edited at any time by navigating to `/admin/module/api-tokens/edit/{id}` but the expiry date can not
-
-Once you have saved the API token you will be redirected and given **ONE** opportunity to copy the token
+- Grant only the minimum permissions required for its purpose.
+- Consider setting an expiry date for additional security.
+- Token permissions can be edited at any time by visiting `/admin/module/api-tokens/edit/{id}` (expiry dates, once set, cannot be modified).
 
 ### Using a token
 
-To use a token simply include it as a bearer token upon making an API request
+Include the token as a **Bearer token** in the `Authorization` header of your API requests
 
 ### Deleting a token
 
-For security reasons it is recommended to delete a token if it is no longer needed
+If a token is no longer needed, delete it for security reasons
 
-This can be done using the `Delete API tokens` bulk action accessible by navigating to `/admin/module/api-tokens`
+This can be done using the `Delete API tokens` bulk action via `/admin/module/api-tokens`
 
 ### Logging
 
-Any request made to the API is logged, you can see the logs by navigating to `/admin/module/api-usage-logs`
+All API requests are logged by default (unless logging has been disabled in settings)
 
-Clicking into the logs you will be able to see the request and response data associated with it
+Logs can be viewed at: `/admin/module/api-usage-logs`
+
+Clicking a log entry displays the full request and response data for debugging and auditing purposes
