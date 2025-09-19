@@ -53,6 +53,7 @@ A customer can have addresses, see attributes below:
 | `line_1`      | string  | The first line for the address           |
 | `line_2`      | string  | The second line for the address          |
 | `city`        | string  | The city for the address                 |
+| `county`      | string  | The county for the address               |
 | `zone`        | string  | The zone code for the address            |
 | `postcode`    | string  | The postcode for the address             |
 | `country`     | string  | The country code for the address         |
@@ -99,6 +100,7 @@ GET /api/customers/{id}
             "line_1": "test",
             "line_2": null,
             "city": "test",
+            "county": "Test",
             "zone": null,
             "postcode": "te57 10l",
             "country": "GB",
@@ -117,6 +119,7 @@ GET /api/customers/{id}
             "line_1": "test",
             "line_2": null,
             "city": "test",
+            "county": null,
             "zone": null,
             "postcode": "te57 10l",
             "country": "GB",

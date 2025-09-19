@@ -17,6 +17,7 @@ This endpoint creates a new customer address using the provided json data
 | `line_1`       | string  | The first line for the address                                                 | Yes         |
 | `line_2`       | string  | The second line for the address                                                | No          |
 | `city`         | string  | The city for the address                                                       | Yes         |
+| `county`       | string  | The county for the address                                                     | No          |
 | `zone`         | string  | The zone code for the address, required for some countries (e.g., US, AU, etc) | Conditional |
 | `postcode`     | string  | The postcode for the address, required for some countries (e.g., GB, US, etc)  | Conditional |
 | `country`      | string  | The country code for the address                                               | Yes         |
@@ -41,6 +42,7 @@ POST /api/customers/{id}/addresses
     "line_1": "test",
     "line_2": null,
     "city": "test",
+    "county": "Test",
     "zone": null,
     "postcode": "te57 10l",
     "country": "GB",
