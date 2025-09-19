@@ -29,6 +29,7 @@
 | `line_1`       | string  | The first line for the address           | Yes                      |
 | `line_2`       | string  | The second line for the address          | No                       |
 | `city`         | string  | The city for the address                 | Yes                      |
+| `county`       | string  | The county for the address               | No                       |
 | `zone`         | string  | The zone code for the address            | No (depends on country)  |
 | `postcode`     | string  | The postcode for the address             | Yes (depends on country) |
 | `country`      | string  | The country code for the address         | No                       |
@@ -66,6 +67,7 @@ POST /api/customers
             "line_1": "test",
             "line_2": null,
             "city": "test",
+            "county" : "Test",
             "zone": null,
             "postcode": "te57 10l",
             "country": "GB",

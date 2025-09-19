@@ -13,6 +13,7 @@
 | `line_1`       | string  | The first line for the address           | Yes                      |
 | `line_2`       | string  | The second line for the address          | No                       |
 | `city`         | string  | The city for the address                 | Yes                      |
+| `city`         | string  | The county for the address               | No                       |
 | `zone`         | string  | The zone code for the address            | No (depends on country)  |
 | `postcode`     | string  | The postcode for the address             | Yes (depends on country) |
 | `country`      | string  | The country code for the address         | No                       |
@@ -29,7 +30,8 @@ PUT /api/customers/{customerId}/addresses/{addressId}
 ```json lines
 {
     "name": "API Address Updated",
-    "first_name": "test2"
+    "first_name": "test2",
+    "county": "Test 2",
 }
 ```
 
