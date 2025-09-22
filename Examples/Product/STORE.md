@@ -8,24 +8,25 @@ This endpoint creates a new product using the provided json data
 
 ### Product
 
-| Name                                  | Type      | Description                                                            | Required? |
-|---------------------------------------|-----------|------------------------------------------------------------------------|-----------|
-| `model`                               | string    | The **unique** model identifier for the product                        | Yes       |
-| `name`                                | string    | The display name of the product                                        | Yes       |
-| `manufacturer`                        | string    | The manufacturer/brand of the product                                  | No        |
-| `summary`                             | string    | A short summary of the product                                         | No        |
-| `description`                         | string    | A detailed description of the product                                  | No        |
-| `active`                              | boolean   | Whether the product is active (available for purchase)                 | No        |
-| `visible`                             | boolean   | Whether the product is visible in the storefront                       | No        |
-| `attribute_groups_to_split_by`        | array     | An array of attribute group names to split listings by (e.g., ["Size"] | No        |
-| `published_at`                        | timestamp | When the product was published                                         | No        |
-| `images`                              | array     | An array of [Image](#image) objects                                    | No        |
-| `categories`                          | array     | An array of [Category](#category) objects                              | No        |
-| `tags`                                | array     | An array of [Tag](#tag) objects                                        | No        |
-| `variants`                            | array     | An array of [Variant](#variant) objects                                | Yes       |
-| `seo`                                 | object    | A [SEO](#seo) object                                                   | No        |
-| `settings`                            | object    | A [Settings](#settings) object with grouped key-value pairs            | No        |
-| `additional_attributes`               | array     | An array of [Additional Attribute](#additional-attribute) objects      | No        |
+| Name                           | Type      | Description                                                            | Required? |
+|--------------------------------|-----------|------------------------------------------------------------------------|-----------|
+| `id`                           | integer   | The id for the product                                                 | No        |
+| `model`                        | string    | The **unique** model identifier for the product                        | Yes       |
+| `name`                         | string    | The display name of the product                                        | Yes       |
+| `manufacturer`                 | string    | The manufacturer/brand of the product                                  | No        |
+| `summary`                      | string    | A short summary of the product                                         | No        |
+| `description`                  | string    | A detailed description of the product                                  | No        |
+| `active`                       | boolean   | Whether the product is active (available for purchase)                 | No        |
+| `visible`                      | boolean   | Whether the product is visible in the storefront                       | No        |
+| `attribute_groups_to_split_by` | array     | An array of attribute group names to split listings by (e.g., ["Size"] | No        |
+| `published_at`                 | timestamp | When the product was published                                         | No        |
+| `images`                       | array     | An array of [Image](#image) objects                                    | No        |
+| `categories`                   | array     | An array of [Category](#category) objects                              | No        |
+| `tags`                         | array     | An array of [Tag](#tag) objects                                        | No        |
+| `variants`                     | array     | An array of [Variant](#variant) objects                                | Yes       |
+| `seo`                          | object    | A [SEO](#seo) object                                                   | No        |
+| `settings`                     | object    | A [Settings](#settings) object with grouped key-value pairs            | No        |
+| `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects      | No        |
 
 ### Category
 

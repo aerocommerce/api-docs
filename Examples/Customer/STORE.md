@@ -10,6 +10,7 @@ This endpoint creates a new customer using the provided json data
 
 | Name                    | Type      | Description                                                                                  | Required?       |
 |-------------------------|-----------|----------------------------------------------------------------------------------------------|-----------------|
+| `id`                    | integer   | The id for the customer                                                                      | No              |
 | `name`                  | string    | The name of the customer                                                                     | Yes             |
 | `email`                 | string    | The email of the customer                                                                    | Yes             |
 | `password`              | string    | The plain-text password of the customer                                                      | Conditional `*` |
