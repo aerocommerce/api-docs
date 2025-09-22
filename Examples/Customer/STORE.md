@@ -72,7 +72,7 @@ POST /api/customers
             "line_1": "test",
             "line_2": null,
             "city": "test",
-            "county": "Test",
+            "county" : "Test",
             "zone": null,
             "postcode": "te57 10l",
             "country": "GB",
