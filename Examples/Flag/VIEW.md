@@ -1,18 +1,22 @@
 # View Flag
 
-## Attributes:
+## Overview
 
-| Name         | Type   | Description                          |
-|--------------|--------|--------------------------------------|
-| `id`         | int    | The id of the flag                   |
-| `name`       | string | The **unique** name for the flag     |
-| `color`      | string | The colour of the flag (hexadecimal) |
-| `created_at` | date   | The date the flag was created        |
+This endpoint retrieves a single flag by `id` or `name`
+
+## Structure
+
+| Name         | Type      | Description                              |
+|--------------|-----------|------------------------------------------|
+| `id`         | int       | The id of the flag                       |
+| `name`       | string    | The **unique** name for the flag         |
+| `color`      | hexcode   | The colour of the flag (format ##RRGGBB) |
+| `created_at` | timestamp | The date the flag was created            |
 
 ## Example Response
 
 ```http request
-GET /api/flags/{id}
+GET /api/flags/{id|name}
 ```
 
 ```json

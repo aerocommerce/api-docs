@@ -1,27 +1,31 @@
 # View Attribute Group
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single attribute group by `id` or `name`
+
+## Structure
 
 ### Attribute Group
 
-| Name         | Type   | Description                                                                                     |
-|--------------|--------|-------------------------------------------------------------------------------------------------|
-| `name`       | string | The name of the attribute group                                                                 |
-| `display_as` | string | The display as of the attribute group, e.g.: dropdown, color_swatches, image_swatches, swatches |
-| `reference`  | string | The reference of the attribute group                                                            |
+| Name         | Type   | Description                                                                                      |
+|--------------|--------|--------------------------------------------------------------------------------------------------|
+| `name`       | string | The name of the attribute group (e.g., Size or Colour)                                           |
+| `display_as` | string | The display as of the attribute group (e.g.: dropdown, color_swatches, image_swatches, swatches) |
+| `reference`  | string | The reference of the attribute group                                                             |
 
 ### Tag
 
-| Name    | Type     | Description                                |
-|---------|----------|--------------------------------------------|
-| `name`  | string   | The name of the tag                        |
-| `group` | object   | The tag group, see [Tag Group](#tag-group) |
+| Name    | Type     | Description                              |
+|---------|----------|------------------------------------------|
+| `name`  | string   | The name of the tag (e.g., Small or Red) |
+| `group` | object   | The [Tag Group](#tag-group) of the tag   |
 
 ### Tag Group
 
-| Name    | Type    | Description               |
-|---------|---------|---------------------------|
-| `name`  | string  | The name of the tag group |
+| Name    | Type    | Description                                      |
+|---------|---------|--------------------------------------------------|
+| `name`  | string  | The name of the tag group (e.g., Size or Colour) |
 
 ### Image
 
@@ -32,7 +36,7 @@
 ## Example Response
 
 ```http request
-GET /api/attribute-groups/{id}
+GET /api/attribute-groups/{id|name}
 ```
 
 ```json

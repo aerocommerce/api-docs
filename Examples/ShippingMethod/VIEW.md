@@ -1,29 +1,33 @@
 # View Shipping Method
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single shipping method by `id`
+
+## Structure
 
 ### Shipping Method
 
-| Name        | Type    | Description                                            |
-|-------------|---------|--------------------------------------------------------|
-| `id`        | int     | The id of the shipping method                          |
-| `name`      | string  | The name of the shipping method                        |
-| `available` | boolean | Whether the shipping method is available for use       |
-| `rates`     | array   | The rates for the shipping method, see [Rates](#rates) |
+| Name        | Type    | Description                                      |
+|-------------|---------|--------------------------------------------------|
+| `id`        | int     | The id of the shipping method                    |
+| `name`      | string  | The name of the shipping method                  |
+| `available` | boolean | Whether the shipping method is available for use |
+| `rates`     | array   | An array of [Rate](#rate) objects                |
 
-### Rates
+### Rate
 
-| Name         | Type    | Description                                                                         |
-|--------------|---------|-------------------------------------------------------------------------------------|
-| `id`         | int     | The id of the shipping rate                                                         |
-| `currency`   | string  | The currency code of the shipping rate                                              |
-| `min_price`  | float   | The minimum total price of the cart items for this shipping method to be applicable |
-| `max_price`  | float   | The maximum total price of the cart items for this shipping method to be applicable |
-| `min_weight` | float   | The minimum weight of the cart items for this shipping method to be applicable      |
-| `max_weight` | float   | The maximum weight of the cart items for this shipping method to be applicable      |
-| `min_volume` | float   | The minimum volume of the cart items for this shipping method to be applicable      |
-| `max_volume` | float   | The maximum volume of the cart items for this shipping method to be applicable      |
-| `price`      | float   | The total price of the shipping rate                                                |
+| Name         | Type   | Description                                                                |
+|--------------|--------|----------------------------------------------------------------------------|
+| `id`         | int    | The id of the shipping rate                                                |
+| `currency`   | string | ISO currency code of the shipping rate (e.g., GBP)                         |
+| `min_price`  | float  | Minimum cart total price for this rate to apply                            |
+| `max_price`  | float  | Maximum cart total price for this rate to apply (nullable = no limit)      |
+| `min_weight` | float  | Minimum total weight for this rate to apply                                |
+| `max_weight` | float  | Maximum total weight for this rate to apply (nullable = no limit)          |
+| `min_volume` | float  | Minimum total volume for this rate to apply                                |
+| `max_volume` | float  | Maximum total volume for this rate to apply (nullable = no limit)          |
+| `price`      | float  | The cost of shipping, expressed in the specified currency’s smallest units |
 
 ## Example Response
 
@@ -34,7 +38,7 @@ GET /api/shipping-methods/{id}
 ```json lines
 {
     "id": 2,
-    "name": "123",
+    "name": "Standard",
     "available": true,
     "rates": [
         {
@@ -51,3 +55,5 @@ GET /api/shipping-methods/{id}
     ]
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

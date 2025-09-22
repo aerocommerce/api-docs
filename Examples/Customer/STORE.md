@@ -1,41 +1,46 @@
 # Store Customer
 
-## Attributes:
+## Overview
+
+This endpoint creates a new customer using the provided json data
+
+## Structure
 
 ### Customer
-| Name                    | Type      | Description                                                                                  | Required?      |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------|----------------|
-| `name`                  | string    | The name of the customer                                                                     | No             |
-| `email`                 | string    | The email of the customer                                                                    | No             |
-| `password`              | string    | The plain-text password of the customer                                                      | See note below |
-| `password_hash`         | string    | The hashed password of the customer                                                          | See note below |
-| `group`                 | string    | The group name of the customer                                                               | No             |
-| `tax_group`             | string    | The tax group name of the customer                                                           | No             |
-| `addresses`             | array     | The addresses of the customer, see [Address](#address)                                       | No             |
-| `additional_attributes` | array     | The additional attributes of the customer, see [Additional Attribute](#additional-attribute) | No             |
 
-**NOTE:** One of either `password` or `password_hash` must be present, using `password_hash` is advised - the hashing algorithm must match the store's (normally `bcrypt` by default)
+| Name                    | Type      | Description                                                                                  | Required?       |
+|-------------------------|-----------|----------------------------------------------------------------------------------------------|-----------------|
+| `name`                  | string    | The name of the customer                                                                     | Yes             |
+| `email`                 | string    | The email of the customer                                                                    | Yes             |
+| `password`              | string    | The plain-text password of the customer                                                      | Conditional `*` |
+| `password_hash`         | string    | The hashed password of the customer                                                          | Conditional `*` |
+| `group`                 | string    | The group name of the customer                                                               | No              |
+| `tax_group`             | string    | The tax group name of the customer                                                           | No              |
+| `addresses`             | array     | The addresses of the customer, see [Address](#address)                                       | No              |
+| `additional_attributes` | array     | The additional attributes of the customer, see [Additional Attribute](#additional-attribute) | No              |
+
+`*` **Note:** One of password or password_hash must be provided. Using password_hash is recommended. Ensure the hashing algorithm matches the store’s configuration (usually bcrypt)
 
 ### Address
 
-| Name           | Type    | Description                              | Required?                |
-|----------------|---------|------------------------------------------|--------------------------|
-| `name`         | string  | The name of the address                  | No                       |
-| `first_name`   | string  | The first name for the address           | Yes                      |
-| `last_name`    | string  | The last name for the address            | Yes                      |
-| `company`      | string  | The company for the address              | No                       |
-| `mobile`       | string  | The mobile number for the address        | No                       |
-| `phone`        | string  | The phone number for the address         | No                       |
-| `line_1`       | string  | The first line for the address           | Yes                      |
-| `line_2`       | string  | The second line for the address          | No                       |
-| `city`         | string  | The city for the address                 | Yes                      |
-| `county`       | string  | The county for the address               | No                       |
-| `zone`         | string  | The zone code for the address            | No (depends on country)  |
-| `postcode`     | string  | The postcode for the address             | Yes (depends on country) |
-| `country`      | string  | The country code for the address         | No                       |
-| `reference`    | string  | The **unique** reference for the address | No                       |
-| `eori_number`  | string  | The EORI number for the address          | No                       |
-| `is_default`   | boolean | Whether the address is default           | No                       |
+| Name          | Type    | Description                                                                    | Required?   |
+|---------------|---------|--------------------------------------------------------------------------------|-------------|
+| `name`        | string  | The name of the address                                                        | No          |
+| `first_name`  | string  | The first name for the address                                                 | Yes         |
+| `last_name`   | string  | The last name for the address                                                  | Yes         |
+| `company`     | string  | The company for the address                                                    | No          |
+| `mobile`      | string  | The mobile number for the address                                              | No          |
+| `phone`       | string  | The phone number for the address                                               | No          |
+| `line_1`      | string  | The first line for the address                                                 | Yes         |
+| `line_2`      | string  | The second line for the address                                                | No          |
+| `city`        | string  | The city for the address                                                       | Yes         |
+| `county`      | string  | The county for the address                                                     | No          |
+| `zone`        | string  | The zone code for the address, required for some countries (e.g., US, AU, etc) | Conditional |
+| `postcode`    | string  | The postcode for the address, required for some countries (e.g., GB, US, etc)  | Conditional |
+| `country`     | string  | The country code for the address                                               | Yes         |
+| `reference`   | string  | The **unique** reference for the address                                       | No          |
+| `eori_number` | string  | The EORI number for the address                                                | No          |
+| `is_default`  | boolean | Whether the address is default                                                 | No          |
 
 ### Additional Attribute
 
@@ -94,3 +99,5 @@ POST /api/customers
     }
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

@@ -1,157 +1,132 @@
 # Store Order
 
-## Attributes:
+## Overview
+
+This endpoint creates a new order using the provided json data
+
+## Structure
 
 ### Order
 
-| Name                 | Type    | Description                                                                                             | Required?                   |
-|----------------------|---------|---------------------------------------------------------------------------------------------------------|-----------------------------|
-| `reference`          | string  | The **unique** reference for the order                                                                  | No                          |
-| `status_id`          | int     | The status id of the order,  can be resolved from `state` (see below)                                   | If `ordered_at` is not null |
-| `state`              | string  | Alternative to passing `status_id`, resolves the first status with the specified state                  | No                          |
-| `customer_id`        | int     | The id of the customer that placed the order                                                            | No                          |
-| `email`              | string  | The email of the customer that placed the order                                                         | No                          |
-| `subtotal.amount`    | float   | The subtotal of the order **excluding tax**                                                             | No                          |
-| `subtotal.tax`       | float   | The subtotal tax for the order                                                                          | No                          |
-| `shipping.amount`    | float   | The shipping of the order **excluding tax**                                                             | No                          |
-| `shipping.tax`       | float   | The shipping tax for the order                                                                          | No                          |
-| `discount.amount`    | float   | The discount of the order **excluding tax**                                                             | No                          |
-| `discount.tax`       | float   | The discount tax for the order                                                                          | No                          |
-| `surcharge.amount`   | float   | The surcharge of the order **excluding tax**                                                            | No                          |
-| `surcharge.tax`      | float   | The surcharge tax for the order                                                                         | No                          |
-| `shipping_method_id` | int     | The shipping method id of the order                                                                     | No                          |
-| `currency`           | string  | The currency of the order, set to store currency if not supplied                                        | No                          |
-| `exchange_rate`      | float   | The exchange rate of the order, derives from currency if not supplied                                   | No                          |
-| `shipping_address`   | object  | The shipping address of the order, see [Shipping Address](#shipping-address)                            | No                          |
-| `billing_address `   | object  | The billing address of the order, see [Billing Address](#billing-address)                               | No                          |
-| `ip`                 | string  | The ip of the order                                                                                     | No                          |
-| `channel`            | string  | The channel of the order                                                                                | No                          |
-| `subscription_id`    | int     | The subscription id of the order                                                                        | No                          |
-| `notify`             | boolean | Whether the order notifications are activated                                                           | No                          |
-| `buy_items`          | boolean | Whether the order items stock should be mutated. If false then `OrderItemBought` event will not be emit | No, defaults to `true`      |
-| `ordered_at`         | date    | When the order was ordered                                                                              | No                          |
-| `deliver_on`         | date    | When the order should be delivered                                                                      | No                          |
-| `items`              | array   | The items of the order, see [Order Item](#order-items)                                                  | Yes                         |
-| `payments`           | array   | The payments for the order, see [Payments](#payments)                                                   | No                          |
+| Name                 | Type        | Description                                                                                                                  | Required?                   |
+|----------------------|-------------|------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
+| `reference`          | string      | The **unique** reference for the order                                                                                       | No                          |
+| `status_id`          | int         | The status id of the order, can also be resolved from `state`                                                                | If `ordered_at` is not null |
+| `state`              | string      | Alternative to passing `status_id`, resolves the first status with the specified state                                       | No                          |
+| `customer_id`        | int         | The id of the customer that placed the order                                                                                 | No                          |
+| `email`              | string      | The email of the customer that placed the order                                                                              | No                          |
+| `subtotal.amount`    | float       | The subtotal of the order **excluding tax**                                                                                  | No                          |
+| `subtotal.tax`       | float       | The subtotal tax for the order                                                                                               | No                          |
+| `shipping.amount`    | float       | The shipping of the order **excluding tax**                                                                                  | No                          |
+| `shipping.tax`       | float       | The shipping tax for the order                                                                                               | No                          |
+| `discount.amount`    | float       | The discount of the order **excluding tax**                                                                                  | No                          |
+| `discount.tax`       | float       | The discount tax for the order                                                                                               | No                          |
+| `surcharge.amount`   | float       | The surcharge of the order **excluding tax**                                                                                 | No                          |
+| `surcharge.tax`      | float       | The surcharge tax for the order                                                                                              | No                          |
+| `shipping_method_id` | int         | The shipping method id of the order                                                                                          | No                          |
+| `currency`           | string      | The currency of the order, (defaults to store default if not provided)                                                       | No                          |
+| `exchange_rate`      | float       | The exchange rate of the order (derives from currency if not supplied)                                                       | No                          |
+| `shipping_address`   | object      | The [Shipping Address](#shipping-address) for the order                                                                      | No                          |
+| `billing_address `   | object      | The [Billing Address](#billing-address) for the order                                                                        | No                          |
+| `ip`                 | string      | The ip of the order                                                                                                          | No                          |
+| `channel`            | string      | The channel of the order                                                                                                     | No                          |
+| `subscription_id`    | int         | The subscription id of the order                                                                                             | No                          |
+| `notify`             | boolean     | Whether the order notifications are activated                                                                                | No                          |
+| `buy_items`          | boolean     | Whether the order items stock should be mutated. If false then `OrderItemBought` event will not be emit (defaults to `true`) | No                          |
+| `ordered_at`         | timestamp   | When the order was ordered                                                                                                   | No                          |
+| `deliver_on`         | timestamp   | When the order should be delivered                                                                                           | No                          |
+| `items`              | array       | An array of [Order Item](#order-item) objects                                                                                | Yes                         |
+| `payments`           | array       | An array of [Payment](#payment) objects                                                                                      | No                          |
 
-If no `subtotal.amount` or `subtotal.tax` is passed their values will be set to the sum of the items `price.amount` * `quantity` & `price.tax` * `quantity` respectively
+- If no `subtotal.amount` or `subtotal.tax` is passed their values will be set to the sum of the items `price.amount` * `quantity` & `price.tax` * `quantity` respectively
 
-If no `discount.amount` or `discount.tax` is passed their values will be set to the sum of the items `discount.amount` & `discount.tax` respectively
-
-If no `currency` is passed for the order it is resolved from the store default
+- If no `discount.amount` or `discount.tax` is passed their values will be set to the sum of the items `discount.amount` & `discount.tax` respectively
 
 ### Shipping Address
 
-You can optionally provide a shipping address for the order using these attributes
-
-| Name                               | Type    | Description                                       | Required? |
-|------------------------------------|---------|---------------------------------------------------|-----------|
-| `shipping_address.first_name`      | string  | The first name for the shipping address           | Yes       |
-| `shipping_address.last_name`       | string  | The last name for the shipping address            | Yes       |
-| `shipping_address.company`         | string  | The company for the shipping address              | No        |
-| `shipping_address.mobile`          | string  | The mobile number for the shipping address        | No        |
-| `shipping_address.phone`           | string  | The phone number for the shipping address         | No        |
-| `shipping_address.line_1`          | string  | The first line for the shipping address           | Yes       |
-| `shipping_address.line_2`          | string  | The second line for the shipping address          | No        |
-| `shipping_address.city`            | string  | The city for the shipping address                 | Yes       |
-| `shipping_address.zone`            | string  | The zone code for the shipping address            | No        |
-| `shipping_address.postcode`        | string  | The postcode for the shipping address             | Yes       |
-| `shipping_address.country`         | string  | The country code for the shipping address         | No        |
-| `shipping_address.reference`       | string  | The **unique** reference for the shipping address | No        |
-| `shipping_address.eori_number`     | string  | The EORI number for the shipping address          | No        |
+| Name          | Type    | Description                                       | Required? |
+|---------------|---------|---------------------------------------------------|-----------|
+| `first_name`  | string  | The first name for the shipping address           | Yes       |
+| `last_name`   | string  | The last name for the shipping address            | Yes       |
+| `company`     | string  | The company for the shipping address              | No        |
+| `mobile`      | string  | The mobile number for the shipping address        | No        |
+| `phone`       | string  | The phone number for the shipping address         | No        |
+| `line_1`      | string  | The first line for the shipping address           | Yes       |
+| `line_2`      | string  | The second line for the shipping address          | No        |
+| `city`        | string  | The city for the shipping address                 | Yes       |
+| `zone`        | string  | The zone code for the shipping address            | No        |
+| `postcode`    | string  | The postcode for the shipping address             | Yes       |
+| `country`     | string  | The country code for the shipping address         | No        |
+| `reference`   | string  | The **unique** reference for the shipping address | No        |
+| `eori_number` | string  | The EORI number for the shipping address          | No        |
 
 ### Billing Address
 
-You can optionally provide a billing address for the order using these attributes
+| Name          | Type    | Description                                      | Required? |
+|---------------|---------|--------------------------------------------------|-----------|
+| `first_name`  | string  | The first name for the billing address           | Yes       |
+| `last_name`   | string  | The last name for the billing address            | Yes       |
+| `company`     | string  | The company for the billing address              | No        |
+| `mobile`      | string  | The mobile number for the billing address        | No        |
+| `phone`       | string  | The phone number for the billing address         | No        |
+| `line_1`      | string  | The first line for the billing address           | Yes       |
+| `line_2`      | string  | The second line for the billing address          | No        |
+| `city`        | string  | The city for the billing address                 | Yes       |
+| `zone`        | string  | The zone code for the billing address            | No        |
+| `postcode`    | string  | The postcode for the billing address             | Yes       |
+| `country`     | string  | The country code for the billing address         | No        |
+| `reference`   | string  | The **unique** reference for the billing address | No        |
+| `eori_number` | string  | The EORI number for the billing address          | No        |
 
-| Name                            | Type    | Description                                      | Required? |
-|---------------------------------|---------|--------------------------------------------------|-----------|
-| `billing_address.first_name`    | string  | The first name for the billing address           | Yes       |
-| `billing_address.last_name`     | string  | The last name for the billing address            | Yes       |
-| `billing_address.company`       | string  | The company for the billing address              | No        |
-| `billing_address.mobile`        | string  | The mobile number for the billing address        | No        |
-| `billing_address.phone`         | string  | The phone number for the billing address         | No        |
-| `billing_address.line_1`        | string  | The first line for the billing address           | Yes       |
-| `billing_address.line_2`        | string  | The second line for the billing address          | No        |
-| `billing_address.city`          | string  | The city for the billing address                 | Yes       |
-| `billing_address.zone`          | string  | The zone code for the billing address            | No        |
-| `billing_address.postcode`      | string  | The postcode for the billing address             | Yes       |
-| `billing_address.country`       | string  | The country code for the billing address         | No        |
-| `billing_address.reference`     | string  | The **unique** reference for the billing address | No        |
-| `billing_address.eori_number`   | string  | The EORI number for the billing address          | No        |
+### Order Item
 
-### Order Items
+| Name                   | Type    | Description                                                                                       | Required?                                                                |
+|------------------------|---------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `key`                  | string  | The unique key for the order item                                                                 | No                                                                       |
+| `variant_id`           | int     | The variant id of the buyable                                                                     | No                                                                       |
+| `product_id`           | string  | The product id of the buyable (resolves first variant unless variant_id is provided)              | No                                                                       |
+| `buyable_type`         | string  | The buyable type of the order item                                                                | Not required if any of:<br/>`sku`/`variant_id`/`product_id` are provided |
+| `buyable_id`           | int     | The buyable id of the order item                                                                  | Not required if any of:<br/>`sku`/`variant_id`/`product_id` are provided |
+| `name`                 | string  | The name for the order item                                                                       | No                                                                       |
+| `url`                  | string  | The url for the order item                                                                        | No                                                                       |
+| `sku`                  | string  | The sku for the order item, can be used to resolve buyable                                        | No                                                                       |
+| `reference`            | string  | The **unique** reference for the order item                                                       | No                                                                       |
+| `manufacturer_id`      | int     | The manufacturer id for the order item                                                            | No                                                                       |
+| `image`                | string  | The image for the order item                                                                      | No                                                                       |
+| `options`              | array   | The options for the order item                                                                    | No                                                                       |
+| `shippable`            | boolean | Whether the order item is shippable                                                               | No                                                                       |
+| `quantity`             | int     | The quantity for the order item                                                                   | Yes                                                                      |
+| `price.amount`         | float   | The **unit** price of the order item **excluding tax**                                            | Yes                                                                      |
+| `price.tax`            | float   | The **unit** tax for the order item                                                               | Yes                                                                      |
+| `discount.amount`      | float   | The **total** discount of the order item **excluding tax**                                        | No                                                                       |
+| `discount.tax`         | float   | The **total** discount tax for the order item                                                     | No                                                                       |
+| `full_price.amount`    | float   | The **unit** full price (including extras) of the order item **excluding tax**                    | No                                                                       |
+| `full_price.tax`       | float   | The **unit** full tax (including extras) for the order item                                       | No                                                                       |
+| `cost_price.amount`    | float   | The **unit** cost price of the order item **excluding tax**                                       | No                                                                       |
+| `cost_price.currency`  | string  | The currency code for the cost price                                                              | No                                                                       |
+| `weight`               | float   | The weight for the order item                                                                     | No                                                                       |
+| `weight_unit`          | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit if not passed | No                                                                       |
+| `volume`               | float   | The volume for the order item                                                                     | No                                                                       |
+| `volume_unit`          | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit if not passed  | No                                                                       |
+| `tag_ids`              | array   | The tag ids for the order item                                                                    | No                                                                       |
+| `hs`                   | string  | The HS code for the order item                                                                    | No                                                                       |
+| `origin_country`       | string  | The origin country code for the order item                                                        | No                                                                       |
+| `subscription_plan_id` | int     | The subscription plan id for the order item                                                       | No                                                                       |
+| `goods_description`    | string  | The goods description for the order item                                                          | No                                                                       |
 
-You must provide an array of items for the order using these attributes
+- `price`, `discount` & `full_price` all support an un-nested price including tax being passed, see [Price Conventions](../../CONVENTIONS.md#price-conventions)
 
-| Name                           | Type    | Description                                                                                       | Required?                                                                |
-|--------------------------------|---------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| `items.*.key`                  | string  | The key for the order item                                                                        | No                                                                       |
-| `items.*.variant_id`           | int     | The variant id of the buyable                                                                     | No                                                                       |
-| `items.*.product_id`           | string  | The product id of the buyable (resolves first variant)                                            | No                                                                       |
-| `items.*.buyable_type`         | string  | The buyable type of the order item                                                                | Not required if any of:<br/>`sku`/`variant_id`/`product_id` are provided |
-| `items.*.buyable_id`           | int     | The buyable id of the order item                                                                  | Not required if any of:<br/>`sku`/`variant_id`/`product_id` are provided |
-| `items.*.name`                 | string  | The name for the order item                                                                       | No                                                                       |
-| `items.*.url`                  | string  | The url for the order item                                                                        | No                                                                       |
-| `items.*.sku`                  | string  | The sku for the order item, can be used to resolve buyable                                        | No                                                                       |
-| `items.*.reference`            | string  | The **unique** reference for the order item                                                       | No                                                                       |
-| `items.*.manufacturer_id`      | int     | The manufacturer id for the order item                                                            | No                                                                       |
-| `items.*.image`                | string  | The image for the order item                                                                      | No                                                                       |
-| `items.*.options`              | array   | The options for the order item                                                                    | No                                                                       |
-| `items.*.shippable`            | boolean | Whether the order item is shippable                                                               | No                                                                       |
-| `items.*.quantity`             | int     | The quantity for the order item                                                                   | Yes                                                                      |
-| `items.*.price.amount`         | float   | The **unit** price of the order item **excluding tax**                                            | Yes                                                                      |
-| `items.*.price.tax`            | float   | The **unit** tax for the order item                                                               | Yes                                                                      |
-| `items.*.discount.amount`      | float   | The **total** discount of the order item **excluding tax**                                        | No                                                                       |
-| `items.*.discount.tax`         | float   | The **total** discount tax for the order item                                                     | No                                                                       |
-| `items.*.full_price.amount`    | float   | The **unit** full price (including extras) of the order item **excluding tax**                    | No                                                                       |
-| `items.*.full_price.tax`       | float   | The **unit** full tax (including extras) for the order item                                       | No                                                                       |
-| `items.*.cost_price.amount`    | float   | The **unit** cost price of the order item **excluding tax**                                       | No                                                                       |
-| `items.*.cost_price.currency`  | string  | The currency code for the cost price                                                              | No                                                                       |
-| `items.*.weight`               | float   | The weight for the order item                                                                     | No                                                                       |
-| `items.*.weight_unit`          | float   | The weight unit for the order item, defaults to stores normalized <br/> weight unit if not passed | No                                                                       |
-| `items.*.volume`               | float   | The volume for the order item                                                                     | No                                                                       |
-| `items.*.volume_unit`          | float   | The volume unit for the order item, defaults to stores normalized <br/>volume unit if not passed  | No                                                                       |
-| `items.*.tag_ids`              | array   | The tag ids for the order item                                                                    | No                                                                       |
-| `items.*.hs`                   | string  | The HS code for the order item                                                                    | No                                                                       |
-| `items.*.origin_country`       | string  | The origin country code for the order item                                                        | No                                                                       |
-| `items.*.subscription_plan_id` | int     | The subscription plan id for the order item                                                       | No                                                                       |
-| `items.*.goods_description`    | string  | The goods description for the order item                                                          | No                                                                       |
+### Payment
 
-The buyable is used to initially populate the attributes of the order item and then any attributes passed are applied
+| Name        | Type   | Description                                                                 | Required?                           |
+|-------------|--------|-----------------------------------------------------------------------------|-------------------------------------|
+| `method_id` | int    | The payment method id of the payment                                        | Not required if `driver` is passed  |
+| `driver`    | string | Payment driver used to resolve `method_id`                                  | No                                  |
+| `reference` | string | The reference for the payment, if not specified a uuid will be generated    | No                                  |
+| `state`     | string | The state for the payment, if not specified the captured state will be used | No                                  |
+| `amount`    | float  | The total amount for the payment                                            | Yes                                 |
 
-`price`, `discount` & `full_price` all support an unnested price including tax being passed, see [Price Conventions](../../CONVENTIONS.md#price-conventions) for example
-
-In the event an unnested price including tax is passed the ex and vat will be calculated using the buyables tax group
-
-If no `full_price` is passed for the order item it is set to its `price`
-
-### Payments
-
-You can optionally provide payments for the order using these attributes
-
-| Name                   | Type   | Description                                                                 | Required?                                            |
-|------------------------|--------|-----------------------------------------------------------------------------|------------------------------------------------------|
-| `payments.*.method_id` | int    | The payment method id of the payment                                        | Not required if `driver` is passed (see below table) |
-| `payments.*.reference` | string | The reference for the payment, if not specified a uuid will be generated    | No                                                   |
-| `payments.*.state`     | string | The state for the payment, if not specified the captured state will be used | No                                                   |
-| `payments.*.amount`    | float  | The total amount for the payment                                            | Yes                                                  |
-
-If `driver` is passed in the payload then `method_id` will be resolved to be the first payment method with that driver (see [Example Request](#example-request))
-
-These are the valid values for `state`:
-
-- failed
-- pending
-- authorized
-- partially captured
-- captured
-- partially refunded
-- refunded
-- canceled
-- errored
-
-The currency is resolved from the order's currency
+**Valid states:** failed, pending, authorized, partially captured, captured, partially refunded, refunded, canceled, errored
 
 ## Example Request
 
@@ -161,7 +136,7 @@ POST /api/orders
 
 ```json lines
 {
-    "reference": "LTS123456",
+    "reference": "ABC123",
     "email": "testing@gmail.com",
     "subtotal": {
         "amount": 84166.67,
@@ -213,7 +188,7 @@ POST /api/orders
     },
     "items": [
         {
-            "variant_id": 14,
+            "variant_id": 1,
             "shippable": true,
             "quantity": 2,
             "price": {
@@ -240,7 +215,7 @@ POST /api/orders
 ```json
 {
     "order": {
-        "id": 27
+        "id": 1
     }
 }
 ```

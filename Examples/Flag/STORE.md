@@ -1,11 +1,15 @@
 # Store Flag
 
-## Attributes:
+## Overview
 
-| Name          | Type    | Description                         | Required? |
-|---------------|---------|-------------------------------------|-----------|
-| `name`        | string  | The name of the flag                | Yes       |
-| `color`       | string  | The color of the flag (hexadecimal) | Yes       |
+This endpoint creates a new flag using the provided json data
+
+## Structure
+
+| Name          | Type    | Description                             | Required? |
+|---------------|---------|-----------------------------------------|-----------|
+| `name`        | string  | The name of the flag                    | Yes       |
+| `color`       | hexcode | The color of the flag (format ##RRGGBB) | Yes       |
 
 ## Example Request
 
@@ -30,3 +34,4 @@ POST /api/flags/
 }
 ```
 
+[Back to contents](../../README.md#table-of-contents)

@@ -1,46 +1,50 @@
-# View Product
+# View Price List
 
-## Attributes:
+## Overview
+
+This endpoint retrieves a single price list by `id`
+
+## Structure
 
 ### Price List
 
-| Name                           | Type   | Description                                                                    |
-|--------------------------------|--------|--------------------------------------------------------------------------------|
-| `id`                           | int    | The id of the price list                                                       |
-| `name`                         | string | The name of the price list                                                     |
-| `applies_to`                   | string | The applies to of the price list (everyone, not-customers, customers, groups)  |
-| `start_at`                     | date   | The start at of the price list                                                 |
-| `end_at`                       | date   | The end at of the price list                                                   |
-| `entries`                      | array  | The entries of the price list, see [Entries](#entries)                         |
-| `customer_groups`              | array  | The customer groups of the price list, see [Customer Groups](#customer-groups) |
+| Name                           | Type       | Description                                                                         |
+|--------------------------------|------------|-------------------------------------------------------------------------------------|
+| `id`                           | int        | The id of the price list                                                            |
+| `name`                         | string     | The name of the price list                                                          |
+| `applies_to`                   | string     | The applies to of the price list (e.g., everyone, not-customers, customers, groups) |
+| `start_at`                     | timestamp  | The start at of the price list                                                      |
+| `end_at`                       | timestamp  | The end at of the price list                                                        |
+| `entries`                      | array      | An array of [Entry](#entry) objects                                                 |
+| `customer_groups`              | array      | An array of [Customer Group](#customer-group) objects                               |
 
-### Entries
+### Entry
 
-| Name                   | Type   | Description                                                                                                                          |
-|------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
-| `entries.*.id`         | int    | The id of the price list entry                                                                                                       |
-| `entries.*.for`        | string | The for of the price list entry (all_products, all_products_unless_reduced, product, variant, category, tag, manufacturer)           |
-| `entries.*.target`     | string | The target of the price list entry (e.g. id corresponding to the `for` if applicable)                                                |
-| `entries.*.type`       | string | The type of the price list entry (fixed_price, fixed_price_decrease, fixed_price_increase, percentage_decrease, percentage_increase) |
-| `entries.*.price`      | object | The price of the price list entry, see [Price](#price) (NOTE: Not in payload when `type` is percentage based)                        |
-| `entries.*.percentage` | float  | The percentage of the price list entry (NOTE: Only in payload when `type` is percentage based)                                       |
-| `entries.*.for_price`  | string | The price that the price list entry affects (sale_price, base_price, rrp, cost_price)                                                |
+| Name         | Type   | Description                                                                                                                        |
+|--------------|--------|------------------------------------------------------------------------------------------------------------------------------------|
+| `id`         | int    | The id of the price list entry                                                                                                     |
+| `for`        | string | What the entry applies to (e.g., all_products, all_products_unless_reduced, product, variant, category, tag, manufacturer)         |
+| `target`     | string | Identifier of the target (if applicable) — e.g. product id, variant id, category id, etc...                                        |
+| `type`       | string | Type of price adjustment (e.g., fixed_price, fixed_price_decrease, fixed_price_increase, percentage_decrease, percentage_increase) |
+| `price`      | object | The [Price](#price) object (only present when `type` is *fixed* based)                                                             |
+| `percentage` | float  | Percentage value (only present when `type` is *percentage* based)                                                                  |
+| `for_price`  | string | Which price the entry affects (e.g., sale_price, base_price, rrp, cost_price)                                                      |
 
 ### Price
 
-| Name              | Type     | Description                                                         |
-|-------------------|----------|---------------------------------------------------------------------|
-| `price.amount`    | float    | The price **including tax**, in whole units (e.g. pounds not pence) |
-| `price.currency`  | string   | The currency for the price, e.g. GBP                                |
+| Name       | Type     | Description                                                      |
+|------------|----------|------------------------------------------------------------------|
+| `amount`   | float    | The price **including tax**, in whole units (e.g., `10` = `£10`) |
+| `currency` | string   | The currency for the price (e.g., GBP)                           |
 
 ### Customer Groups
 
-| Name                         | Type   | Description                         |
-|------------------------------|--------|-------------------------------------|
-| `customer_groups.*.id`       | int    | The id of the customer group        |
-| `customer_groups.*.name`     | string | The name of the customer group      |
-| `customer_groups.*.start_at` | date   | The start at for the customer group |
-| `customer_groups.*.end_at`   | date   | The end at for the customer group   |
+| Name         | Type      | Description                         |
+|--------------|-----------|-------------------------------------|
+| `id`         | int       | The id of the customer group        |
+| `name`       | string    | The name of the customer group      |
+| `start_at`   | timestamp | The start at for the customer group |
+| `end_at`     | timestamp | The end at for the customer group   |
 
 ## Example Response
 
@@ -122,3 +126,5 @@ GET /api/price-lists/{id}
   "customer_groups": []
 }
 ```
+
+[Back to contents](../../README.md#table-of-contents)

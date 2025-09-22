@@ -1,72 +1,74 @@
 # Store Collection
 
-## Attributes:
+## Overview
+
+This endpoint creates a new collection using the provided json data
+
+## Structure
 
 ### Collection
 
-| Name                    | Type   | Description                                                                                    | Required? |
-|-------------------------|--------|------------------------------------------------------------------------------------------------|-----------|
-| `name`                  | string | The name of the collection                                                                     | Yes       |
-| `slug`                  | string | The slug of the collection, if not present it is auto-generated from name                      | No        |
-| `reference`             | string | The reference of the collection                                                                | No        |
-| `logic`                 | string | The logic of the rules for the collection, and/or (defaults to or if not provided)             | No        |
-| `published_at`          | date   | The published at of the collection                                                             | No        |
-| `rules`                 | array  | The listing page rules of the collection, see [Rule](#rule)                                    | No        |
-| `content`               | object | The listing page content of the collection, see [Content](#content)                            | No        |
-| `options`               | object | The listing page options of the collection, see [Options](#options)                            | No        |
-| `seo`                   | object | The SEO of the collection, see [SEO](#seo)                                                     | No        |
-| `additional_attributes` | array  | The additional attributes of the collection, see [Additional Attribute](#additional-attribute) | No        |
+| Name                    | Type      | Description                                                                        | Required? |
+|-------------------------|-----------|------------------------------------------------------------------------------------|-----------|
+| `name`                  | string    | The name of the collection                                                         | Yes       |
+| `slug`                  | string    | The slug of the collection, if not present it is auto-generated from name          | No        |
+| `reference`             | string    | The reference of the collection                                                    | No        |
+| `logic`                 | string    | The logic of the rules for the collection, and/or (defaults to or if not provided) | No        |
+| `published_at`          | timestamp | The published at of the collection                                                 | No        |
+| `rules`                 | array     | An array of Listing Page [Rule](#rule) objects                                     | No        |
+| `content`               | object    | The Listing Page [Content](#content) of the category                               | No        |
+| `options`               | object    | The Listing Page [Options](#options) of the category                               | No        |
+| `seo`                   | object    | The [SEO](#seo) of the category                                                    | No        |
+| `additional_attributes` | array     | An array of [Additional Attribute](#additional-attribute) objects                  | No        |
 
 ### Image
 
-| Name  | Type   | Description             | Required? |
-|-------|--------|-------------------------|-----------|
-| `src` | string | The source of the image | Yes       |
+| Name  | Type   | Description                 | Required? |
+|-------|--------|-----------------------------|-----------|
+| `src` | string | The source url of the image | Yes       |
 
 ### Rule
 
-| Name                 | Type   | Description                                                                                                                                           | Required?   |
-|----------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| `type`               | string | The type of the rule, e.g. in_category, in_price_list, have_manufacturers, have_tags, price_between, reduced, published_within_days, published_within | Yes         |
-| `requirement`        | string | The requirement of the rule, must/must_not (defaults to must if not provided)                                                                         | No          |
-| `logic`              | string | The logic of the rule, and/or (defaults to or if not provided)                                                                                        | No          |
-| `data`               | object | The data for the rule, required keys vary based on `type` of the rule                                                                                 | Yes         |
-| `data.tags`          | array  | The tag ids (or names formatted as `group\|name`) for a `have_tags` rule                                                                              | Conditional |
-| `data.manufacturers` | array  | The manufacturer ids (or names) for a `have_manufacturers` rule                                                                                       | Conditional |
-| `data.price_list`    | int    | The price list id (or name) for an `in_price_list` rule                                                                                               | Conditional |
-| `data.category`      | int    | The category id (or breadcrumb) for an `in_category` rule                                                                                             | Conditional |
-| `data.days`          | int    | The days for a `published_within_days` rule                                                                                                           | Conditional |
-| `data.start_at`      | date   | The start at date for a `published_within` rule                                                                                                       | Conditional |
-| `data.end_at`        | date   | The end at date for a `published_within` rule (optional)                                                                                              | Conditional |
-| `data.min_price`     | float  | The min price **including tax**, in store's default currency & in whole units (e.g. pounds not pence) for `price_between` rule                        | Conditional |
-| `data.max_price`     | float  | The max price **including tax**, in store's default currency & in whole units (e.g. pounds not pence) for `price_between` rule                        | Conditional |
+| Name                 | Type      | Description                                                                                                                                                           | Required?    |
+|----------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| `type`               | string    | Rule type. Allowed values: `in_category`, `in_price_list`, `have_manufacturers`, `have_tags`, `price_between`, `reduced`, `published_within_days`, `published_within` | Yes          |
+| `requirement`        | string    | Requirement for the rule. Allowed values: `must`, `must_not`. Defaults to `must`                                                                                      | No           |
+| `logic`              | string    | How this rule combines with others. Allowed values: `and`, `or`. Defaults to `or`                                                                                     | No           |
+| `data`               | object    | Rule-specific data (see below). Keys vary depending on type                                                                                                           | Yes          |
+| `data.tags`          | array     | An array of Tag ids (or names formatted as group\|name). Required if `type = have_tags`                                                                               | Conditional  |
+| `data.manufacturers` | array     | An array of manufacturer ids (or names). Required if `type = have_manufacturers`                                                                                      | Conditional  |
+| `data.price_list`    | string    | Price list id (or name). Required if `type = in_price_list`                                                                                                           | Conditional  |
+| `data.category`      | string    | Category id (or name/breadcrumb, e.g., Mens > Coats). Required if `type = in_category`                                                                                | Conditional  |
+| `data.days`          | int       | Number of days. Required if `type = published_within_days`                                                                                                            | Conditional  |
+| `data.start_at`      | timestamp | The start date. Required if `type = published_within`                                                                                                                 | Conditional  |
+| `data.end_at`        | timestamp | The end date. Optional if `type = published_within`                                                                                                                   | Conditional  |
+| `data.min_price`     | float     | Minimum price (including tax) in store’s default currency, whole units only (e.g. pounds, not pence). Required if `type = price_between`                              | Conditional  |
+| `data.max_price`     | float     | Maximum price (including tax) in store’s default currency, whole units only. Required if `type = price_between`                                                       | Conditional  |
 
-**NOTE:** The `rules` are nested within arrays to achieve grouping, see Example payload for more clarity
+**NOTE:** The `rules` are nested within arrays to achieve grouping, see `rules` in [Example Request](#example-request) for clarity
 
 ### Content
 
-| Name           | Type   | Description                           | Required? |
-|----------------|--------|---------------------------------------|-----------|
-| `summary`      | string | The summary content                   | No        |
-| `description`  | string | The description content               | No        |
-| `small_image`  | object | The small image, see [Image](#image)  | No        |
-| `medium_image` | object | The medium image, see [Image](#image) | No        |
-| `large_image`  | object | The large image, see [Image](#image)  | No        |
+| Name           | Type   | Description                | Required? |
+|----------------|--------|----------------------------|-----------|
+| `summary`      | string | The summary content        | No        |
+| `description`  | string | The description content    | No        |
+| `small_image`  | object | The Small [Image](#image)  | No        |
+| `medium_image` | object | The Medium [Image](#image) | No        |
+| `large_image`  | object | The Large [Image](#image)  | No        |
 
 ### Options
 
-| Name                         | Type    | Description                                                                                   | Required?   |
-|------------------------------|---------|-----------------------------------------------------------------------------------------------|-------------|
-| `categories.mode`            | string  | The categories mode, e.g. show_all/hide_all/show_some (defaults to show_all)                  | No          |
-| `categories.values`          | array   | The options for categories on the listings page (required if and only if mode is `show_some`) | No          |
-| `categories.values.*`        | string  | The id of category (or breadcrumb) to show (required if and only if mode is `show_some`)      | Conditional |
-| `filters.mode`               | int     | The filters mode, e.g. show_all/hide_all/show_some (defaults to show_all)                     | No          |
-| `filters.values`             | array   | The options for filters on the listings page (required if and only if mode is `show_some`)    | Conditional |
-| `filters.values.*.name`      | string  | The name of the filter, e.g. Category, Price, etc...                                          | Yes         |
-| `filters.values.*.collapsed` | boolean | Whether to collapse the filter or not                                                         | Yes         |
-| `sort_bys`                   | array   | The applied sort bys on the listings page                                                     | No          |
-| `sort_bys.*`                 | string  | The applied sort by, e.g. name-az, name-za, price-low, price-high, etc...                     | No          |
-| `per_page`                   | int     | The per page of the listings page (defaults to 24)                                            | No          |
+| Name                         | Type    | Description                                                                                                           | Required?    |
+|------------------------------|---------|-----------------------------------------------------------------------------------------------------------------------|--------------|
+| `categories.mode`            | string  | Categories filter display mode. Allowed values: `show_all`, `hide_all`, `show_some`. Default: `show_all`              | No           |
+| `categories.values`          | array   | An array of category ids (or names/breadcrumbs, e.g. Mens > Coats) to show. Required if `categories.mode = show_some` | Conditional  |
+| `filters.mode`               | int     | Facet filters display mode. Allowed values: `show_all`, `hide_all`, `show_some`. Default: `show_all`                  | No           |
+| `filters.values`             | array   | The options for facet filters on the listings page. Required if `filters.mode = show_some`                            | Conditional  |
+| `filters.values.*.name`      | string  | The name of the facet filter, e.g. `Category`, `Price`, etc...                                                        | Yes          |
+| `filters.values.*.collapsed` | boolean | Whether to collapse the facet filter or not                                                                           | Yes          |
+| `sort_bys`                   | array   | An array of the applied sorts on the listings page (e.g., name-az, name-za, price-low, price-high, etc...)            | No           |
+| `per_page`                   | int     | The per page of the listings page (defaults to 24)                                                                    | No           |
 
 ### SEO
 
@@ -222,3 +224,4 @@ POST /api/collections/
 }
 ```
 
+[Back to contents](../../README.md#table-of-contents)

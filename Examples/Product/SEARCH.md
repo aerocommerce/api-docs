@@ -1,33 +1,24 @@
 # Product Search
 
-## Required
+## Overview
 
-This route performs product search queries using elasticsearch, as such you should reindex your product documents, e.g.:
+This endpoint retrieves a paginated list of all products subject to scopes and filters via elastic-search
+
+## Pre-requisites
+
+This endpoint performs product search queries using Elasticsearch. Make sure your product documents are indexed before using this route:
 
 ```
 php artisan aero:search:reindex --type=product
 ```
 
-## Attributes:
+**NOTE:** You must run this command after installing the API on your store
 
-See [View Product](VIEW.md)
+## Structure
 
-## Remarks
+See [View Product](VIEW.md) for the structure of the product payloads inside the `data` array
 
-This is a paginated route (see [Pagination Conventions](../../CONVENTIONS.md#pagination-conventions))
-
-In addition to the standard parameters accepted for a paginated route, this route also accepts:
-
-| Parameter        | Description                        | Example                                 |
-|------------------|------------------------------------|-----------------------------------------|
-| `min_updated_at` | The min updated at for a product   | ?min_updated_at=2023-08-30%2010:35:05   |
-| `max_updated_at` | The max updated at for a product   | ?max_updated_at=2023-08-30%2010:35:05   |
-
-see [Date Conventions](../../CONVENTIONS.md#date-conventions) for more info on acceptable values for these parameters
-
-This is also a scoped route (see [Scoped Conventions](../../CONVENTIONS.md#scoped-conventions))
-
-This route also has some specific scopes:
+## Scopes
 
 | Name                 | Description                                     | Example                   |
 |----------------------|-------------------------------------------------|---------------------------|
@@ -48,7 +39,7 @@ This route also has some specific scopes:
 | `has-images`         | Only return products that have images           | ?scope=has-images         |
 | `no-images`          | Only return products that don't have images     | ?scope=no-images          |
 
-This route also has some specific filters:
+## Filters
 
 | Name              | Description                                                                             | Example                                                             |
 |-------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------|
@@ -64,7 +55,9 @@ This route also has some specific filters:
 | `max_stock_level` | Only return products with stock below specific stock level                              | ?max_stock_level=10                                                 |
 | `type`            | Only return products of a certain type (e.g. simple or variant)                         | ?type=variant                                                       |
 
-**NOTE:** Tags filter logically applies AND across groups and OR inside of groups, e.g. `?tags=size|small,colour|red` = small AND red, `?tags=colour|red,colour|green` = red OR green
+**Note:** The `tags` filter applies AND logic across groups and OR logic within groups.  
+- Example 1: `?tags=size|small,colour|red` = small AND red  
+- Example 2: `?tags=colour|red,colour|green` = red OR green
 
 **NOTE:** Plural filters can also be used in singular form, e.g. `?manufacturer=burberry` for `?manufacturers=burberry`
 
@@ -78,21 +71,19 @@ GET /api/products/search?per_page=2&min_updated_at=2023-08-30%2010:36:23&min_sto
 {
     "current_page": 1,
     "data": [
-      //...
+        //...
     ],
-    "first_page_url": "http://seg.test/api/products/search?per_page=2&min_updated_at=2023-08-30%2010%3A36%3A23&min_stock_level=1&max_stock_level=10&page=1",
+    "first_page_url": "http://aero.test/api/products?page=1",
     "from": 1,
-    "last_page": 3,
-    "last_page_url": "http://seg.test/api/products/search?per_page=2&min_updated_at=2023-08-30%2010%3A36%3A23&min_stock_level=1&max_stock_level=10&page=3",
-    "next_page_url": "http://seg.test/api/products/search?per_page=2&min_updated_at=2023-08-30%2010%3A36%3A23&min_stock_level=1&max_stock_level=10&page=2",
-    "path": "http:\/\/seg.test\/api\/products\/search",
+    "last_page": 16,
+    "last_page_url": "http://aero.test/api/products?page=16",
+    "next_page_url": "http://aero.test/api/products?page=2",
+    "path": "http://aero.test/api/products",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
-    "total": 5
+    "total": 32
 }
 ```
 
-See [Product View Example Response](./VIEW.md#example-response) for the structure of the products data
-
-
+[Back to contents](../../README.md#table-of-contents)

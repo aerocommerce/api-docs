@@ -2,58 +2,62 @@
 
 ## Payload Conventions
 
-Here are the main conventions & exceptions to those conventions that our payloads abide by, any more specific exceptions will be addressed in the relevant section in `Examples`
+This section outlines the conventions the payloads follow. Any endpoint-specific exceptions will be documented in the relevant Examples section.
 
 ### Attribute Conventions
 
-When passing attribute data to the API the key will typically match the attribute name on the respective model, the one main exception to this are any attribute ending with '_code' will lose its suffix (e.g.: 'currency_code' => 'currency')
+- Keys generally match the attribute name on their respective models.
+- **Exception:** Attributes ending in "_code" should omit the suffix when passed to the API, e.g. `currency_code` => `currency`
 
 ### Relationship Conventions
 
-When passing nested (related) data to the API the key should be a snake case representation of the relationship method between the model and related model, e.g.: `shippingMethod` => `shipping_method`
+- Nested data should use a **snake_case** version of the relationship method name where present, e.g.: `shippingMethod` => `shipping_method`
 
 ### Price Conventions
 
-All requests expect amounts to be provided in the currency's smallest unit. For example, to charge 10 GBP, provide an amount value of 1000 (that is, 1000 pence).
-
-When passing a price it should be formatted as a nested json object with `amount` & `tax` keys where the `amount` is the price **excluding tax**, e.g.:
+- Prices retrieved from the API are mostly in the currency's smallest unit, e.g. `1000` = `10 GBP`
+- Prices should generally be provided in the currency’s standard unit, e.g. `10` = `10 GBP` (unless otherwise stated)
+- Prices should generally be passed as an object, e.g.:
 
 ```json lines
 {
     "price": {
-        "amount": 40000, // Excluding tax
-        "tax": 8000
+        "amount": 400, // Excluding tax
+        "tax": 80
     }
 }
 ```
 
-**Some** prices (will be mentioned in the relevant examples section) support passing an unnested value which includes tax, e.g.:
+- **Exception:** Some endpoints support passing a single tax-inclusive value (noted in examples):
 
 ```json lines
 {
-    "price": 48000 // Including tax
+    "price": 480 // Including tax
 }
 ```
 
 ### Date Conventions
 
-When passing a date it must be Carbon parseable date, e.g.: `"2023-09-01T09:29:41.000000Z"` or `"2023-09-01 09:29:41"` or `"2023-09-01"`, if no time is provided midnight will be used as the date's time
+- Dates must be **Carbon-parseable**, support formats include:
+  - 2023-09-01T09:29:41.000000Z
+  - 2023-09-01 09:29:41
+  - 2023-09-01 (defaults to midnight if no time is provided)
 
 ### Pagination Conventions
 
-Any paginated endpoint accepts the following parameters
+All paginated endpoint accepts the following parameters
 
-| Parameter   | Description                                                    | Example      |
-|-------------|----------------------------------------------------------------|--------------|
-| `page`      | The page number, defaults to 1                                 | ?page=2      |
-| `per_page`  | The number of results per page, defaults to 24, max allowed 96 | ?per_page=48 |
-| `ids`       | The ids (comma seperated) of models to be fetched              | ?ids=1,2,5   |
+| Parameter        | Description                                            | Example                                 |
+|------------------|--------------------------------------------------------|-----------------------------------------|
+| `page`           | The page number (default: 1)                           | ?page=2                                 |
+| `per_page`       | The number of results per page (default: 24, max: 96)  | ?per_page=48                            |
+| `ids`            | Comma-separated list of IDs to fetch                   | ?ids=1,2,5                              |
+| `min_updated_at` | The min updated at for a product                       | ?min_updated_at=2023-08-30%2010:35:05   |
+| `max_updated_at` | The max updated at for a product                       | ?max_updated_at=2023-08-30%2010:35:05   |
 
-Any paginated endpoint will return a response inline with the Laravel pagination system, e.g.:
+**Note:** The `min_updated_at` and `max_updated_at` filters are only available on index endpoints for models that have an updated_at timestamp.
 
-### Scoped Conventions
-
-Any scoped endpoint (typically an index endpoint) supports a `scope` parameter which should be a comma seperated string of the scopes you wish to use (the supported scopes are endpoint specific and as such will be outlined in the relevant section)
+Responses follow Laravel’s pagination format, e.g.:
 
 ```json lines
 {
@@ -61,12 +65,12 @@ Any scoped endpoint (typically an index endpoint) supports a `scope` parameter w
     "data": [
         //...
     ],
-    "first_page_url": "http://l9.test/api/products?page=1",
+    "first_page_url": "http://aero.test/api/products?page=1",
     "from": 1,
     "last_page": 2,
-    "last_page_url": "http://l9.test/api/products?page=2",
-    "next_page_url": "http://l9.test/api/products?page=2",
-    "path": "http://l9.test/api/products",
+    "last_page_url": "http://aero.test/api/products?page=2",
+    "next_page_url": "http://aero.test/api/products?page=2",
+    "path": "http://aero.test/api/products",
     "per_page": 24,
     "prev_page_url": null,
     "to": 24,
@@ -74,16 +78,21 @@ Any scoped endpoint (typically an index endpoint) supports a `scope` parameter w
 }
 ```
 
+### Scoped Conventions
+
+- Index endpoints support a scope parameter, which is a comma-separated list of scopes.
+- Supported scopes are endpoint-specific and documented in the corresponding `Examples` section
+
 ### Image Factory Conventions
 
-The following query parameters can be passed in order to use Image Factory for generating the image urls
+The following query parameters can be added to use Image Factory for generating image URLs:
 
 | Parameter               | Description             | Example                               |
 |-------------------------|-------------------------|---------------------------------------|
-| `image_factory_width`   | The width               | ?image_factory_width=200              |
-| `image_factory_height`  | The height              | ?image_factory_height=200             |
-| `image_factory_options` | Comma seperated options | ?image_factory_options=flip,greyscale |
+| `image_factory_width`   | Output image width      | ?image_factory_width=200              |
+| `image_factory_height`  | Output image height     | ?image_factory_height=200             |
+| `image_factory_options` | Comma-seperated options | ?image_factory_options=flip,greyscale |
 
-If any of these query parameters are present in the GET requests then the Image Factory will be used
+If any of these query parameters are present in the GET requests, Image Factory will be applied
 
 [Back to contents](README.md#table-of-contents)
