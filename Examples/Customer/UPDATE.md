@@ -2,7 +2,7 @@
 
 ## Overview
 
-This endpoint updates an existing customer by its `id`. Only the fields provided in the request will be updated; unspecified fields remain unchanged.
+This endpoint updates an existing customer by its `id` or `email`. Only the fields provided in the request will be updated; unspecified fields remain unchanged.
 
 ## Structure
 
@@ -25,7 +25,7 @@ This endpoint updates an existing customer by its `id`. Only the fields provided
 ## Example Request
 
 ```http request
-PUT /api/customers/{id}
+PUT /api/customers/{id|email}
 ```
 
 ```json lines

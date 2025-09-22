@@ -2,7 +2,7 @@
 
 ## Overview
 
-This endpoint retrieves a single customer by `id`
+This endpoint retrieves a single customer by `id` or `email`
 
 ## Structure
 
@@ -71,7 +71,7 @@ A customer can have addresses, see attributes below:
 ## Example Response
 
 ```http request
-GET /api/customers/{id}
+GET /api/customers/{id|email}
 ```
 
 ```json lines

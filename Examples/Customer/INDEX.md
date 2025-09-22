@@ -8,6 +8,12 @@ This endpoint retrieves a paginated list of all customers
 
 See [View Customer](VIEW.md) for the structure of the customer payloads inside the `data` array
 
+## Filters
+
+| Name     | Description                                | Example                                  |
+|----------|--------------------------------------------|------------------------------------------|
+| `emails` | Only return customers with specific emails | ?emails=test@gmail.com,example@gmail.com |
+
 ## Example Response
 
 ```http request
