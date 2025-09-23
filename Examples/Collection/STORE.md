@@ -10,6 +10,7 @@ This endpoint creates a new collection using the provided json data
 
 | Name                    | Type      | Description                                                                        | Required? |
 |-------------------------|-----------|------------------------------------------------------------------------------------|-----------|
+| `id`                    | int       | The id for the collection                                                          | No        |
 | `name`                  | string    | The name of the collection                                                         | Yes       |
 | `slug`                  | string    | The slug of the collection, if not present it is auto-generated from name          | No        |
 | `reference`             | string    | The reference of the collection                                                    | No        |

@@ -2,13 +2,14 @@
 
 ### Orders
 
-| URL                         | Permission          | Action | Examples                                     | Purpose                                    |
-|-----------------------------|---------------------|--------|----------------------------------------------|--------------------------------------------|
-| /api/orders/                | orders.index        | GET    | [Order Index](Examples/Order/INDEX.md)       | Get all orders (paginated)                 |
-| /api/orders/{id}            | orders.view         | GET    | [View Order](Examples/Order/VIEW.md)         | Get an order by id                         |
-| /api/orders                 | orders.store        | POST   | [Store Order](Examples/Order/STORE.md)       | Create an order from json data             |
-| /api/orders/{id}/flags      | orders.flags.store  | POST   | [Store Order Flag](Examples/Order/FLAGS.md)  | Attach a flag to an order from json data   |
-| /api/orders/{id}/flags/{id} | orders.flags.delete | DELETE | [Delete Order Flag](Examples/Order/FLAGS.md) | Detach a flag from an order from json data |
+| URL                         | Permission          | Action | Examples                                          | Purpose                                    |
+|-----------------------------|---------------------|--------|---------------------------------------------------|--------------------------------------------|
+| /api/orders/                | orders.index        | GET    | [Order Index](Examples/Order/INDEX.md)            | Get all orders (paginated)                 |
+| /api/orders/{id}            | orders.view         | GET    | [View Order](Examples/Order/VIEW.md)              | Get an order by id                         |
+| /api/orders                 | orders.store        | POST   | [Store Order](Examples/Order/STORE.md)            | Create an order from json data             |
+| /api/orders/{id}/flags/{id} | orders.flags.store  | POST   | [Store Order Flag](Examples/Order/FLAGS.md)       | Attach a flag to an order from json data   |
+| /api/orders/{id}/flags/{id} | orders.flags.delete | DELETE | [Delete Order Flag](Examples/Order/FLAGS.md)      | Detach a flag from an order from json data |
+| /api/orders/{id}/comments   | orders.flags.store  | POST   | [Store Order Comment](Examples/Order/COMMENTS.md) | Add an order to an order from json data    |
 
 **NOTE:** Passing a `reference` in place of an `id` is supported for all relevant order endpoints, e.g. `/api/orders/REF-123`
 

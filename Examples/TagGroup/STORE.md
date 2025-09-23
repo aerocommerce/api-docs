@@ -10,6 +10,7 @@ This endpoint creates a new tag group using the provided json data
 
 | Name              | Type    | Description                                                                  | Required? |
 |-------------------|---------|------------------------------------------------------------------------------|-----------|
+| `id`              | int     | The id for the tag group                                                     | No        |
 | `name`            | string  | The name of the tag group (e.g., Size or Colour)                             | Yes       |
 | `reference`       | string  | The reference of the tag group                                               | No        |
 | `show_in_filters` | boolean | Whether the tag group shows in filters on listings page (defaults to `true`) | No        |
@@ -19,6 +20,7 @@ This endpoint creates a new tag group using the provided json data
 
 | Name        | Type    | Description                                                                                       | Required?   |
 |-------------|---------|---------------------------------------------------------------------------------------------------|-------------|
+| `id`        | int     | The id for the tag                                                                                | No          |
 | `name`      | string  | The name of the tag (e.g., Small or Red)                                                          | Yes         |
 | `slug`      | string  | The slug of the tag, if not present it is auto-generated from name (unless `has_slug` is `false`) | Conditional |
 | `reference` | string  | The reference of the tag                                                                          | No          |

@@ -12,6 +12,7 @@
        2. [View](Examples/Order/VIEW.md)
        3. [Store](Examples/Order/STORE.md)
        4. [Flags](Examples/Order/FLAGS.md)
+       5. [Comments](Examples/Order/COMMENTS.md)
    2. Order Statuses
        1. [Index](Examples/OrderStatus/INDEX.md)
        2. [View](Examples/OrderStatus/VIEW.md)
@@ -68,7 +69,8 @@
    13. Customers
        1. [Index](Examples/Customer/INDEX.md)
        2. [View](Examples/Customer/VIEW.md)
-       3. [Update](Examples/Customer/UPDATE.md)
+       3. [Store](Examples/Customer/STORE.md)
+       4. [Update](Examples/Customer/UPDATE.md)
    14. Addresses
        1. [Create](Examples/Address/STORE.md)
        2. [Update](Examples/Address/UPDATE.md)

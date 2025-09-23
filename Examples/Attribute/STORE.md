@@ -10,6 +10,7 @@ This endpoint creates a new attribute using the provided json data
 
 | Name           | Type   | Description                                    | Required? |
 |----------------|--------|------------------------------------------------|-----------|
+| `id`           | int    | The id for the attribute                       | No        |
 | `name`         | string | The name of the attribute (e.g., Small or Red) | Yes       |
 | `display_name` | string | The display name of the attribute              | No        |
 | `reference`    | string | The reference of the attribute                 | No        |

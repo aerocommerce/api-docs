@@ -8,17 +8,17 @@ This endpoint creates a new customer using the provided json data
 
 ### Customer
 
-| Name                    | Type      | Description                                                                                  | Required?       |
-|-------------------------|-----------|----------------------------------------------------------------------------------------------|-----------------|
-| `id`                    | integer   | The id for the customer                                                                      | No              |
-| `name`                  | string    | The name of the customer                                                                     | Yes             |
-| `email`                 | string    | The email of the customer                                                                    | Yes             |
-| `password`              | string    | The plain-text password of the customer                                                      | Conditional `*` |
-| `password_hash`         | string    | The hashed password of the customer                                                          | Conditional `*` |
-| `group`                 | string    | The group name of the customer                                                               | No              |
-| `tax_group`             | string    | The tax group name of the customer                                                           | No              |
-| `addresses`             | array     | The addresses of the customer, see [Address](#address)                                       | No              |
-| `additional_attributes` | array     | The additional attributes of the customer, see [Additional Attribute](#additional-attribute) | No              |
+| Name                    | Type   | Description                                                                                  | Required?       |
+|-------------------------|--------|----------------------------------------------------------------------------------------------|-----------------|
+| `id`                    | int    | The id for the customer                                                                      | No              |
+| `name`                  | string | The name of the customer                                                                     | Yes             |
+| `email`                 | string | The email of the customer                                                                    | Yes             |
+| `password`              | string | The plain-text password of the customer                                                      | Conditional `*` |
+| `password_hash`         | string | The hashed password of the customer                                                          | Conditional `*` |
+| `group`                 | string | The group name of the customer                                                               | No              |
+| `tax_group`             | string | The tax group name of the customer                                                           | No              |
+| `addresses`             | array  | The addresses of the customer, see [Address](#address)                                       | No              |
+| `additional_attributes` | array  | The additional attributes of the customer, see [Additional Attribute](#additional-attribute) | No              |
 
 `*` **Note:** One of password or password_hash must be provided. Using password_hash is recommended. Ensure the hashing algorithm matches the store’s configuration (usually bcrypt)
 

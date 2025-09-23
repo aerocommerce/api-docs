@@ -61,7 +61,7 @@ This endpoint updates an existing variant by its `id` or `sku`. Only the fields 
 | `src`        | string  | The source url of the image                                          | Yes       |
 | `alt`        | string  | Alt text for accessibility and SEO                                   | No        |
 | `is_default` | boolean | Whether this is a default image                                      | No        |
-| `position`   | integer | Sort order position of the image                                     | No        |
+| `position`   | int     | Sort order position of the image                                     | No        |
 | `attributes` | array   | An array of [Attribute](#attribute) objects that apply to this image | No        |
 
 ### Attribute
@@ -92,7 +92,7 @@ This endpoint updates an existing variant by its `id` or `sku`. Only the fields 
 | `price`        | float     | The base price **including tax**                           | Yes       |
 | `sale_price`   | float     | The sale price **including tax**                           | No        |
 | `retail_price` | float     | The retail price **including tax**                         | No        |
-| `quantity`     | integer   | Quantity required for this price tier (default: 1)         | No        |
+| `quantity`     | int       | Quantity required for this price tier (default: 1)         | No        |
 | `currency`     | string    | Currency code (defaults to store default)                  | No        |
 | `start_at`     | timestamp | When this price becomes active (e.g., 2023-09-01 09:29:41) | No        |
 | `end_at`       | timestamp | When this price expires                                    | No        |

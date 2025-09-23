@@ -190,7 +190,7 @@ This endpoint retrieves a single order by `id` or `reference`
 | `id`       | int  | The id of the order item that was fulfilled                                                    |
 | `quantity` | int  | The quantity of the order item that was fulfilled                                              |
 
-### Returns
+### Return
 
 | Name           | Type      | Description                                           |
 |----------------|-----------|-------------------------------------------------------|
@@ -206,6 +206,23 @@ This endpoint retrieves a single order by `id` or `reference`
 | `id`                | int  | The id of the order item that was returned                                                     |
 | `quantity`          | int  | The quantity of the order item that was returned                                               |
 | `exchanged_for_id`  | int  | The id of the order item that the item was returned for (`null` if the item was not exchanged) |
+
+### Comment
+
+| Name              | Type      | Description                            |
+|-------------------|-----------|----------------------------------------|
+| `admin`           | object    | The [Admin](#admin) who commented      |
+| `message`         | string    | The comment message                    |
+| `customer_facing` | boolean   | Whether the comment is customer facing |
+| `created_at`      | timestamp | The date the comment was created       |
+
+### Admin
+
+| Name    | Type   | Description            |
+|---------|--------|------------------------|
+| `id`    | int    | The id of the admin    |
+| `name`  | string | The name of the admin  |
+| `email` | string | The email of the admin |
 
 ## Example Request
 
@@ -325,7 +342,19 @@ GET /api/orders/{id|reference}
         }
     ],
     "fulfillments": [],
-    "returns": []
+    "returns": [],
+    "comments": [
+        {
+            "admin": {
+                "id": 1,
+                "name": "Admin",
+                "email": "admin@example.com"
+            },
+            "message": "This is an API message",
+            "customer_facing": true,
+            "created_at": "2025-09-01 09:29:41"
+        }
+    ]
 }
 ```
 
@@ -507,7 +536,8 @@ GET /api/orders/{id|reference}
             ]
         }
     ],
-    "returns": []
+    "returns": [],
+    "comments": []
 }
 ```
 
@@ -660,7 +690,8 @@ GET /api/orders/{id|reference}
                 }
             ]
         }
-    ]
+    ],
+    "comments": []
 }
 ```
 
@@ -819,7 +850,8 @@ GET /api/orders/{id|reference}
                 }
             ]
         }
-    ]
+    ],
+    "comments": []
 }
 ```
 

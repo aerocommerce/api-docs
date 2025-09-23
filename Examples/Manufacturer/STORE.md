@@ -6,20 +6,21 @@ This endpoint creates a new manufacturer using the provided json data
 
 ### Manufacturer
 
-| Name                    | Type   | Description                                                                            | Required? |
-|-------------------------|--------|----------------------------------------------------------------------------------------|-----------|
-| `name`                  | string | The name of the manufacturer                                                           | Yes       |
-| `slug`                  | string | The slug of the manufacturer, if not present it is auto-generated from name            | No        |
-| `reference`             | string | The reference of the manufacturer                                                      | No        |
-| `logic`                 | string | The logic of the rules for the manufacturer, and/or (defaults to or if not provided)   | No        |
-| `logo`                  | object | The logo of the manufacturer, see [Image](#image)                                      | No        |
-| `tags`                  | array  | An array of [Tag](#tag) objects                                                        | No        |
-| `related_manufacturers` | array  | An array of related manufacturers (ids and/or names)                                   | No        |
-| `rules`                 | array  | An array of Listing Page [Rule](#rule) objects                                         | No        |
-| `content`               | object | The Listing Page [Content](#content) of the category                                   | No        |
-| `options`               | object | The Listing Page [Options](#options) of the category                                   | No        |
-| `seo`                   | object | The [SEO](#seo) of the category                                                        | No        |
-| `additional_attributes` | array  | An array of [Additional Attribute](#additional-attribute) objects                      | No        |
+| Name                    | Type   | Description                                                                          | Required? |
+|-------------------------|--------|--------------------------------------------------------------------------------------|-----------|
+| `id`                    | int    | The id for the manufacturer                                                          | No        |
+| `name`                  | string | The name of the manufacturer                                                         | Yes       |
+| `slug`                  | string | The slug of the manufacturer, if not present it is auto-generated from name          | No        |
+| `reference`             | string | The reference of the manufacturer                                                    | No        |
+| `logic`                 | string | The logic of the rules for the manufacturer, and/or (defaults to or if not provided) | No        |
+| `logo`                  | object | The logo of the manufacturer, see [Image](#image)                                    | No        |
+| `tags`                  | array  | An array of [Tag](#tag) objects                                                      | No        |
+| `related_manufacturers` | array  | An array of related manufacturers (ids and/or names)                                 | No        |
+| `rules`                 | array  | An array of Listing Page [Rule](#rule) objects                                       | No        |
+| `content`               | object | The Listing Page [Content](#content) of the category                                 | No        |
+| `options`               | object | The Listing Page [Options](#options) of the category                                 | No        |
+| `seo`                   | object | The [SEO](#seo) of the category                                                      | No        |
+| `additional_attributes` | array  | An array of [Additional Attribute](#additional-attribute) objects                    | No        |
 
 ### Image
 

@@ -6,10 +6,11 @@ This endpoint creates a new flag using the provided json data
 
 ## Structure
 
-| Name          | Type    | Description                             | Required? |
-|---------------|---------|-----------------------------------------|-----------|
-| `name`        | string  | The name of the flag                    | Yes       |
-| `color`       | hexcode | The color of the flag (format ##RRGGBB) | Yes       |
+| Name    | Type    | Description                             | Required? |
+|---------|---------|-----------------------------------------|-----------|
+| `id`    | int     | The id for the flag                     | No        |
+| `name`  | string  | The name of the flag                    | Yes       |
+| `color` | hexcode | The color of the flag (format ##RRGGBB) | Yes       |
 
 ## Example Request
 

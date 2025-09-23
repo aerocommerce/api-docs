@@ -13,6 +13,8 @@ See [View Customer](VIEW.md) for the structure of the customer payloads inside t
 | Name     | Description                                | Example                                  |
 |----------|--------------------------------------------|------------------------------------------|
 | `emails` | Only return customers with specific emails | ?emails=test@gmail.com,example@gmail.com |
+| `names`  | Only return customers with specific names  | ?names=Test,Another Test                 |
+| `groups` | Only return customers with specific groups | ?groups=VIP,Retail                       |
 
 ## Example Response
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-These endpoints allow flags (by `id` or `name`) to be added to orders (by `id` or `reference`)
+These endpoints allow flags (by `id` or `name`) to be added to (or removed from) orders (by `id` or `reference`)
 
 ## Attach Flag
 

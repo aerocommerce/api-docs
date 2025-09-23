@@ -8,6 +8,7 @@ This endpoint creates a new customer address using the provided json data
 
 | Name           | Type    | Description                                                                    | Required?   |
 |----------------|---------|--------------------------------------------------------------------------------|-------------|
+| `id`           | int     | The id for the address                                                         | No          |
 | `name`         | string  | The name of the address                                                        | No          |
 | `first_name`   | string  | The first name for the address                                                 | Yes         |
 | `last_name`    | string  | The last name for the address                                                  | Yes         |

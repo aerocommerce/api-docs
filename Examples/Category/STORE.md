@@ -10,6 +10,7 @@ This endpoint creates a new category using the provided json data
 
 | Name                    | Type    | Description                                                                      | Required? |
 |-------------------------|---------|----------------------------------------------------------------------------------|-----------|
+| `id`                    | int     | The id for the category                                                          | No        |
 | `name`                  | string  | The name of the category                                                         | Yes       |
 | `parent`                | string  | The parent of the category                                                       | No        |
 | `slug`                  | string  | The slug of the category, if not present it is auto-generated from name          | No        |

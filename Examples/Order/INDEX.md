@@ -8,24 +8,27 @@ This endpoint retrieves a paginated list of all orders
 
 See [View Order](VIEW.md) for the structure of the order payloads inside the `data` array
 
-## Remarks
-
-This is a paginated route (see [Pagination Conventions](../../CONVENTIONS.md#pagination-conventions))
-
-In addition to the standard parameters accepted for a paginated route, this route also accepts:
-
-| Parameter        | Description                     | Example                                 |
-|------------------|---------------------------------|-----------------------------------------|
-| `min_ordered_at` | The min ordered at for an order | ?min_ordered_at=2023-08-30%2010:35:05   |
-| `max_ordered_at` | The max ordered at for an order | ?max_ordered_at=2023-08-30%2010:35:05   |
-
-see [Date Conventions](../../CONVENTIONS.md#date-conventions) for more info on acceptable values for these parameters
-
 ## Scopes
 
-| Name      | Description                                                | Example        |
-|-----------|------------------------------------------------------------|----------------|
-| `visible` | Only return visible orders (those which have been ordered) | ?scope=visible |
+| Name           | Description                                                | Example            |
+|----------------|------------------------------------------------------------|--------------------|
+| `visible`      | Only return visible orders (those which have been ordered) | ?scope=visible     |
+| `outstanding`  | Only return outstanding orders                             | ?scope=outstanding |
+| `completed`    | Only return completed orders                               | ?scope=completed   |
+| `incomplete`   | Only return incomplete orders                              | ?scope=incomplete  |
+| `express`      | Only return express orders                                 | ?scope=express     |
+| `standard`     | Only return standard orders                                | ?scope=standard    |
+
+## Filters
+
+| Name        | Description                                                 | Example                     |
+|-------------|-------------------------------------------------------------|-----------------------------|
+| `reference` | Only return orders with specific references                 | ?references=ABC123,DEF456   |
+| `statuses`  | Only return orders with specific status ids or names        | ?statuses=1,On Hold         |
+| `states`    | Only return orders with specific states                     | ?states=dispatched,returned |
+| `customers` | Only return orders with specific customers (by id or email) | ?customers=1,test@gmail.com |
+| `emails`    | Only return orders for specific emails                      | ?emails=test@gmail.com      |
+| `channels`  | Only return orders for specific channels                    | ?channels=web,api           |
 
 ## Example Response
 

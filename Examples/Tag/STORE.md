@@ -10,6 +10,7 @@ This endpoint creates a new tag using the provided json data
 
 | Name        | Type    | Description                                                                       | Required?   |
 |-------------|---------|-----------------------------------------------------------------------------------|-------------|
+| `id`        | int     | The id for the tag                                                                | No          |
 | `name`      | string  | The name of the tag                                                               | Yes         |
 | `slug`      | string  | The slug of the tag, if not present it is auto-generated from name                | Conditional |
 | `reference` | string  | The reference of the tag                                                          | No          |

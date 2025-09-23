@@ -8,25 +8,27 @@ This endpoint creates a new price list using the provided json data
 
 ### Price List
 
-| Name                | Type      | Description                                                                                         | Required |
-|---------------------|-----------|-----------------------------------------------------------------------------------------------------|----------|
-| `name`              | string    | The name of the price list                                                                          | Yes      |
-| `applies_to`        | string    | The applies to of the price list (everyone, not-customers, customers, groups)                       | Yes      |
-| `start_at`          | timestamp | The start at of the price list                                                                      | No       |
-| `end_at`            | timestamp | The end at of the price list                                                                        | No       |
-| `entries`           | array     | An array of [Entry](#entry) objects                                                                 | No       |
-| `customer_groups`   | array     | An array of [Customer Group](#customer-group) objects (only required when `applies_to` = "groups")  | No       |
+| Name              | Type      | Description                                                                                        | Required |
+|-------------------|-----------|----------------------------------------------------------------------------------------------------|----------|
+| `id`              | int       | The id of the price list                                                                           | No       |
+| `name`            | string    | The name of the price list                                                                         | Yes      |
+| `applies_to`      | string    | The applies to of the price list (everyone, not-customers, customers, groups)                      | Yes      |
+| `start_at`        | timestamp | The start at of the price list                                                                     | No       |
+| `end_at`          | timestamp | The end at of the price list                                                                       | No       |
+| `entries`         | array     | An array of [Entry](#entry) objects                                                                | No       |
+| `customer_groups` | array     | An array of [Customer Group](#customer-group) objects (only required when `applies_to` = "groups") | No       |
 
 ### Entry
 
-| Name         | Type     | Description                                                                                                                                   | Required     |
-|--------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------|
-| `for`        | string   | What the entry applies to (e.g., all_products, all_products_unless_reduced, product, variant, category, tag, manufacturer)                    | Yes          |
-| `target`     | string   | Identifier of the target (e.g., id corresponding to the `for` or model for product, or sku for variant or name for category/tag/manufacturer) | Conditional  |
-| `type`       | string   | Type of the price adjustment (e.g., fixed_price, fixed_price_decrease, fixed_price_increase, percentage_decrease, percentage_increase)        | Yes          |
-| `price`      | object   | The [Price](#price) object (not required when `type` is *percentage* based)                                                                   | Conditional  |
-| `percentage` | float    | The percentage of the price list entry (only required when `type` is *percentage* based)                                                      | Conditional  |
-| `for_price`  | string   | Which price the entry affects (e.g., sale_price, base_price, rrp, cost_price)                                                                 | Yes          |
+| Name         | Type   | Description                                                                                                                                   | Required    |
+|--------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| `id`         | int    | The id for the entry                                                                                                                          | No          |
+| `for`        | string | What the entry applies to (e.g., all_products, all_products_unless_reduced, product, variant, category, tag, manufacturer)                    | Yes         |
+| `target`     | string | Identifier of the target (e.g., id corresponding to the `for` or model for product, or sku for variant or name for category/tag/manufacturer) | Conditional |
+| `type`       | string | Type of the price adjustment (e.g., fixed_price, fixed_price_decrease, fixed_price_increase, percentage_decrease, percentage_increase)        | Yes         |
+| `price`      | object | The [Price](#price) object (not required when `type` is *percentage* based)                                                                   | Conditional |
+| `percentage` | float  | The percentage of the price list entry (only required when `type` is *percentage* based)                                                      | Conditional |
+| `for_price`  | string | Which price the entry affects (e.g., sale_price, base_price, rrp, cost_price)                                                                 | Yes         |
 
 ### Price
 
