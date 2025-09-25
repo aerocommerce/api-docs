@@ -15,6 +15,15 @@
 
 **NOTE:** Passing a `name` in place of an `id` is supported for the order flag endpoints, e.g. `/api/orders/REF-123/flags/name`
 
+### Fulfillments
+
+| URL                                | Permission          | Action  | Examples                                             | Purpose                                          |
+|------------------------------------|---------------------|---------|------------------------------------------------------|--------------------------------------------------|
+| /api/orders/{id}/fulfillments      | fulfillments.store  | POST    | [Store Fulfillment](Examples/Fulfillment/STORE.md)   | Create a fulfillment for an order from json data |
+| /api/orders/{id}/fulfillments/{id} | fulfillments.delete | DELETE  | [Delete Fulfillment](Examples/Fulfillment/DELETE.md) | Delete (cancel) a fulfillment for an order       |
+
+**NOTE:**: Passing a `reference` in place of an `id` is supported (for both the order & the fulfillment)
+
 ### Order Statuses
 
 | URL                      | Permission            | Action | Examples                                             | Purpose                            |
