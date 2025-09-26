@@ -8,6 +8,7 @@ This endpoint allows a comment to be added to an order (by `id` or `reference`)
 
 | Name              | Type        | Description                                               | Required? |
 |-------------------|-------------|-----------------------------------------------------------|-----------|
+| `id`              | int         | The id for the comment                                    | No        |
 | `admin`           | int\|string | The id or email of the admin                              | No        |
 | `message`         | string      | The comment message                                       | Yes       |
 | `customer_facing` | boolean     | Whether the comment is customer facing (default: `false`) | No        |
