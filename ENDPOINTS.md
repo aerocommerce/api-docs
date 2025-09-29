@@ -158,6 +158,24 @@
 | /api/payment-methods       | payment-methods.index   | GET     | [Payment Method Index](Examples/PaymentMethod/INDEX.md)    | Get all payment methods (paginated) |
 | /api/payment-methods/{id}  | payment-methods.view    | GET     | [View Payment Method](Examples/PaymentMethod/VIEW.md)      | Get payment method by id            |
 
+### Shipping Methods
+
+| URL                         | Permission                 | Action  | Examples                                                  | Purpose                              |
+|-----------------------------|----------------------------|---------|-----------------------------------------------------------|--------------------------------------|
+| /api/shipping-methods       | shipping-methods.index     | GET     | [Shipping Method Index](Examples/ShippingMethod/INDEX.md) | Get all shipping methods (paginated) |
+| /api/shipping-methods/{id}  | shipping-methods.view      | GET     | [View Shipping Method](Examples/ShippingMethod/VIEW.md)   | Get shipping method by id            |
+
+### Locations
+
+| URL                   | Permission          | Action  | Examples                                       | Purpose                          |
+|-----------------------|---------------------|---------|------------------------------------------------|----------------------------------|
+| /api/locations        | locations.index     | GET     | [Location Index](Examples/Location/INDEX.md)   | Get all locations (paginated)    |
+| /api/locations/{id}   | locations.view      | GET     | [View Location](Examples/Location/VIEW.md)     | Get locations by id              | 
+| /api/locations        | locations.store     | POST    | [Store Location](Examples/Location/STORE.md)   | Create a location from json data | 
+| /api/locations/{id}   | locations.update    | PUT     | [Update Location](Examples/Location/UPDATE.md) | Update a location from json data |
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant location endpoints, e.g. `/api/locations/name`
+
 ### Flags
 
 | URL              | Permission   | Action | Examples                                 | Purpose                      |
@@ -167,6 +185,8 @@
 | /api/flags       | flags.store  | POST   | [Store Flag](Examples/Flag/STORE.md)     | Create a flag from json data | 
 | /api/flags/{id}  | flags.update | PUT    | [Update Flag](Examples/Flag/UPDATE.md)   | Update a flag from json data |
 | /api/flags/{id}  | flags.delete | DELETE | [Delete Flag](Examples/Flag/DELETE.md)   | Delete a flag                |
+
+**NOTE:** Passing a `name` in place of an `id` is supported for all relevant flag endpoints, e.g. `/api/flags/name`
 
 ### Price Lists
 

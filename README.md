@@ -81,21 +81,25 @@
     16. Shipping Methods
         1. [Index](Examples/ShippingMethod/INDEX.md)
         2. [View](Examples/ShippingMethod/VIEW.md)
-    17. Flags
+    17. Locations
+        1. [Index](Examples/Location/INDEX.md)
+        2. [View](Examples/Location/VIEW.md)
+        3. [Store](Examples/Location/STORE.md)
+        4. [Update](Examples/Location/UPDATE.md)
+    18. Flags
         1. [Index](Examples/Flag/INDEX.md)
         2. [View](Examples/Flag/VIEW.md)
         3. [Store](Examples/Flag/STORE.md)
         4. [Update](Examples/Flag/UPDATE.md)
         5. [Delete](Examples/Flag/DELETE.md)
-    18. Price Lists
+    19. Price Lists
         1. [Index](Examples/PriceList/INDEX.md)
         2. [View](Examples/PriceList/VIEW.md)
         3. [Store](Examples/PriceList/STORE.md)
         4. [Update](Examples/PriceList/UPDATE.md)
-    19. Price List Entries
+    20. Price List Entries
         1. [Store](Examples/PriceListEntry/STORE.md)
         2. [Update](Examples/PriceListEntry/UPDATE.md)
-
 6. [Extending the API](EXTENDING.md) 
 
 ## Usage

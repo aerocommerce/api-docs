@@ -117,7 +117,7 @@ This endpoint retrieves a single manufacturer by `id` or `name`
 ## Example Response
 
 ```http request
-GET /api/manufacturers/{id}
+GET /api/manufacturers/{id|name}
 ```
 
 ```json
