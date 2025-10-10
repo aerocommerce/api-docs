@@ -1,0 +1,36 @@
+# Specification Group Index
+
+## Overview
+
+This endpoint retrieves a paginated list of all specification groups
+
+## Structure
+
+See [View Specification Group](VIEW.md) for the structure of the specification group payloads inside the `data` array
+
+## Example Response
+
+```http request
+GET /api/specification-groups?per_page=2
+```
+
+```json lines
+{
+    "current_page": 1,
+    "data": [
+      //...
+    ],
+    "first_page_url": "http://aero.test/api/flags?page=1",
+    "from": 1,
+    "last_page": 3,
+    "last_page_url": "http://aero.test/api/flags?page=3",
+    "next_page_url": "http://aero.test/api/flags?page=2",
+    "path": "http://aero.test/api/flags",
+    "per_page": 2,
+    "prev_page_url": null,
+    "to": 2,
+    "total": 5
+}
+```
+
+[Back to contents](../../README.md#table-of-contents)

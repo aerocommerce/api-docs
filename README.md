@@ -100,6 +100,16 @@
     20. Price List Entries
         1. [Store](Examples/PriceListEntry/STORE.md)
         2. [Update](Examples/PriceListEntry/UPDATE.md)
+    21. Specification Groups
+        1. [Index](Examples/SpecificationGroup/INDEX.md)
+        2. [View](Examples/SpecificationGroup/VIEW.md)
+        3. [Store](Examples/SpecificationGroup/STORE.md)
+        4. [Update](Examples/SpecificationGroup/UPDATE.md)
+    22. Upsell Groups
+        1. [Index](Examples/UpsellGroup/INDEX.md)
+        2. [View](Examples/UpsellGroup/VIEW.md)
+        3. [Store](Examples/UpsellGroup/STORE.md)
+        4. [Update](Examples/UpsellGroup/UPDATE.md)
 6. [Extending the API](EXTENDING.md) 
 
 ## Usage
