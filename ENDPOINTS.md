@@ -190,12 +190,12 @@
 
 ### Price Lists
 
-| URL                   | Permission          | Action | Examples                                          | Purpose                            |
-|-----------------------|---------------------|--------|---------------------------------------------------|------------------------------------|
-| /api/price-lists      | price-lists.index   | GET    | [Price List Index](Examples/PriceList/INDEX.md)   | Get all price lists (paginated)    |
-| /api/price-lists/{id} | price-lists.view    | GET    | [View Price List](Examples/PriceList/VIEW.md)     | Get price list by id               | 
-| /api/price-lists      | price-lists.store   | POST   | [Store Price List](Examples/PriceList/STORE.md)   | Create a price list from json data | 
-| /api/price-lists/{id} | price-lists.store   | PUT    | [Update Price List](Examples/PriceList/UPDATE.md) | Update a price list from json data |
+| URL                   | Permission         | Action | Examples                                          | Purpose                            |
+|-----------------------|--------------------|--------|---------------------------------------------------|------------------------------------|
+| /api/price-lists      | price-lists.index  | GET    | [Price List Index](Examples/PriceList/INDEX.md)   | Get all price lists (paginated)    |
+| /api/price-lists/{id} | price-lists.view   | GET    | [View Price List](Examples/PriceList/VIEW.md)     | Get price list by id               | 
+| /api/price-lists      | price-lists.store  | POST   | [Store Price List](Examples/PriceList/STORE.md)   | Create a price list from json data | 
+| /api/price-lists/{id} | price-lists.update | PUT    | [Update Price List](Examples/PriceList/UPDATE.md) | Update a price list from json data |
 
 ### Price List Entries
 
@@ -204,5 +204,22 @@
 | /api/price-lists/{id}/entries        | price-list-entries.store  | POST   | [Store Price List Entry](Examples/PriceListEntry/STORE.md)   | Create a price list entry from json data |
 | /api/price-lists/{id}/entries/{id}   | price-list-entries.update | PUT    | [Update Price List Entry](Examples/PriceListEntry/UPDATE.md) | Update a price list entry from json data |
 
+### Specification Groups
+
+| URL                             | Permission                    | Action | Examples                                                            | Purpose                                        |
+|---------------------------------|-------------------------------|--------|---------------------------------------------------------------------|------------------------------------------------|
+| /api/specification-groups       | specification-groups.index    | GET    | [Specification Group Index](Examples/SpecificationGroup/INDEX.md)   | Get all specification groups (paginated)       |
+| /api/specification-groups/{id}  | specification-groups.view     | GET    | [View Specification Group](Examples/SpecificationGroup/VIEW.md)     | Get specification group by id                  | 
+| /api/specification-groups       | specification-groups.store    | POST   | [Store Specification Group](Examples/SpecificationGroup/STORE.md)   | Create a specification group from json data    | 
+| /api/specification-groups/{id}  | specification-groups.store    | PUT    | [Update Specification Group](Examples/SpecificationGroup/UPDATE.md) | Update a specification group from json data    |
+
+### Upsell Groups
+
+| URL                       | Permission          | Action | Examples                                              | Purpose                              |
+|---------------------------|---------------------|--------|-------------------------------------------------------|--------------------------------------|
+| /api/upsell-groups        | upsell-groups.index | GET    | [Upsell Group Index](Examples/UpsellGroup/INDEX.md)   | Get all upsell groups (paginated)    |
+| /api/upsell-groups/{key}  | upsell-groups.view  | GET    | [View Upsell Group](Examples/UpsellGroup/VIEW.md)     | Get upsell group by key              | 
+| /api/upsell-groups        | upsell-groups.store | POST   | [Store Upsell Group](Examples/UpsellGroup/STORE.md)   | Create a upsell group from json data | 
+| /api/upsell-groups/{key}  | upsell-groups.store | PUT    | [Update Upsell Group](Examples/UpsellGroup/UPDATE.md) | Update a upsell group from json data |
 
 [Back to contents](README.md#table-of-contents)
