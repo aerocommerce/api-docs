@@ -90,9 +90,9 @@ This endpoint creates a new order using the provided json data
 | `product_id`           | string  | The product id of the buyable (resolves first variant unless variant_id is provided)                 | No                                                                       |
 | `buyable_type`         | string  | The buyable type of the order item                                                                   | Not required if any of:<br/>`sku`/`variant_id`/`product_id` are provided |
 | `buyable_id`           | int     | The buyable id of the order item                                                                     | Not required if any of:<br/>`sku`/`variant_id`/`product_id` are provided |
-| `name`                 | string  | The name for the order item                                                                          | No                                                                       |
+| `name`                 | string  | The name for the order item                                                                          | Conditional `*`                                                                       |
 | `url`                  | string  | The url for the order item                                                                           | No                                                                       |
-| `sku`                  | string  | The sku for the order item, can be used to resolve buyable                                           | No                                                                       |
+| `sku`                  | string  | The sku for the order item, can be used to resolve buyable                                           | Conditional `*`                                                           |
 | `reference`            | string  | The **unique** reference for the order item                                                          | No                                                                       |
 | `manufacturer_id`      | int     | The manufacturer id for the order item                                                               | No                                                                       |
 | `image`                | string  | The image for the order item                                                                         | No                                                                       |
@@ -116,6 +116,8 @@ This endpoint creates a new order using the provided json data
 | `origin_country`       | string  | The origin country code for the order item                                                           | No                                                                       |
 | `subscription_plan_id` | int     | The subscription plan id for the order item                                                          | No                                                                       |
 | `goods_description`    | string  | The goods description for the order item                                                             | No                                                                       |
+
+`*` If no buyable can be resolved from given data then the `sku` is required - as is the `name`
 
 - `price`, `discount` & `full_price` all support an un-nested price including tax being passed, see [Price Conventions](../../CONVENTIONS.md#price-conventions)
 
