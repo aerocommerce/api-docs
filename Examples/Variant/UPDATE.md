@@ -113,6 +113,12 @@ This endpoint updates an existing variant by its `id` or `sku`. Only the fields 
 PUT /api/products/{id|model}/variants/{id|sku}
 ```
 
+OR
+
+```http request
+PUT /api/products/variants/{id|sku}?model=model
+```
+
 ```json lines
 {
     "stock_level": 50,

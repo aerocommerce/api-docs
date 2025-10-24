@@ -192,6 +192,12 @@ Settings are grouped as key-value pairs.
 GET /api/products/{id|model}
 ```
 
+OR 
+
+```http request
+GET /api/products?model=model
+```
+
 ## Example Response
 
 ### Simple Product

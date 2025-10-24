@@ -113,6 +113,12 @@ This endpoint creates a new variant for an existing **variant** product using th
 POST /api/products/{id|model}/variants
 ```
 
+OR
+
+```http request
+POST /api/products/variants?model=model
+```
+
 ```json lines
 {
     "sku": "9021182-XS",

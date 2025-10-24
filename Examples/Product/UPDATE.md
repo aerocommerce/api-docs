@@ -291,6 +291,13 @@ PUT /api/products/{id|model}
 PUT /api/products/{id|model}
 ```
 
+OR
+
+```http request
+PUT /api/products?model=model
+```
+
+
 ```json lines
 {
     "seo": {
