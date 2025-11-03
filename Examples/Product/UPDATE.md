@@ -33,37 +33,38 @@ This endpoint updates an existing product by its `id` or `model`. Only the field
 
 ### Variant
 
-| Name                     | Type     | Description                                                       | Required? |
-|--------------------------|----------|-------------------------------------------------------------------|-----------|
-| `sku`                    | string   | The **unique** SKU for the variant to be updated                  | Yes       |
-| `reference`              | string   | The **unique** reference for the variant                          | No        |
-| `name`                   | string   | Display name of the variant                                       | No        |
-| `summary`                | string   | A short summary of the variant                                    | No        |
-| `description`            | string   | A detailed description of the variant                             | No        |
-| `barcode`                | string   | The barcode/UPC/EAN of the variant                                | No        |
-| `buyable`                | boolean  | Whether the variant can be purchased                              | No        |
-| `visible`                | boolean  | Whether the variant is visible in listings                        | No        |
-| `shippable`              | boolean  | Whether the variant is shippable                                  | No        |
-| `discountable`           | boolean  | Whether discounts can be applied to this variant                  | No        |
-| `hide_when_no_stock`     | boolean  | Whether the variant should be hidden when out of stock            | No        |
-| `infinite_stock`         | boolean  | Whether the variant has unlimited stock                           | No        |
-| `stock_level`            | int      | Current stock level                                               | No        |
-| `stock_buffer`           | int      | The stock buffer                                                  | No        |
-| `tax_group`              | string   | The tax group applied to the variant                              | No        |
-| `minimum_quantity`       | int      | Minimum quantity per purchase                                     | No        |
-| `maximum_quantity`       | int      | Maximum quantity per purchase                                     | No        |
-| `multiples_of`           | int      | Purchasable only in multiples of this number                      | No        |
-| `weight`                 | float    | Weight of the variant                                             | No        |
-| `weight_unit`            | string   | Unit of weight (e.g., `kg`, `lb`)                                 | No        |
-| `volume`                 | float    | Volume of the variant                                             | No        |
-| `volume_unit`            | string   | Unit of volume (e.g., `m^3`, `cm^3`)                              | No        |
-| `hs`                     | string   | HS (Harmonized System) code for customs                           | No        |
-| `origin_country`         | string   | ISO country code of origin (e.g., `US`, `GB`)                     | No        |
-| `goods_description`      | string   | Description of goods for customs                                  | No        |
-| `tags`                   | array    | An array of [Tag](#tag) objects                                   | No        |
-| `cost`                   | object   | The [Cost Price](#cost-price) of the variant                      | No        |
-| `prices`                 | array    | An array of [Price](#price) objects                               | No        |
-| `additional_attributes`  | array    | An array of [Additional Attribute](#additional-attribute) objects | No        |
+| Name                    | Type    | Description                                                           | Required? |
+|-------------------------|---------|-----------------------------------------------------------------------|-----------|
+| `sku`                   | string  | The **unique** SKU for the variant to be updated                      | Yes       |
+| `reference`             | string  | The **unique** reference for the variant                              | No        |
+| `name`                  | string  | Display name of the variant                                           | No        |
+| `summary`               | string  | A short summary of the variant                                        | No        |
+| `description`           | string  | A detailed description of the variant                                 | No        |
+| `barcode`               | string  | The barcode/UPC/EAN of the variant                                    | No        |
+| `buyable`               | boolean | Whether the variant can be purchased                                  | No        |
+| `visible`               | boolean | Whether the variant is visible in listings                            | No        |
+| `shippable`             | boolean | Whether the variant is shippable                                      | No        |
+| `discountable`          | boolean | Whether discounts can be applied to this variant                      | No        |
+| `hide_when_no_stock`    | boolean | Whether the variant should be hidden when out of stock                | No        |
+| `infinite_stock`        | boolean | Whether the variant has unlimited stock                               | No        |
+| `stock_level`           | int     | Current stock level                                                   | No        |
+| `stock_buffer`          | int     | The stock buffer                                                      | No        |
+| `stock_action`          | string  | The stock action (e.g., set, add, remove & multiply). Defaults to set | No        |
+| `tax_group`             | string  | The tax group applied to the variant                                  | No        |
+| `minimum_quantity`      | int     | Minimum quantity per purchase                                         | No        |
+| `maximum_quantity`      | int     | Maximum quantity per purchase                                         | No        |
+| `multiples_of`          | int     | Purchasable only in multiples of this number                          | No        |
+| `weight`                | float   | Weight of the variant                                                 | No        |
+| `weight_unit`           | string  | Unit of weight (e.g., `kg`, `lb`)                                     | No        |
+| `volume`                | float   | Volume of the variant                                                 | No        |
+| `volume_unit`           | string  | Unit of volume (e.g., `m^3`, `cm^3`)                                  | No        |
+| `hs`                    | string  | HS (Harmonized System) code for customs                               | No        |
+| `origin_country`        | string  | ISO country code of origin (e.g., `US`, `GB`)                         | No        |
+| `goods_description`     | string  | Description of goods for customs                                      | No        |
+| `tags`                  | array   | An array of [Tag](#tag) objects                                       | No        |
+| `cost`                  | object  | The [Cost Price](#cost-price) of the variant                          | No        |
+| `prices`                | array   | An array of [Price](#price) objects                                   | No        |
+| `additional_attributes` | array   | An array of [Additional Attribute](#additional-attribute) objects     | No        |
 
 ### Tag
 
