@@ -21,14 +21,15 @@ See [View Order](VIEW.md) for the structure of the order payloads inside the `da
 
 ## Filters
 
-| Name        | Description                                                 | Example                     |
-|-------------|-------------------------------------------------------------|-----------------------------|
-| `reference` | Only return orders with specific references                 | ?references=ABC123,DEF456   |
-| `statuses`  | Only return orders with specific status ids or names        | ?statuses=1,On Hold         |
-| `states`    | Only return orders with specific states                     | ?states=dispatched,returned |
-| `customers` | Only return orders with specific customers (by id or email) | ?customers=1,test@gmail.com |
-| `emails`    | Only return orders for specific emails                      | ?emails=test@gmail.com      |
-| `channels`  | Only return orders for specific channels                    | ?channels=web,api           |
+| Name        | Description                                                             | Example                     |
+|-------------|-------------------------------------------------------------------------|-----------------------------|
+| `reference` | Only return orders with specific references                             | ?references=ABC123,DEF456   |
+| `statuses`  | Only return orders with specific status ids or names                    | ?statuses=1,On Hold         |
+| `states`    | Only return orders with specific states                                 | ?states=dispatched,returned |
+| `customers` | Only return orders with specific customers (by id or email)             | ?customers=1,test@gmail.com |
+| `emails`    | Only return orders for specific emails                                  | ?emails=test@gmail.com      |
+| `channels`  | Only return orders for specific channels                                | ?channels=web,api           |
+| `flags`     | Only return orders for specific flags (by id or name, or name\|value)   | ?flags=1,abc,def\|123       |
 
 ## Example Response
 
