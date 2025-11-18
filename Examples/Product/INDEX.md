@@ -22,6 +22,15 @@ See [View Product](VIEW.md) for the structure of the product payloads inside the
 
 **NOTE:** These scopes are applied at the database level and may not always reflect real-time search index data. For precise filtering, use the [Search Product](SEARCH.md) endpoint.
 
+## Filters
+
+| Name              | Description                                                                             | Example                                                             |
+|-------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| `models`          | Only return products with specific models (note: singular form `?model` not supported)  | ?models=ABC,DEF                                                     |
+| `skus`            | Only return products with variants that have specific SKUs                              | ?skus=ABC-123,DEF-456                                               |
+
+**NOTE:** Plural filters can also be used in singular form (unless otherwise stated), e.g. `?sku=ABC-123` for `?skus=ABC-123`
+
 ## Example Response
 
 ```http request

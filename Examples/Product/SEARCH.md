@@ -54,6 +54,8 @@ See [View Product](VIEW.md) for the structure of the product payloads inside the
 | `min_stock_level` | Only return products with stock above specific stock level                              | ?min_stock_level=1                                                  |
 | `max_stock_level` | Only return products with stock below specific stock level                              | ?max_stock_level=10                                                 |
 | `type`            | Only return products of a certain type (e.g. simple or variant)                         | ?type=variant                                                       |
+| `models`          | Only return products with specific models                                               | ?models=ABC,DEF                                                     |
+| `skus`            | Only return products with variants that have specific SKUs                              | ?skus=ABC-123,DEF-456                                               |
 
 **Note:** The `tags` filter applies AND logic across groups and OR logic within groups.  
 - Example 1: `?tags=size|small,colour|red` = small AND red  
