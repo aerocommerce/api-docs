@@ -222,4 +222,10 @@
 | /api/upsell-groups        | upsell-groups.store | POST   | [Store Upsell Group](Examples/UpsellGroup/STORE.md)   | Create a upsell group from json data | 
 | /api/upsell-groups/{key}  | upsell-groups.store | PUT    | [Update Upsell Group](Examples/UpsellGroup/UPDATE.md) | Update a upsell group from json data |
 
+### Stock
+
+| URL                      | Permission          | Action | Examples                                              | Purpose                              |
+|--------------------------|---------------------|--------|-------------------------------------------------------|--------------------------------------|
+| /api/stock               | stock.update        | POST   | [Stock Update](Examples/Stock/UPDATE.md)              | Bulk update variants stock           |
+
 [Back to contents](README.md#table-of-contents)
