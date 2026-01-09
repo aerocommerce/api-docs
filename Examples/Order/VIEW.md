@@ -60,39 +60,41 @@ This endpoint retrieves a single order by `id` or `reference`
 
 ### Shipping Address
 
-| Name               | Type    | Description                                       |
-|--------------------|---------|---------------------------------------------------|
-| `first_name`       | string  | The first name for the shipping address           |
-| `last_name`        | string  | The last name for the shipping address            |
-| `company`          | string  | The company for the shipping address              |
-| `mobile`           | string  | The mobile number for the shipping address        |
-| `phone`            | string  | The phone number for the shipping address         |
-| `line_1`           | string  | The first line for the shipping address           |
-| `line_2`           | string  | The second line for the shipping address          |
-| `city`             | string  | The city for the shipping address                 |
-| `zone`             | string  | The zone code for the shipping address            |
-| `postcode`         | string  | The postcode for the shipping address             |
-| `country`          | string  | The country code for the shipping address         |
-| `reference`        | string  | The **unique** reference for the shipping address |
-| `eori_number`      | string  | The EORI number for the shipping address          |
+| Name           | Type    | Description                                       |
+|----------------|---------|---------------------------------------------------|
+| `first_name`   | string  | The first name for the shipping address           |
+| `last_name`    | string  | The last name for the shipping address            |
+| `company`      | string  | The company for the shipping address              |
+| `mobile`       | string  | The mobile number for the shipping address        |
+| `phone`        | string  | The phone number for the shipping address         |
+| `line_1`       | string  | The first line for the shipping address           |
+| `line_2`       | string  | The second line for the shipping address          |
+| `city`         | string  | The city for the shipping address                 |
+| `county`       | string  | The county for the shipping address               |
+| `zone`         | string  | The zone code for the shipping address            |
+| `postcode`     | string  | The postcode for the shipping address             |
+| `country`      | string  | The country code for the shipping address         |
+| `reference`    | string  | The **unique** reference for the shipping address |
+| `eori_number`  | string  | The EORI number for the shipping address          |
 
 ### Billing Address
 
-| Name             | Type    | Description                                      |
-|------------------|---------|--------------------------------------------------|
-| `first_name`     | string  | The first name for the billing address           |
-| `last_name`      | string  | The last name for the billing address            |
-| `company`        | string  | The company for the billing address              |
-| `mobile`         | string  | The mobile number for the billing address        |
-| `phone`          | string  | The phone number for the billing address         |
-| `line_1`         | string  | The first line for the billing address           |
-| `line_2`         | string  | The second line for the billing address          |
-| `city`           | string  | The city for the billing address                 |
-| `zone`           | string  | The zone code for the billing address            |
-| `postcode`       | string  | The postcode for the billing address             |
-| `country`        | string  | The country code for the billing address         |
-| `reference`      | string  | The **unique** reference for the billing address |
-| `eori_number`    | string  | The EORI number for the billing address          |
+| Name            | Type    | Description                                      |
+|-----------------|---------|--------------------------------------------------|
+| `first_name`    | string  | The first name for the billing address           |
+| `last_name`     | string  | The last name for the billing address            |
+| `company`       | string  | The company for the billing address              |
+| `mobile`        | string  | The mobile number for the billing address        |
+| `phone`         | string  | The phone number for the billing address         |
+| `line_1`        | string  | The first line for the billing address           |
+| `line_2`        | string  | The second line for the billing address          |
+| `city`          | string  | The city for the billing address                 |
+| `county`        | string  | The county for the billing address               |
+| `zone`          | string  | The zone code for the billing address            |
+| `postcode`      | string  | The postcode for the billing address             |
+| `country`       | string  | The country code for the billing address         |
+| `reference`     | string  | The **unique** reference for the billing address |
+| `eori_number`   | string  | The EORI number for the billing address          |
 
 ### Order Item
 
