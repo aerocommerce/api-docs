@@ -38,7 +38,7 @@ This endpoint updates an existing attribute in a specific group by its `id` or `
 ## Example Request
 
 ```http request
-POST /api/attribute-groups/{id|name}/attributes/{id|name}
+PUT /api/attribute-groups/{id|name}/attributes/{id|name}
 ```
 
 ```json lines

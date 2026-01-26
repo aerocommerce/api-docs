@@ -62,7 +62,7 @@ This endpoint updates an existing location  by its `id` or `name`. Only the fiel
 ## Example Request
 
 ```http request
-POST /api/locations/
+PUT /api/locations/{id|name}
 ```
 
 ```json lines
