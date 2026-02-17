@@ -110,7 +110,12 @@
         2. [View](Examples/UpsellGroup/VIEW.md)
         3. [Store](Examples/UpsellGroup/STORE.md)
         4. [Update](Examples/UpsellGroup/UPDATE.md)
-    23. Stock
+    23. Upsell Groups
+        1. [Index](Examples/ListingCollectionGroup/INDEX.md)
+        2. [View](Examples/ListingCollectionGroup/VIEW.md)
+        3. [Store](Examples/ListingCollectionGroup/STORE.md)
+        4. [Update](Examples/ListingCollectionGroup/UPDATE.md)
+    24. Stock
         1. [Update](Examples/Stock/UPDATE.md)
 6. [Extending the API](EXTENDING.md) 
 
