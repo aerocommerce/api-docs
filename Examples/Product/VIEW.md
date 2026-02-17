@@ -8,24 +8,25 @@ This endpoint retrieves a single product by `id` or `model`
 
 ### Product
 
-| Name                            | Type      | Description                                                       |
-|---------------------------------|-----------|-------------------------------------------------------------------|
-| `model`                         | string    | The **unique** model identifier for the product                   |
-| `name`                          | string    | The display name of the product                                   |
-| `manufacturer`                  | object    | The [Manufacturer](#manufacturer) object (null when none)         |
-| `summary`                       | string    | A short summary of the product                                    |
-| `description`                   | string    | A detailed description of the product                             |
-| `active`                        | boolean   | Whether the product is active (available for purchase)            |
-| `visible`                       | boolean   | Whether the product is visible in the storefront                  |
-| `attribute_groups_to_split_by`  | ?array    | The attribute groups to split listings by (null when none)        |
-| `published_at`                  | timestamp | When the product was published                                    |
-| `images`                        | array     | An array of [Image](#image) objects                               |
-| `categories`                    | array     | An array of [Category](#category) objects                         |
-| `tags`                          | array     | An array of [Tag](#tag) objects                                   |
-| `variants`                      | array     | An array of [Variant](#variant) objects                           |
-| `seo`                           | object    | A [SEO](#seo) object                                              |
-| `settings`                      | object    | A [Settings](#settings) object with grouped key-value pairs       |
-| `additional_attributes`         | array     | An array of [Additional Attribute](#additional-attribute) objects |
+| Name                           | Type      | Description                                                       |
+|--------------------------------|-----------|-------------------------------------------------------------------|
+| `model`                        | string    | The **unique** model identifier for the product                   |
+| `name`                         | string    | The display name of the product                                   |
+| `manufacturer`                 | object    | The [Manufacturer](#manufacturer) object (null when none)         |
+| `summary`                      | string    | A short summary of the product                                    |
+| `description`                  | string    | A detailed description of the product                             |
+| `active`                       | boolean   | Whether the product is active (available for purchase)            |
+| `visible`                      | boolean   | Whether the product is visible in the storefront                  |
+| `attribute_groups_to_split_by` | ?array    | The attribute groups to split listings by (null when none)        |
+| `published_at`                 | timestamp | When the product was published                                    |
+| `images`                       | array     | An array of [Image](#image) objects                               |
+| `categories`                   | array     | An array of [Category](#category) objects                         |
+| `tags`                         | array     | An array of [Tag](#tag) objects                                   |
+| `variants`                     | array     | An array of [Variant](#variant) objects                           |
+| `seo`                          | object    | A [SEO](#seo) object                                              |
+| `settings`                     | object    | A [Settings](#settings) object with grouped key-value pairs       |
+| `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects |
+| `related_listings`             | array     | An array of [Related Listing](#related-listing) objects           |
 
 ### Manufacturer
 
@@ -185,6 +186,14 @@ Settings are grouped as key-value pairs.
 |---------|---------|---------------------------------------|
 | `key`   | string  | The key of the additional attribute   |
 | `value` | string  | The value of the additional attribute |
+
+### Related Listing
+
+| Name         | Type   | Description                                 |
+|--------------|--------|---------------------------------------------|
+| `id`         | int    | The id of the listing                       |
+| `product_id` | int    | The id of the product linked to the listing |
+| `sort`       | int    | The sort of the listing within the group    |
 
 ## Example Request
 

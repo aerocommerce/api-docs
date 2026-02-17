@@ -20,12 +20,12 @@ GET /api/upsell-groups?per_page=2
     "data": [
       //...
     ],
-    "first_page_url": "http://aero.test/api/flags?page=1",
+    "first_page_url": "http://aero.test/api/upsell-groups?page=1",
     "from": 1,
     "last_page": 3,
-    "last_page_url": "http://aero.test/api/flags?page=3",
-    "next_page_url": "http://aero.test/api/flags?page=2",
-    "path": "http://aero.test/api/flags",
+    "last_page_url": "http://aero.test/api/upsell-groups?page=3",
+    "next_page_url": "http://aero.test/api/upsell-groups?page=2",
+    "path": "http://aero.test/api/upsell-groups",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,

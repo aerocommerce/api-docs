@@ -222,6 +222,15 @@
 | /api/upsell-groups        | upsell-groups.store | POST   | [Store Upsell Group](Examples/UpsellGroup/STORE.md)   | Create a upsell group from json data | 
 | /api/upsell-groups/{key}  | upsell-groups.store | PUT    | [Update Upsell Group](Examples/UpsellGroup/UPDATE.md) | Update a upsell group from json data |
 
+### Listing Collection Groups
+
+| URL                                     | Permission                       | Action | Examples                                                                      | Purpose                                            |
+|-----------------------------------------|----------------------------------|--------|-------------------------------------------------------------------------------|----------------------------------------------------|
+| /api/listing-collection-groups          | listing-collection-groups.index  | GET    | [Listing Collection Group Index](Examples/ListingCollectionGroup/INDEX.md)    | Get all listing collection groups (paginated)      |
+| /api/listing-collection-groups/{key}    | listing-collection-groups.view   | GET    | [View Listing Collection Group](Examples/ListingCollectionGroup/VIEW.md)      | Get listing collection group by key                | 
+| /api/listing-collection-groups          | listing-collection-groups.store  | POST   | [Store Listing Collection Group](Examples/ListingCollectionGroup/STORE.md)    | Create a listing collection group from json data   | 
+| /api/listing-collection-groups/{key}    | listing-collection-groups.store  | PUT    | [Update Listing Collection Group](Examples/ListingCollectionGroup/UPDATE.md)  | Update a listing collection group from json data   |
+
 ### Stock
 
 | URL                      | Permission          | Action | Examples                                              | Purpose                              |
