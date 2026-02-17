@@ -24,7 +24,7 @@ This endpoint updates an existing product by its `id` or `model`. Only the field
 | `seo`                          | object    | A [SEO](#seo) object                                                   | No        |
 | `settings`                     | object    | A [Settings](#settings) object with grouped key-value pairs            | No        |
 | `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects      | No        |
-
+| `related_listings`             | array     | An array of [Related Listing](#related-listing) objects                | No        |
 ### Category
 
 | Name                    | Type      | Description                                                         | Required? |
@@ -159,6 +159,18 @@ Settings are grouped as key-value pairs.
 |---------|---------|---------------------------------------|-----------|
 | `key`   | string  | The key of the additional attribute   | Yes       |
 | `value` | string  | The value of the additional attribute | Yes       |
+
+### Related Listing
+
+| Name         | Type   | Description                               | Required?          |
+|--------------|--------|-------------------------------------------|--------------------|
+| `id`         | int    | The id of the listing                     | Conditional `*`    |
+| `variant_id` | int    | The id of the variant (of the listing)    | Conditional `*`    |
+| `sku`        | string | The SKU of the variant (of the listing)   | Conditional `*`    |
+| `product_id` | int    | The id of the product (of the listing)    | Conditional `*`    |
+| `model`      | string | The model of the product (of the listing) | Conditional `*`    |
+
+`*` At least one must be present, resolved in the order they are listed top-down
 
 ## Example Request
 
