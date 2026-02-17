@@ -110,7 +110,7 @@
         2. [View](Examples/UpsellGroup/VIEW.md)
         3. [Store](Examples/UpsellGroup/STORE.md)
         4. [Update](Examples/UpsellGroup/UPDATE.md)
-    23. Upsell Groups
+    23. Listing Collection Groups
         1. [Index](Examples/ListingCollectionGroup/INDEX.md)
         2. [View](Examples/ListingCollectionGroup/VIEW.md)
         3. [Store](Examples/ListingCollectionGroup/STORE.md)
