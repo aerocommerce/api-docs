@@ -8,25 +8,27 @@ This endpoint retrieves a single product by `id` or `model`
 
 ### Product
 
-| Name                           | Type      | Description                                                       |
-|--------------------------------|-----------|-------------------------------------------------------------------|
-| `model`                        | string    | The **unique** model identifier for the product                   |
-| `name`                         | string    | The display name of the product                                   |
-| `manufacturer`                 | object    | The [Manufacturer](#manufacturer) object (null when none)         |
-| `summary`                      | string    | A short summary of the product                                    |
-| `description`                  | string    | A detailed description of the product                             |
-| `active`                       | boolean   | Whether the product is active (available for purchase)            |
-| `visible`                      | boolean   | Whether the product is visible in the storefront                  |
-| `attribute_groups_to_split_by` | ?array    | The attribute groups to split listings by (null when none)        |
-| `published_at`                 | timestamp | When the product was published                                    |
-| `images`                       | array     | An array of [Image](#image) objects                               |
-| `categories`                   | array     | An array of [Category](#category) objects                         |
-| `tags`                         | array     | An array of [Tag](#tag) objects                                   |
-| `variants`                     | array     | An array of [Variant](#variant) objects                           |
-| `seo`                          | object    | A [SEO](#seo) object                                              |
-| `settings`                     | object    | A [Settings](#settings) object with grouped key-value pairs       |
-| `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects |
-| `related_listings`             | array     | An array of [Related Listing](#related-listing) objects           |
+| Name                           | Type       | Description                                                       |
+|--------------------------------|------------|-------------------------------------------------------------------|
+| `model`                        | string     | The **unique** model identifier for the product                   |
+| `name`                         | string     | The display name of the product                                   |
+| `manufacturer`                 | object     | The [Manufacturer](#manufacturer) object (null when none)         |
+| `summary`                      | string     | A short summary of the product                                    |
+| `description`                  | string     | A detailed description of the product                             |
+| `active`                       | boolean    | Whether the product is active (available for purchase)            |
+| `visible`                      | boolean    | Whether the product is visible in the storefront                  |
+| `attribute_groups_to_split_by` | ?array     | The attribute groups to split listings by (null when none)        |
+| `published_at`                 | timestamp  | When the product was published                                    |
+| `images`                       | array      | An array of [Image](#image) objects                               |
+| `categories`                   | array      | An array of [Category](#category) objects                         |
+| `tags`                         | array      | An array of [Tag](#tag) objects                                   |
+| `variants`                     | array      | An array of [Variant](#variant) objects                           |
+| `seo`                          | object     | A [SEO](#seo) object                                              |
+| `settings`                     | object     | A [Settings](#settings) object with grouped key-value pairs       |
+| `additional_attributes`        | array      | An array of [Additional Attribute](#additional-attribute) objects |
+| `specifications`               | array      | An array of [Specification](#specification) objects               |
+| `upsells`                      | array      | An array of [Upsell](#upsell) objects                             |
+| `related_listings`             | array      | An array of [Related Listing](#related-listing) objects           |
 
 ### Manufacturer
 
@@ -91,6 +93,8 @@ This endpoint retrieves a single product by `id` or `model`
 | `cost`                  | object   | The [Cost Price](#cost-price) of the variant                      |
 | `prices`                | array    | An array of [Price](#price) objects                               |
 | `additional_attributes` | array    | An array of [Additional Attribute](#additional-attribute) objects |
+| `specifications`        | array    | An array of [Specification](#specification) objects               |
+| `upsells`               | array    | An array of [Upsell](#upsell) objects                             |
 
 ### Attribute
 
@@ -187,13 +191,41 @@ Settings are grouped as key-value pairs.
 | `key`   | string  | The key of the additional attribute   |
 | `value` | string  | The value of the additional attribute |
 
+### Specification
+
+| Name         | Type   | Description                         |
+|--------------|--------|-------------------------------------|
+| `group.name` | string | The name of the specification group |
+| `name`       | string | The name of the specification       |
+| `value`      | string | The value of the specification      |
+
+
+### Upsell
+
+| Name         | Type   | Description                                                           |
+|--------------|--------|-----------------------------------------------------------------------|
+| `group`      | object | The [Upsell Group](#upsell-group) object (null when none)             |
+| `attributes` | array  | An array of [Attribute](#attribute) objects that the upsell shows for |
+| `models`     | array  | And array of models for the upsell                                    |
+| `skus`       | array  | And array of SKUs for the upsell                                      |
+
+### Upsell Group
+
+| Name   | Type    | Description                   |
+|--------|---------|-------------------------------|
+| `key`  | string  | The key of the upsell group   |
+| `name` | string  | The name of the upsell group  |
+
 ### Related Listing
 
-| Name         | Type   | Description                                 |
-|--------------|--------|---------------------------------------------|
-| `id`         | int    | The id of the listing                       |
-| `product_id` | int    | The id of the product linked to the listing |
-| `sort`       | int    | The sort of the listing within the group    |
+| Name             | Type   | Description                                    |
+|------------------|--------|------------------------------------------------|
+| `id`             | int    | The id of the listing                          |
+| `product.id`     | int    | The id of the product linked to the listing    |
+| `product.model`  | string | The model of the product linked to the listing |
+| `variants.*.id`  | id     | The id of the variants linked to the listing   |
+| `variants.*.sku` | string | The sku of the variants linked to the listing  |
+| `sort`           | int    | The sort of the listing within the group       |
 
 ## Example Request
 

@@ -7,24 +7,27 @@ This endpoint updates an existing product by its `id` or `model`. Only the field
 ## Structure
 
 ### Product
-| Name                           | Type      | Description                                                            | Required? |
-|--------------------------------|-----------|------------------------------------------------------------------------|-----------|
-| `name`                         | string    | The name of the product                                                | No        |
-| `manufacturer`                 | string    | The manufacturer of the product                                        | No        |
-| `summary`                      | string    | The summary of the product                                             | No        |
-| `description`                  | string    | The description of the product                                         | No        |
-| `active`                       | boolean   | Whether the product is active                                          | No        |
-| `visible`                      | boolean   | Whether the product is visible                                         | No        |
-| `attribute_groups_to_split_by` | array     | An array of attribute group names to split listings by (e.g., ["Size"] | No        |
-| `published_at`                 | timestamp | When the product was published                                         | No        |
-| `images`                       | array     | An array of [Image](#image) objects                                    | No        |
-| `categories`                   | array     | An array of [Category](#category) objects                              | No        |
-| `tags`                         | array     | An array of [Tag](#tag) objects                                        | No        |
-| `variants`                     | array     | An array of [Variant](#variant) objects                                | No        |
-| `seo`                          | object    | A [SEO](#seo) object                                                   | No        |
-| `settings`                     | object    | A [Settings](#settings) object with grouped key-value pairs            | No        |
-| `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects      | No        |
-| `related_listings`             | array     | An array of [Related Listing](#related-listing) objects                | No        |
+| Name                           | Type      | Description                                                             | Required? |
+|--------------------------------|-----------|-------------------------------------------------------------------------|-----------|
+| `name`                         | string    | The name of the product                                                 | No        |
+| `manufacturer`                 | string    | The manufacturer of the product                                         | No        |
+| `summary`                      | string    | The summary of the product                                              | No        |
+| `description`                  | string    | The description of the product                                          | No        |
+| `active`                       | boolean   | Whether the product is active                                           | No        |
+| `visible`                      | boolean   | Whether the product is visible                                          | No        |
+| `attribute_groups_to_split_by` | array     | An array of attribute group names to split listings by (e.g., ["Size"]  | No        |
+| `published_at`                 | timestamp | When the product was published                                          | No        |
+| `images`                       | array     | An array of [Image](#image) objects                                     | No        |
+| `categories`                   | array     | An array of [Category](#category) objects                               | No        |
+| `tags`                         | array     | An array of [Tag](#tag) objects                                         | No        |
+| `variants`                     | array     | An array of [Variant](#variant) objects                                 | No        |
+| `seo`                          | object    | A [SEO](#seo) object                                                    | No        |
+| `settings`                     | object    | A [Settings](#settings) object with grouped key-value pairs             | No        |
+| `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects       | No        |
+| `specifications`               | array     | An array of [Specification](#specification) objects                     | No        |
+| `upsells`                      | array     | An array of [Upsell](#upsell) objects                                   | No        |
+| `related_listings`             | array     | An array of [Related Listing](#related-listing) objects                 | No        |
+
 ### Category
 
 | Name                    | Type      | Description                                                         | Required? |
@@ -33,38 +36,40 @@ This endpoint updates an existing product by its `id` or `model`. Only the field
 
 ### Variant
 
-| Name                    | Type    | Description                                                           | Required? |
-|-------------------------|---------|-----------------------------------------------------------------------|-----------|
-| `sku`                   | string  | The **unique** SKU for the variant to be updated                      | Yes       |
-| `reference`             | string  | The **unique** reference for the variant                              | No        |
-| `name`                  | string  | Display name of the variant                                           | No        |
-| `summary`               | string  | A short summary of the variant                                        | No        |
-| `description`           | string  | A detailed description of the variant                                 | No        |
-| `barcode`               | string  | The barcode/UPC/EAN of the variant                                    | No        |
-| `buyable`               | boolean | Whether the variant can be purchased                                  | No        |
-| `visible`               | boolean | Whether the variant is visible in listings                            | No        |
-| `shippable`             | boolean | Whether the variant is shippable                                      | No        |
-| `discountable`          | boolean | Whether discounts can be applied to this variant                      | No        |
-| `hide_when_no_stock`    | boolean | Whether the variant should be hidden when out of stock                | No        |
-| `infinite_stock`        | boolean | Whether the variant has unlimited stock                               | No        |
-| `stock_level`           | int     | Current stock level                                                   | No        |
-| `stock_buffer`          | int     | The stock buffer                                                      | No        |
-| `stock_action`          | string  | The stock action (e.g., set, add, remove & multiply). Defaults to set | No        |
-| `tax_group`             | string  | The tax group applied to the variant                                  | No        |
-| `minimum_quantity`      | int     | Minimum quantity per purchase                                         | No        |
-| `maximum_quantity`      | int     | Maximum quantity per purchase                                         | No        |
-| `multiples_of`          | int     | Purchasable only in multiples of this number                          | No        |
-| `weight`                | float   | Weight of the variant                                                 | No        |
-| `weight_unit`           | string  | Unit of weight (e.g., `kg`, `lb`)                                     | No        |
-| `volume`                | float   | Volume of the variant                                                 | No        |
-| `volume_unit`           | string  | Unit of volume (e.g., `m^3`, `cm^3`)                                  | No        |
-| `hs`                    | string  | HS (Harmonized System) code for customs                               | No        |
-| `origin_country`        | string  | ISO country code of origin (e.g., `US`, `GB`)                         | No        |
-| `goods_description`     | string  | Description of goods for customs                                      | No        |
-| `tags`                  | array   | An array of [Tag](#tag) objects                                       | No        |
-| `cost`                  | object  | The [Cost Price](#cost-price) of the variant                          | No        |
-| `prices`                | array   | An array of [Price](#price) objects                                   | No        |
-| `additional_attributes` | array   | An array of [Additional Attribute](#additional-attribute) objects     | No        |
+| Name                           | Type      | Description                                                           | Required? |
+|--------------------------------|-----------|-----------------------------------------------------------------------|-----------|
+| `sku`                          | string    | The **unique** SKU for the variant to be updated                      | Yes       |
+| `reference`                    | string    | The **unique** reference for the variant                              | No        |
+| `name`                         | string    | Display name of the variant                                           | No        |
+| `summary`                      | string    | A short summary of the variant                                        | No        |
+| `description`                  | string    | A detailed description of the variant                                 | No        |
+| `barcode`                      | string    | The barcode/UPC/EAN of the variant                                    | No        |
+| `buyable`                      | boolean   | Whether the variant can be purchased                                  | No        |
+| `visible`                      | boolean   | Whether the variant is visible in listings                            | No        |
+| `shippable`                    | boolean   | Whether the variant is shippable                                      | No        |
+| `discountable`                 | boolean   | Whether discounts can be applied to this variant                      | No        |
+| `hide_when_no_stock`           | boolean   | Whether the variant should be hidden when out of stock                | No        |
+| `infinite_stock`               | boolean   | Whether the variant has unlimited stock                               | No        |
+| `stock_level`                  | int       | Current stock level                                                   | No        |
+| `stock_buffer`                 | int       | The stock buffer                                                      | No        |
+| `stock_action`                 | string    | The stock action (e.g., set, add, remove & multiply). Defaults to set | No        |
+| `tax_group`                    | string    | The tax group applied to the variant                                  | No        |
+| `minimum_quantity`             | int       | Minimum quantity per purchase                                         | No        |
+| `maximum_quantity`             | int       | Maximum quantity per purchase                                         | No        |
+| `multiples_of`                 | int       | Purchasable only in multiples of this number                          | No        |
+| `weight`                       | float     | Weight of the variant                                                 | No        |
+| `weight_unit`                  | string    | Unit of weight (e.g., `kg`, `lb`)                                     | No        |
+| `volume`                       | float     | Volume of the variant                                                 | No        |
+| `volume_unit`                  | string    | Unit of volume (e.g., `m^3`, `cm^3`)                                  | No        |
+| `hs`                           | string    | HS (Harmonized System) code for customs                               | No        |
+| `origin_country`               | string    | ISO country code of origin (e.g., `US`, `GB`)                         | No        |
+| `goods_description`            | string    | Description of goods for customs                                      | No        |
+| `tags`                         | array     | An array of [Tag](#tag) objects                                       | No        |
+| `cost`                         | object    | The [Cost Price](#cost-price) of the variant                          | No        |
+| `prices`                       | array     | An array of [Price](#price) objects                                   | No        |
+| `additional_attributes`        | array     | An array of [Additional Attribute](#additional-attribute) objects     | No        |
+| `specifications`               | array     | An array of [Specification](#specification) objects                   | No        |
+| `upsells`                      | array     | An array of [Upsell](#upsell) objects                                 | No        |
 
 ### Tag
 
@@ -159,6 +164,23 @@ Settings are grouped as key-value pairs.
 |---------|---------|---------------------------------------|-----------|
 | `key`   | string  | The key of the additional attribute   | Yes       |
 | `value` | string  | The value of the additional attribute | Yes       |
+
+### Specification
+
+| Name         | Type   | Description                         | Required? |
+|--------------|--------|-------------------------------------|-----------|
+| `group.name` | string | The name of the specification group | No        |
+| `name`       | string | The name of the specification       | No        |
+| `value`      | string | The value of the specification      | No        |
+
+### Upsell
+
+| Name         | Type   | Description                                                           | Required? |
+|--------------|--------|-----------------------------------------------------------------------|-----------|
+| `group.name` | string | The upsell group name                                                 | No        |
+| `attributes` | array  | An array of [Attribute](#attribute) objects that the upsell shows for | No        |
+| `models`     | array  | And array of models for the upsell                                    | No        |
+| `skus`       | array  | And array of SKUs for the upsell                                      | No        |
 
 ### Related Listing
 
