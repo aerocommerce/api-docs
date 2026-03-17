@@ -15,7 +15,7 @@ This endpoint dispatches a job to bulk update stock for variants (queue subject 
 ## Example Request
 
 ```http request
-PUT /api/stock
+POST /api/stock
 ```
 
 ```json lines
