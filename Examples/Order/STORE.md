@@ -8,38 +8,39 @@ This endpoint creates a new order using the provided json data
 
 ### Order
 
-| Name                 | Type      | Description                                                                                                                  | Required?                   |
-|----------------------|-----------|------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
-| `id`                 | int       | The id for the order                                                                                                         | No                          |
-| `reference`          | string    | The **unique** reference for the order                                                                                       | Yes                         |
-| `status_id`          | int       | The status id of the order, can also be resolved from `state`                                                                | If `ordered_at` is not null |
-| `state`              | string    | Alternative to passing `status_id`, resolves the first status with the specified state                                       | No                          |
-| `customer_id`        | int       | The id of the customer that placed the order                                                                                 | No                          |
-| `email`              | string    | The email of the customer that placed the order                                                                              | No                          |
-| `subtotal.amount`    | float     | The subtotal of the order **excluding tax** (in pence not pounds)                                                            | No                          |
-| `subtotal.tax`       | float     | The subtotal tax for the order (in pence not pounds)                                                                         | No                          |
-| `shipping.amount`    | float     | The shipping of the order **excluding tax** (in pence not pounds)                                                            | No                          |
-| `shipping.tax`       | float     | The shipping tax for the order (in pence not pounds)                                                                         | No                          |
-| `discount.amount`    | float     | The discount of the order **excluding tax** (in pence not pounds)                                                            | No                          |
-| `discount.tax`       | float     | The discount tax for the order (in pence not pounds)                                                                         | No                          |
-| `surcharge.amount`   | float     | The surcharge of the order **excluding tax** (in pence not pounds)                                                           | No                          |
-| `surcharge.tax`      | float     | The surcharge tax for the order (in pence not pounds)                                                                        | No                          |
-| `shipping_method_id` | int       | The shipping method id of the order                                                                                          | No                          |
-| `currency`           | string    | The currency of the order, (defaults to store default if not provided)                                                       | No                          |
-| `exchange_rate`      | float     | The exchange rate of the order (derives from currency if not supplied)                                                       | No                          |
-| `shipping_address`   | object    | The [Shipping Address](#shipping-address) for the order                                                                      | No                          |
-| `billing_address `   | object    | The [Billing Address](#billing-address) for the order                                                                        | No                          |
-| `ip`                 | string    | The ip of the order                                                                                                          | No                          |
-| `channel`            | string    | The channel of the order                                                                                                     | No                          |
-| `subscription_id`    | int       | The subscription id of the order                                                                                             | No                          |
-| `notify`             | boolean   | Whether the order notifications are activated (defaults to `true`)                                                           | No                          |
-| `buy_items`          | boolean   | Whether the order items stock should be mutated. If false then `OrderItemBought` event will not be emit (defaults to `true`) | No                          |
-| `ordered_at`         | timestamp | When the order was ordered                                                                                                   | No                          |
-| `deliver_on`         | timestamp | When the order should be delivered                                                                                           | No                          |
-| `items`              | array     | An array of [Order Item](#order-item) objects                                                                                | Yes                         |
-| `payments`           | array     | An array of [Payment](#payment) objects                                                                                      | No                          |
-| `fulfillments`       | array     | An array of [Fulfillment](#fulfillment) objects                                                                              | No                          |
-| `comments`           | array     | An array of [Comment](#comment) objects                                                                                      | No                          |
+| Name                    | Type      | Description                                                                                                                  | Required?                   |
+|-------------------------|-----------|------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
+| `id`                    | int       | The id for the order                                                                                                         | No                          |
+| `reference`             | string    | The **unique** reference for the order                                                                                       | Yes                         |
+| `status_id`             | int       | The status id of the order, can also be resolved from `state`                                                                | If `ordered_at` is not null |
+| `state`                 | string    | Alternative to passing `status_id`, resolves the first status with the specified state                                       | No                          |
+| `customer_id`           | int       | The id of the customer that placed the order                                                                                 | No                          |
+| `email`                 | string    | The email of the customer that placed the order                                                                              | No                          |
+| `subtotal.amount`       | float     | The subtotal of the order **excluding tax** (in pence not pounds)                                                            | No                          |
+| `subtotal.tax`          | float     | The subtotal tax for the order (in pence not pounds)                                                                         | No                          |
+| `shipping.amount`       | float     | The shipping of the order **excluding tax** (in pence not pounds)                                                            | No                          |
+| `shipping.tax`          | float     | The shipping tax for the order (in pence not pounds)                                                                         | No                          |
+| `discount.amount`       | float     | The discount of the order **excluding tax** (in pence not pounds)                                                            | No                          |
+| `discount.tax`          | float     | The discount tax for the order (in pence not pounds)                                                                         | No                          |
+| `surcharge.amount`      | float     | The surcharge of the order **excluding tax** (in pence not pounds)                                                           | No                          |
+| `surcharge.tax`         | float     | The surcharge tax for the order (in pence not pounds)                                                                        | No                          |
+| `shipping_method_id`    | int       | The shipping method id of the order                                                                                          | No                          |
+| `currency`              | string    | The currency of the order, (defaults to store default if not provided)                                                       | No                          |
+| `exchange_rate`         | float     | The exchange rate of the order (derives from currency if not supplied)                                                       | No                          |
+| `shipping_address`      | object    | The [Shipping Address](#shipping-address) for the order                                                                      | No                          |
+| `billing_address `      | object    | The [Billing Address](#billing-address) for the order                                                                        | No                          |
+| `ip`                    | string    | The ip of the order                                                                                                          | No                          |
+| `channel`               | string    | The channel of the order                                                                                                     | No                          |
+| `subscription_id`       | int       | The subscription id of the order                                                                                             | No                          |
+| `notify`                | boolean   | Whether the order notifications are activated (defaults to `true`)                                                           | No                          |
+| `buy_items`             | boolean   | Whether the order items stock should be mutated. If false then `OrderItemBought` event will not be emit (defaults to `true`) | No                          |
+| `ordered_at`            | timestamp | When the order was ordered                                                                                                   | No                          |
+| `deliver_on`            | timestamp | When the order should be delivered                                                                                           | No                          |
+| `items`                 | array     | An array of [Order Item](#order-item) objects                                                                                | Yes                         |
+| `payments`              | array     | An array of [Payment](#payment) objects                                                                                      | No                          |
+| `fulfillments`          | array     | An array of [Fulfillment](#fulfillment) objects                                                                              | No                          |
+| `comments`              | array     | An array of [Comment](#comment) objects                                                                                      | No                          |
+| `additional_attributes` | array     | An array of [Additional Attribute](#additional-attribute) objects                                                            | No                          |
 
 - If no `subtotal.amount` or `subtotal.tax` is passed their values will be set to the sum of the items `price.amount` * `quantity` & `price.tax` * `quantity` respectively
 
@@ -177,6 +178,13 @@ This endpoint creates a new order using the provided json data
 | `created_at`      | timestamp   | The date the comment was created (defaults to now)        | No        |
 
 **NOTE:** If no `admin` is supplied then the API Token's name will be displayed for the comment in the admin
+
+### Additional Attribute
+
+| Name    | Type    | Description                           | Required? |
+|---------|---------|---------------------------------------|-----------|
+| `key`   | string  | The key of the additional attribute   | Yes       |
+| `value` | string  | The value of the additional attribute | Yes       |
 
 ## Example Request
 

@@ -8,30 +8,32 @@ This endpoint retrieves a single order by `id` or `reference`
 
 ### Order
 
-| Name               | Type      | Description                                                           |
-|--------------------|-----------|-----------------------------------------------------------------------|
-| `reference`        | string    | The **unique** reference for the order                                |
-| `status`           | object    | The [Order Status](#order-status) of the order (null if none)         |
-| `customer`         | object    | The [Customer](#customer) of the order (null if none)                 |
-| `email`            | string    | The email of the customer that placed the order                       |
-| `subtotal.amount`  | float     | The subtotal of the order **excluding tax**                           |
-| `subtotal.tax`     | float     | The subtotal tax for the order                                        |
-| `shipping.amount`  | float     | The shipping of the order **excluding tax**                           |
-| `shipping.tax`     | float     | The shipping tax for the order                                        |
-| `discount.amount`  | float     | The discount of the order **excluding tax**                           |
-| `discount.tax`     | float     | The discount tax for the order                                        |
-| `surcharge.amount` | float     | The surcharge of the order **excluding tax**                          |
-| `surcharge.tax`    | float     | The surcharge tax for the order                                       |
-| `currency`         | string    | The currency code of the order                                        |
-| `shipping_method`  | object    | The [Shipping Method](#shipping-method) of the order (null if none)   |
-| `shipping_address` | object    | The [Shipping Address](#shipping-address) of the order (null if none) |
-| `billing_address ` | object    | The [Billing Address](#billing-address) of the order (null if none)   |
-| `ordered_at`       | timestamp | When the order was ordered                                            |
-| `deliver_on`       | timestamp | When the order should be delivered                                    |
-| `items`            | array     | An array of [Order Item](#order-item) objects                         |
-| `payments`         | array     | An array of [Payment](#payment) objects                               |
-| `fulfillments`     | array     | An array of [Fulfillment](#fulfillment) objects                       |
-| `returns`          | array     | An array of [Return](#return) objects                                 |
+| Name                    | Type       | Description                                                           |
+|-------------------------|------------|-----------------------------------------------------------------------|
+| `reference`             | string     | The **unique** reference for the order                                |
+| `status`                | object     | The [Order Status](#order-status) of the order (null if none)         |
+| `customer`              | object     | The [Customer](#customer) of the order (null if none)                 |
+| `email`                 | string     | The email of the customer that placed the order                       |
+| `subtotal.amount`       | float      | The subtotal of the order **excluding tax**                           |
+| `subtotal.tax`          | float      | The subtotal tax for the order                                        |
+| `shipping.amount`       | float      | The shipping of the order **excluding tax**                           |
+| `shipping.tax`          | float      | The shipping tax for the order                                        |
+| `discount.amount`       | float      | The discount of the order **excluding tax**                           |
+| `discount.tax`          | float      | The discount tax for the order                                        |
+| `surcharge.amount`      | float      | The surcharge of the order **excluding tax**                          |
+| `surcharge.tax`         | float      | The surcharge tax for the order                                       |
+| `currency`              | string     | The currency code of the order                                        |
+| `shipping_method`       | object     | The [Shipping Method](#shipping-method) of the order (null if none)   |
+| `shipping_address`      | object     | The [Shipping Address](#shipping-address) of the order (null if none) |
+| `billing_address `      | object     | The [Billing Address](#billing-address) of the order (null if none)   |
+| `ordered_at`            | timestamp  | When the order was ordered                                            |
+| `deliver_on`            | timestamp  | When the order should be delivered                                    |
+| `items`                 | array      | An array of [Order Item](#order-item) objects                         |
+| `payments`              | array      | An array of [Payment](#payment) objects                               |
+| `fulfillments`          | array      | An array of [Fulfillment](#fulfillment) objects                       |
+| `returns`               | array      | An array of [Return](#return) objects                                 |
+| `comments`              | array      | An array of [Comment](#comment) objects                               |
+| `additional_attributes` | array      | An array of [Additional Attribute](#additional-attribute) objects     |
 
 ### Order Status
 
@@ -225,6 +227,13 @@ This endpoint retrieves a single order by `id` or `reference`
 | `id`    | int    | The id of the admin    |
 | `name`  | string | The name of the admin  |
 | `email` | string | The email of the admin |
+
+### Additional Attribute
+
+| Name    | Type    | Description                           |
+|---------|---------|---------------------------------------|
+| `key`   | string  | The key of the additional attribute   |
+| `value` | string  | The value of the additional attribute |
 
 ## Example Request
 
