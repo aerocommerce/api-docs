@@ -171,11 +171,23 @@ Settings are grouped as key-value pairs.
 
 ### Specification
 
-| Name         | Type   | Description                         | Required? |
-|--------------|--------|-------------------------------------|-----------|
-| `group.name` | string | The name of the specification group | Yes       |
-| `name`       | string | The name of the specification       | Yes       |
-| `value`      | string | The value of the specification      | Yes       |
+| Name         | Type   | Description                          | Required? |
+|--------------|--------|--------------------------------------|-----------|
+| `group.name` | string | The name of the specification group  | Yes       |
+| `name`       | string | The name of the specification        | `*`       |
+| `value`      | string | The value of the specification       | No        |
+| `media`      | array  | An array of [Media](#media) objects  | `*`       |
+
+`*` At least one must be present, futhermore if the group doesn't exist and is to be created you must provide at least one field for it
+
+### Media
+
+| Name     | Type   | Description                            | Required? |
+|----------|--------|----------------------------------------|-----------|
+| `id`     | int    | The id of the media                    | `*`       |
+| `source` | string | The source of the media, e.g. test.png | `*`       |
+
+`*` At least one must be present
 
 ### Upsell
 

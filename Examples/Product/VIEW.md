@@ -193,12 +193,28 @@ Settings are grouped as key-value pairs.
 
 ### Specification
 
-| Name         | Type   | Description                         |
-|--------------|--------|-------------------------------------|
-| `group.name` | string | The name of the specification group |
-| `name`       | string | The name of the specification       |
-| `value`      | string | The value of the specification      |
+| Name         | Type   | Description                          |
+|--------------|--------|--------------------------------------|
+| `group.name` | string | The name of the specification group  |
+| `name`       | string | The name of the specification        |
+| `value`      | string | The value of the specification       |
+| `media`      | array  | An array of [Media](#media) objects  |
 
+### Media
+
+| Name           | Type   | Description                         |
+|----------------|--------|-------------------------------------|
+| `id`           | int    | The id of the media                 |
+| `slug`         | string | The slug of the media               |
+| `disk`         | string | The disk used to store the media    |
+| `path`         | string | The path of the media on the disk   |
+| `title`        | string | The title of the media              |
+| `type`         | string | The mimetype of the media           |
+| `extension`    | string | The file extension of the media     |
+| `size`         | int    | The file size of the media in bytes |
+| `meta`         | object | The meta data of the media          |
+| `source`       | string | The source file name of the media   |
+| `is_protected` | bool   | Whether the media is protected      |
 
 ### Upsell
 
