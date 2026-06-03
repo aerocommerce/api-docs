@@ -8,22 +8,27 @@ This endpoint retrieves a single specification group by `id`
 
 ### Specification Group
 
-| Name     | Type      | Description                          |
-|----------|-----------|--------------------------------------|
-| `id`     | int       | The id of the specification group    |
-| `name`   | string    | The name for the specification group |
-| `fields` | array     | An array of [Field](#field) objects  |
-| `media`  | array     | An array of [Media](#media) objects  |
+| Name       | Type    | Description                                                 | Version   |
+|------------|---------|-------------------------------------------------------------|-----------|
+| `id`       | int     | The id of the specification group                           | `>=0.1.0` |
+| `name`     | string  | The name for the specification group                        | `>=0.1.0` |
+| `sort`     | int     | The sort for the specification group                        | `>=1.0.0` |
+| `fields`   | array   | An array of [Field](#field) objects                         | `>=0.1.0` |
+| `media`    | array   | An array of [Media](#media) objects                         | `>=0.3.2` |
+| `settings` | object  | A [Settings](#settings) object with grouped key-value pairs | `>=1.0.0` |
 
 ### Field
 
-| Name      | Type   | Description                                                        |
-|-----------|--------|--------------------------------------------------------------------|
-| `name`    | string | The name of the field                                              |
-| `presets` | array  | An array of strings to use as preset options                       |
-| `default` | string | The default value for the field, note: _p:0 means the first preset |
-| `prefix`  | string | The prefix for the field                                           |
-| `suffix`  | string | The suffix for the field                                           |
+| Name       | Type   | Description                                                          | Version   |
+|------------|--------|----------------------------------------------------------------------|-----------|
+| `name`     | string | The name of the field                                                | `>=0.1.0` |
+| `presets`  | array  | An array of strings to use as preset options                         | `>=0.1.0` |
+| `default`  | string | The default value for the field, note: `_p:0` means the first preset | `>=0.1.0` |
+| `prefix`   | string | The prefix for the field                                             | `>=0.1.0` |
+| `suffix`   | string | The suffix for the field                                             | `>=0.1.0` |
+| `sort`     | int    | The sort for the field                                               | `>=1.0.0` |
+| `media`    | array  | An array of [Media](#media) objects                                  | `>=1.0.0` |
+| `settings` | object | A [Settings](#settings) object with grouped key-value pairs          | `>=1.0.0` |
 
 ### Media
 
@@ -41,6 +46,25 @@ This endpoint retrieves a single specification group by `id`
 | `source`       | string | The source file name of the media   |
 | `is_protected` | bool   | Whether the media is protected      |
 
+### Settings
+
+Settings are grouped as key-value pairs.
+- Use "_" for ungrouped settings.
+- Each group contains its own object of key-value pairs.
+
+```json
+{
+    "settings": {
+        "_": {
+            "no_group": "value"
+        },
+        "group": {
+            "key": "value"
+        }
+    }
+}
+```
+
 ## Example Response
 
 ```http request
@@ -57,9 +81,21 @@ GET /api/specification-groups/{id}
             "presets": ["A", "B", "C"],
             "default": "D",
             "prefix": "prefix",
-            "suffix": "suffix"
+            "suffix": "suffix",
+            "media": [],
+            "settings": {
+                "test": {
+                    "test": 123
+                }
+            }
         }
-    ]
+    ],
+    "media": [],
+    "settings": {
+        "test": {
+            "test": 456
+        }
+    }
 }
 ```
 

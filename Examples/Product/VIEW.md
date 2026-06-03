@@ -8,27 +8,30 @@ This endpoint retrieves a single product by `id` or `model`
 
 ### Product
 
-| Name                           | Type       | Description                                                       |
-|--------------------------------|------------|-------------------------------------------------------------------|
-| `model`                        | string     | The **unique** model identifier for the product                   |
-| `name`                         | string     | The display name of the product                                   |
-| `manufacturer`                 | object     | The [Manufacturer](#manufacturer) object (null when none)         |
-| `summary`                      | string     | A short summary of the product                                    |
-| `description`                  | string     | A detailed description of the product                             |
-| `active`                       | boolean    | Whether the product is active (available for purchase)            |
-| `visible`                      | boolean    | Whether the product is visible in the storefront                  |
-| `attribute_groups_to_split_by` | ?array     | The attribute groups to split listings by (null when none)        |
-| `published_at`                 | timestamp  | When the product was published                                    |
-| `images`                       | array      | An array of [Image](#image) objects                               |
-| `categories`                   | array      | An array of [Category](#category) objects                         |
-| `tags`                         | array      | An array of [Tag](#tag) objects                                   |
-| `variants`                     | array      | An array of [Variant](#variant) objects                           |
-| `seo`                          | object     | A [SEO](#seo) object                                              |
-| `settings`                     | object     | A [Settings](#settings) object with grouped key-value pairs       |
-| `additional_attributes`        | array      | An array of [Additional Attribute](#additional-attribute) objects |
-| `specifications`               | array      | An array of [Specification](#specification) objects               |
-| `upsells`                      | array      | An array of [Upsell](#upsell) objects                             |
-| `related_listings`             | array      | An array of [Related Listing](#related-listing) objects           |
+| Name                            | Type       | Description                                                       |
+|---------------------------------|------------|-------------------------------------------------------------------|
+| `model`                         | string     | The **unique** model identifier for the product                   |
+| `name`                          | string     | The display name of the product                                   |
+| `manufacturer`                  | object     | The [Manufacturer](#manufacturer) object (null when none)         |
+| `summary`                       | string     | A short summary of the product                                    |
+| `description`                   | string     | A detailed description of the product                             |
+| `active`                        | boolean    | Whether the product is active (available for purchase)            |
+| `visible`                       | boolean    | Whether the product is visible in the storefront                  |
+| `attribute_groups_to_split_by`  | ?array     | The attribute groups to split listings by (null when none)        |
+| `published_at`                  | timestamp  | When the product was published                                    |
+| `images`                        | array      | An array of [Image](#image) objects                               |
+| `categories`                    | array      | An array of [Category](#category) objects                         |
+| `tags`                          | array      | An array of [Tag](#tag) objects                                   |
+| `variants`                      | array      | An array of [Variant](#variant) objects                           |
+| `seo`                           | object     | A [SEO](#seo) object                                              |
+| `settings`                      | object     | A [Settings](#settings) object with grouped key-value pairs       |
+| `additional_attributes`         | array      | An array of [Additional Attribute](#additional-attribute) objects |
+| `specifications` `*`            | array      | An array of [Specification](#specification) objects               |
+| `specification_groups` `*`      | array      | An array of [Specification Group](#specification-groups) objects  |
+| `upsells`                       | array      | An array of [Upsell](#upsell) objects                             |
+| `related_listings`              | array      | An array of [Related Listing](#related-listing) objects           |
+
+`*` `specifications` is if using `<1.0.0` version of `aerocargo/specifications`, otherwise use `specification_groups`.
 
 ### Manufacturer
 
@@ -55,46 +58,49 @@ This endpoint retrieves a single product by `id` or `model`
 
 ### Variant
 
-| Name                    | Type     | Description                                                       |
-|-------------------------|----------|-------------------------------------------------------------------|
-| `sku`                   | string   | The **unique** SKU for the variant                                |
-| `reference`             | string   | The **unique** reference for the variant                          |
-| `name`                  | string   | Display name of the variant                                       |
-| `summary`               | string   | A short summary of the variant                                    |
-| `description`           | string   | A detailed description of the variant                             |
-| `barcode`               | string   | The barcode/UPC/EAN of the variant                                |
-| `buyable`               | boolean  | Whether the variant can be purchased                              |
-| `visible`               | boolean  | Whether the variant is visible in listings                        |
-| `shippable`             | boolean  | Whether the variant is shippable                                  |
-| `discountable`          | boolean  | Whether discounts can be applied to this variant                  |
-| `hide_when_no_stock`    | boolean  | Whether the variant should be hidden when out of stock            |
-| `infinite_stock`        | boolean  | Whether the variant has unlimited stock                           |
-| `stock_level`           | int      | Current stock level                                               |
-| `stock_buffer`          | int      | The stock buffer                                                  |
-| `tax_group`             | string   | The tax group applied to the variant                              |
-| `minimum_quantity`      | int      | Minimum quantity per purchase                                     |
-| `maximum_quantity`      | int      | Maximum quantity per purchase                                     |
-| `multiples_of`          | int      | Purchasable only in multiples of this number                      |
-| `weight`                | float    | Weight of the variant                                             |
-| `weight_unit`           | string   | Unit of weight (e.g., `kg`, `lb`)                                 |
-| `volume`                | float    | Volume of the variant                                             |
-| `volume_unit`           | string   | Unit of volume (e.g., `m^3`, `cm^3`)                              |
-| `hs`                    | string   | HS (Harmonized System) code for customs                           |
-| `price.amount`          | float    | The current price of the variant **excluding tax**                |
-| `price.tax`             | float    | The tax of the current price                                      |
-| `price.currency`        | string   | The currency of the current price                                 |
-| `retail.amount`         | float    | The RRP for the variant **excluding tax**                         |
-| `retail.tax`            | float    | The tax of the RRP                                                |
-| `retail.currency`       | string   | The currency of the RRP                                           |
-| `origin_country`        | string   | ISO country code of origin (e.g., `US`, `GB`)                     |
-| `goods_description`     | string   | Description of goods for customs                                  |
-| `attributes`            | array    | An array of [Attribute](#attribute) objects                       |
-| `tags`                  | array    | An array of [Tag](#tag) objects                                   |
-| `cost`                  | object   | The [Cost Price](#cost-price) of the variant                      |
-| `prices`                | array    | An array of [Price](#price) objects                               |
-| `additional_attributes` | array    | An array of [Additional Attribute](#additional-attribute) objects |
-| `specifications`        | array    | An array of [Specification](#specification) objects               |
-| `upsells`               | array    | An array of [Upsell](#upsell) objects                             |
+| Name                       | Type     | Description                                                       |
+|----------------------------|----------|-------------------------------------------------------------------|
+| `sku`                      | string   | The **unique** SKU for the variant                                |
+| `reference`                | string   | The **unique** reference for the variant                          |
+| `name`                     | string   | Display name of the variant                                       |
+| `summary`                  | string   | A short summary of the variant                                    |
+| `description`              | string   | A detailed description of the variant                             |
+| `barcode`                  | string   | The barcode/UPC/EAN of the variant                                |
+| `buyable`                  | boolean  | Whether the variant can be purchased                              |
+| `visible`                  | boolean  | Whether the variant is visible in listings                        |
+| `shippable`                | boolean  | Whether the variant is shippable                                  |
+| `discountable`             | boolean  | Whether discounts can be applied to this variant                  |
+| `hide_when_no_stock`       | boolean  | Whether the variant should be hidden when out of stock            |
+| `infinite_stock`           | boolean  | Whether the variant has unlimited stock                           |
+| `stock_level`              | int      | Current stock level                                               |
+| `stock_buffer`             | int      | The stock buffer                                                  |
+| `tax_group`                | string   | The tax group applied to the variant                              |
+| `minimum_quantity`         | int      | Minimum quantity per purchase                                     |
+| `maximum_quantity`         | int      | Maximum quantity per purchase                                     |
+| `multiples_of`             | int      | Purchasable only in multiples of this number                      |
+| `weight`                   | float    | Weight of the variant                                             |
+| `weight_unit`              | string   | Unit of weight (e.g., `kg`, `lb`)                                 |
+| `volume`                   | float    | Volume of the variant                                             |
+| `volume_unit`              | string   | Unit of volume (e.g., `m^3`, `cm^3`)                              |
+| `hs`                       | string   | HS (Harmonized System) code for customs                           |
+| `price.amount`             | float    | The current price of the variant **excluding tax**                |
+| `price.tax`                | float    | The tax of the current price                                      |
+| `price.currency`           | string   | The currency of the current price                                 |
+| `retail.amount`            | float    | The RRP for the variant **excluding tax**                         |
+| `retail.tax`               | float    | The tax of the RRP                                                |
+| `retail.currency`          | string   | The currency of the RRP                                           |
+| `origin_country`           | string   | ISO country code of origin (e.g., `US`, `GB`)                     |
+| `goods_description`        | string   | Description of goods for customs                                  |
+| `attributes`               | array    | An array of [Attribute](#attribute) objects                       |
+| `tags`                     | array    | An array of [Tag](#tag) objects                                   |
+| `cost`                     | object   | The [Cost Price](#cost-price) of the variant                      |
+| `prices`                   | array    | An array of [Price](#price) objects                               |
+| `additional_attributes`    | array    | An array of [Additional Attribute](#additional-attribute) objects |
+| `specifications` `*`       | array    | An array of [Specification](#specification) objects               |
+| `specification_groups` `*` | array    | An array of [Specification Group](#specification-groups) objects  |
+| `upsells`                  | array    | An array of [Upsell](#upsell) objects                             |
+
+`*` `specifications` is if using `<1.0.0` version of `aerocargo/specifications`, otherwise use `specification_groups`.
 
 ### Attribute
 
@@ -193,12 +199,36 @@ Settings are grouped as key-value pairs.
 
 ### Specification
 
+**NOTE**: This is only for `<1.0.0` version of `aerocargo/specifications`. See [Specification Group](#specification-group) for `1.x` structure
+
 | Name         | Type   | Description                          |
 |--------------|--------|--------------------------------------|
 | `group.name` | string | The name of the specification group  |
 | `name`       | string | The name of the specification        |
 | `value`      | string | The value of the specification       |
 | `media`      | array  | An array of [Media](#media) objects  |
+
+### Specification Group
+
+**NOTE**: This is only for `>=1.0.0` version of `aerocargo/specifications`. See [Specification](#specification) for `0.x` structure
+
+| Name       | Type   | Description                                                 |
+|------------|--------|-------------------------------------------------------------|
+| `id`       | int    | The id of the specification group                           |
+| `name`     | string | The name of the specification group                         |
+| `fields`   | array  | An array of [Field](#specification-group-field) objects     |
+| `media`    | array  | An array of [Media](#media) objects                         |
+| `settings` | object | A [Settings](#settings) object with grouped key-value pairs |
+
+### Specification Group Field
+
+| Name       | Type   | Description                                                 |
+|------------|--------|-------------------------------------------------------------|
+| `id`       | int    | The id of the specification group field                     |
+| `name`     | string | The name of the specification group field                   |
+| `value`    | string | The value of the specification group field                  |
+| `media`    | array  | An array of [Media](#media) objects                         |
+| `settings` | object | A [Settings](#settings) object with grouped key-value pairs |
 
 ### Media
 
