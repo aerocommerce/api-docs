@@ -171,6 +171,8 @@ Settings are grouped as key-value pairs.
 
 ### Specification
 
+**NOTE**: This is only for `<1.0.0` version of `aerocargo/specifications`. See [Specification Group](#specification-group) for `1.x` structure
+
 | Name         | Type   | Description                          | Required? |
 |--------------|--------|--------------------------------------|-----------|
 | `group.name` | string | The name of the specification group  | Yes       |
@@ -179,6 +181,32 @@ Settings are grouped as key-value pairs.
 | `media`      | array  | An array of [Media](#media) objects  | `*`       |
 
 `*` At least one must be present, futhermore if the group doesn't exist and is to be created you must provide at least one field for it
+
+### Specification Group
+
+**NOTE**: This is only for `>=1.0.0` version of `aerocargo/specifications`. See [Specification](#specification) for `0.x` structure
+
+| Name       | Type   | Description                                                 | Required? |
+|------------|--------|-------------------------------------------------------------|-----------|
+| `id`       | int    | The id of the specification group                           | `*`       |
+| `name`     | string | The name of the specification group                         | `*`       |
+| `fields`   | array  | An array of [Field](#specification-group-field) objects     | Yes       |
+| `media`    | array  | An array of [Media](#media) objects                         | No        |
+| `settings` | object | A [Settings](#settings) object with grouped key-value pairs | No        |
+
+`*` At least one must be present
+
+### Specification Group Field
+
+| Name       | Type   | Description                                                 | Required? |
+|------------|--------|-------------------------------------------------------------|-----------|
+| `id`       | int    | The id of the specification group field                     | `*`       |
+| `name`     | string | The name of the specification group field                   | `*`       |
+| `value`    | string | The value of the specification group field                  | Yes       |
+| `media`    | array  | An array of [Media](#media) objects                         | No        |
+| `settings` | object | A [Settings](#settings) object with grouped key-value pairs | No        |
+
+`*` At least one must be present
 
 ### Media
 
