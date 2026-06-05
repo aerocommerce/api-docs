@@ -15,6 +15,7 @@ This prefixes the routes with `api` and also attaches the `aero.api` middleware 
     \Aero\Api\Http\Middleware\ForceJsonResponse::class, //Forces Response to be JSON instead of HTML
     \Aero\Api\Http\Middleware\LogApiUsage::class, //Logs API Usage so it can be viewed in Admin
     \Aero\Api\Http\Middleware\CheckApiToken::class, //Validates API Token 
+    \Aero\Api\Http\Middleware\ThrottleApiToken::class, //Throttles API Token, based on its rate_limit 
     \Aero\Api\Http\Middleware\SetLanguageHeader::class, //Sets "Language" Header used for Translations
 ],
 ```
